@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #C5A059;       /* Muted Luxury Gold */
+  --color-gold-light: #E0C080; /* Champagne Gold */
+  --color-gold-dark: #9A7B3E;  /* Antique Gold */
+  
+  --color-beige: #F9F7F2;      /* Warm Off-White Background */
+  --color-sand: #E8E4DA;       /* Subtle Section Background */
+  
+  --color-charcoal: #1A1A1A;   /* Rich Black alternative */
+  
+  --font-sans: Inter, sans-serif;
+  --font-serif: Playfair Display, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-beige text-charcoal font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-charcoal font-bold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-charcoal hover:bg-gold text-white font-bold py-3 px-6 transition-all duration-300 shadow-sm hover:shadow-md uppercase tracking-wide border border-charcoal hover:border-gold;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-charcoal text-charcoal hover:border-gold hover:text-gold font-bold py-3 px-6 transition-all duration-300 uppercase tracking-wide;
+  }
+  .section-padding {
+    @apply py-20 px-4 md:px-8 lg:px-16;
+  }
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-beige;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gold/50 hover:bg-gold rounded-full;
+  }
+}
