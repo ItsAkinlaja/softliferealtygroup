@@ -2,10 +2,16 @@ import React from 'react';
 import { ArrowRight, Globe, Users, Award, Briefcase } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
+import SEO from '../components/SEO';
 
 const About = () => {
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
+      <SEO 
+        title="About Us - Anne & Shakirah" 
+        description="Meet the visionaries behind SoftLife Realty Group. Anne and Shakirah bring a boutique experience to modern real estate investment."
+        keywords="about softlife realty, anne and shakirah, luxury real estate agents, dallas realtors, dubai real estate experts"
+      />
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/40 z-10"></div>

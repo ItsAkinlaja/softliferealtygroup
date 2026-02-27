@@ -2,6 +2,7 @@ import React from 'react';
 import { RefreshCw, TrendingUp, Camera, FileSignature, ArrowRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
+import SEO from '../components/SEO';
 
 const SellersGuide = () => {
     const steps = [
@@ -29,6 +30,11 @@ const SellersGuide = () => {
 
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
+      <SEO 
+        title="Seller's Guide" 
+        description="Maximize your property's value with our expert seller's guide. Learn about strategic pricing, staging, and global marketing."
+        keywords="selling a home, home selling tips, real estate marketing, property valuation strategies"
+      />
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/40 z-10"></div>

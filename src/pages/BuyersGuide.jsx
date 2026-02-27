@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle, Search, DollarSign, Key, ArrowRight } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
+import SEO from '../components/SEO';
 
 const BuyersGuide = () => {
   const steps = [
@@ -29,6 +30,11 @@ const BuyersGuide = () => {
 
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
+       <SEO 
+         title="Buyer's Guide" 
+         description="Step-by-step guide to buying your dream home. From financial preparation to closing the deal, we guide you through every stage."
+         keywords="home buying guide, real estate tips, first time home buyer, luxury home buying process"
+       />
        {/* Hero Section */}
        <section className="relative h-[50vh] min-h-[400px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/50 z-10"></div>

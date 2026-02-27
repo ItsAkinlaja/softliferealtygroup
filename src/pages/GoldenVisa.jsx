@@ -4,10 +4,16 @@ import InstagramSlides from '../sections/InstagramSlides';
 import ConsultationCTA from '../sections/ConsultationCTA';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
+import SEO from '../components/SEO';
 
 const GoldenVisa = () => {
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
+        <SEO 
+            title="UAE Golden Visa - Dubai Real Estate Investment" 
+            description="Secure your 10-year renewable UAE Golden Visa through strategic real estate investment. Learn about eligibility, benefits, and qualifying properties."
+            keywords="uae golden visa, dubai golden visa, dubai residency by investment, buy property in dubai, dubai real estate investor visa"
+        />
         {/* Hero Section */}
         <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
             <div className="absolute inset-0 bg-black/50 z-10"></div>

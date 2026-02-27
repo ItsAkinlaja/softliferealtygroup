@@ -6,10 +6,16 @@ import FeaturedProjects from '../sections/FeaturedProjects';
 import VideoSection from '../sections/VideoSection';
 import ConsultationCTA from '../sections/ConsultationCTA';
 import FadeIn from '../components/FadeIn';
+import SEO from '../components/SEO';
 
 const Home = () => {
   return (
     <>
+      <SEO 
+        title="Luxury Real Estate in Dallas & Dubai" 
+        description="SoftLife Realty Group connects you with premium properties in Dallas and Dubai. Explore our exclusive listings and expert valuation services today."
+        keywords="luxury real estate, dallas homes, dubai property, golden visa, real estate investment"
+      />
       <Hero />
       <FadeIn>
         <FeaturedProjects />

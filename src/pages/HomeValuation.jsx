@@ -1,9 +1,15 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, TrendingUp, Home, DollarSign } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const HomeValuation = () => {
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
+      <SEO 
+        title="Home Valuation" 
+        description="Get an accurate, professional valuation of your property. Our experts analyze market trends and unique features to determine your home's true value."
+        keywords="home valuation, property appraisal, sell my home, real estate market analysis, house value"
+      />
       {/* Hero Section with Parallax Effect */}
       <div className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0 bg-black/40 z-10"></div>

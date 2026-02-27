@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Search, Filter, MapPin } from 'lucide-react';
 import PropertyCard from '../components/PropertyCard';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
+import SEO from '../components/SEO';
 
 // Reusing mock data for now
 const MOCK_RESULTS = [
@@ -101,6 +102,11 @@ const MOCK_RESULTS = [
 const HomeSearch = () => {
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
+      <SEO 
+        title="Search Luxury Properties" 
+        description="Find your dream home with SoftLife Realty Group. Browse exclusive listings in Dallas, Dubai, London, and other prime locations."
+        keywords="property search, luxury homes for sale, dallas real estate listings, dubai apartments, penthouses for sale"
+      />
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/40 z-10"></div>

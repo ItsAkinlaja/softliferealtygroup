@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const FadeIn = ({ children, delay = 0, direction = 'up', className = '' }) => {
   const variants = {
@@ -21,7 +21,7 @@ const FadeIn = ({ children, delay = 0, direction = 'up', className = '' }) => {
   };
 
   return (
-    <motion.div
+    <Motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -29,7 +29,7 @@ const FadeIn = ({ children, delay = 0, direction = 'up', className = '' }) => {
       className={className}
     >
       {children}
-    </motion.div>
+    </Motion.div>
   );
 };
 
