@@ -13,6 +13,7 @@ const Hero = () => {
           muted 
           playsInline
           className="w-full h-full object-cover"
+          poster="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         >
           {/* Using a luxury city/home video from Pexels */}
           <source src="https://videos.pexels.com/video-files/7578544/7578544-uhd_2560_1440_30fps.mp4" type="video/mp4" />

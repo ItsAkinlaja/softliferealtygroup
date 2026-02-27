@@ -37,10 +37,10 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b border-sand shadow-sm transition-all duration-300">
+    <header className="bg-white/95 backdrop-blur-sm sticky top-0 z-[100] border-b border-sand shadow-sm transition-all duration-300">
       <div className="container-custom flex justify-between items-center py-4 px-4">
         {/* Logo - Using Image */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center z-[101]">
           <img src="/Soft_Life_Realty_Logo.png" alt="SoftLife Realty Logo" className="h-14 w-auto object-contain hover:opacity-90 transition-opacity" />
         </Link>
 
@@ -73,35 +73,45 @@ const Header = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden text-charcoal focus:outline-none hover:text-gold transition-colors">
+        <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden text-charcoal focus:outline-none hover:text-gold transition-colors z-[101]">
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Nav Overlay */}
-      <div className={`xl:hidden fixed inset-0 bg-white z-40 transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} pt-24 px-6 overflow-y-auto`}>
-          <div className="flex flex-col space-y-6 text-center">
-            <Link to="/search" className="text-xl font-medium uppercase border-b border-gray-100 pb-4" onClick={() => setIsOpen(false)}>Search Properties</Link>
-            
-            <button onClick={() => toggleDropdown('services')} className="text-xl font-medium uppercase flex items-center justify-center pb-2">
-                Services <ChevronDown size={16} className={`ml-2 transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
-            </button>
-            {activeDropdown === 'services' && (
-                <div className="bg-beige/50 py-4 space-y-4 rounded-lg animate-fadeIn">
-                    <Link to="/valuation" className="block text-gray-600 hover:text-gold" onClick={() => setIsOpen(false)}>Home Valuation</Link>
-                    <Link to="/buy/guide" className="block text-gray-600 hover:text-gold" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
-                    <Link to="/sell/guide" className="block text-gray-600 hover:text-gold" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
+      <div className={`xl:hidden fixed inset-0 bg-white z-[90] transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} overflow-y-auto`}>
+          <div className="flex justify-end p-4">
+              <button onClick={() => setIsOpen(false)} className="text-charcoal focus:outline-none hover:text-gold transition-colors">
+                  <X size={28} />
+              </button>
+          </div>
+          <div className="flex flex-col h-full px-6 pb-10">
+              <div className="flex flex-col space-y-6 text-center flex-grow justify-center mt-10">
+                <Link to="/search" className="text-2xl font-serif font-bold uppercase tracking-wide hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>Search Properties</Link>
+                
+                <button onClick={() => toggleDropdown('services')} className="text-2xl font-serif font-bold uppercase tracking-wide hover:text-gold transition-colors flex items-center justify-center">
+                    Services <ChevronDown size={20} className={`ml-2 transform transition-transform duration-300 ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${activeDropdown === 'services' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className="flex flex-col space-y-4 py-2 bg-beige/30 rounded-lg">
+                        <Link to="/valuation" className="text-lg text-gray-600 hover:text-gold" onClick={() => setIsOpen(false)}>Home Valuation</Link>
+                        <Link to="/buy/guide" className="text-lg text-gray-600 hover:text-gold" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
+                        <Link to="/sell/guide" className="text-lg text-gray-600 hover:text-gold" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
+                    </div>
                 </div>
-            )}
 
-            <Link to="/dubai-real-estate" className="text-xl font-medium uppercase border-b border-gray-100 pb-4" onClick={() => setIsOpen(false)}>Dubai Real Estate</Link>
-            <Link to="/about" className="text-xl font-medium uppercase border-b border-gray-100 pb-4" onClick={() => setIsOpen(false)}>About Us</Link>
-            <a href="#contact" className="btn-primary w-full mt-4" onClick={() => setIsOpen(false)}>Contact Us</a>
-            
-             {/* Google Translate Mobile */}
-             <div className="flex justify-center pt-8 border-t border-gray-100 mt-4">
-                <div id="google_translate_element_mobile"></div> 
-             </div>
+                <Link to="/dubai-real-estate" className="text-2xl font-serif font-bold uppercase tracking-wide hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>Dubai Real Estate</Link>
+                <Link to="/about" className="text-2xl font-serif font-bold uppercase tracking-wide hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>About Us</Link>
+                
+                <div className="pt-8">
+                     <a href="#contact" className="btn-primary w-full text-lg py-4" onClick={() => setIsOpen(false)}>Contact Us</a>
+                </div>
+                
+                 {/* Google Translate Mobile */}
+                 <div className="flex justify-center pt-8 mt-auto">
+                    <div id="google_translate_element_mobile"></div> 
+                 </div>
+              </div>
           </div>
       </div>
     </header>

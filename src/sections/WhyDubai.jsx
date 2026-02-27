@@ -27,10 +27,10 @@ const WhyInvest = () => {
 
   return (
     <section className="section-padding bg-black text-white relative overflow-hidden">
-      <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div>
-          <h2 className="text-4xl font-serif font-bold mb-6 text-white uppercase tracking-wide">Why Choose Us</h2>
-          <p className="text-lg text-gray-400 mb-8 leading-relaxed font-light">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-white uppercase tracking-wide">Why Choose Us</h2>
+          <p className="text-base md:text-lg text-gray-400 mb-8 leading-relaxed font-light">
             We are more than just real estate agents; we are your strategic partners in building wealth through property. With a focus on buying and selling, we deliver results that exceed expectations.
           </p>
           
