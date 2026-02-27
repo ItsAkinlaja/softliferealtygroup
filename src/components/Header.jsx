@@ -80,13 +80,8 @@ const Header = () => {
 
       {/* Mobile Nav Overlay */}
       <div className={`xl:hidden fixed inset-0 bg-white z-[90] transition-transform duration-500 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} overflow-y-auto`}>
-          <div className="flex justify-end p-4">
-              <button onClick={() => setIsOpen(false)} className="text-charcoal focus:outline-none hover:text-gold transition-colors">
-                  <X size={28} />
-              </button>
-          </div>
-          <div className="flex flex-col h-full px-6 pb-10">
-              <div className="flex flex-col space-y-6 text-center flex-grow justify-center mt-10">
+          <div className="flex flex-col h-full px-6 pb-10 pt-28">
+              <div className="flex flex-col space-y-6 text-center flex-grow justify-start">
                 <Link to="/search" className="text-2xl font-serif font-bold uppercase tracking-wide hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>Search Properties</Link>
                 
                 <button onClick={() => toggleDropdown('services')} className="text-2xl font-serif font-bold uppercase tracking-wide hover:text-gold transition-colors flex items-center justify-center">
