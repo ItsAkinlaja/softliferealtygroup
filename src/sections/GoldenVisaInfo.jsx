@@ -27,28 +27,28 @@ const GoldenVisaInfo = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-white overflow-hidden">
+    <section className="relative py-16 md:py-24 bg-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold rounded-full blur-[120px] transform translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold rounded-full blur-[80px] transform -translate-x-1/3 translate-y-1/3"></div>
+          <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gold rounded-full blur-[80px] md:blur-[120px] transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-gold rounded-full blur-[60px] md:blur-[80px] transform -translate-x-1/3 translate-y-1/3"></div>
       </div>
 
       <div className="container-custom relative z-10 px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16">
             
             {/* Left Header Column */}
             <div className="lg:col-span-4">
                 <FadeIn direction="right">
-                    <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-sm">Residency by Investment</h4>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6 leading-tight">
+                    <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-xs md:text-sm">Residency by Investment</h4>
+                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-charcoal mb-6 leading-tight">
                         The UAE <br/><span className="text-gold italic">Golden Visa</span>
                     </h2>
                     <div className="h-1 w-20 bg-gold mb-8"></div>
-                    <p className="text-lg text-gray-600 mb-10 leading-relaxed font-light">
+                    <p className="text-base md:text-lg text-gray-600 mb-8 md:mb-10 leading-relaxed font-light">
                         Unlock a world of opportunities with long-term residency through real estate investment. Secure your future in one of the world's most dynamic economies.
                     </p>
-                    <a href="/golden-visa" className="inline-flex items-center text-charcoal border-b border-gold pb-1 hover:text-gold transition-colors group uppercase tracking-widest text-sm font-bold">
+                    <a href="/golden-visa" className="inline-flex items-center text-charcoal border-b border-gold pb-1 hover:text-gold transition-colors group uppercase tracking-widest text-xs md:text-sm font-bold">
                         Learn More <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
                     </a>
                 </FadeIn>

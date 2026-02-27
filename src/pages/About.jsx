@@ -13,7 +13,7 @@ const About = () => {
         keywords="about softlife realty, anne and shakirah, luxury real estate agents, dallas realtors, dubai real estate experts"
       />
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
+      <section className="relative h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
           src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" 
@@ -23,11 +23,11 @@ const About = () => {
         <div className="relative z-20 container-custom px-4 flex flex-col items-center">
           <Breadcrumbs className="text-white/80 mb-6" />
           <FadeIn>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tight leading-none drop-shadow-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-4 md:mb-6 tracking-tight leading-none drop-shadow-2xl">
               About <span className="text-gold italic">SoftLife</span>
             </h1>
-            <div className="h-1 w-24 bg-gold mx-auto mb-8"></div>
-            <p className="text-xl md:text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+            <div className="h-1 w-24 bg-gold mx-auto mb-6 md:mb-8"></div>
+            <p className="text-lg md:text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md">
               Redefining global real estate with elegance, expertise, and a personal touch.
             </p>
           </FadeIn>
@@ -35,31 +35,31 @@ const About = () => {
       </section>
 
       {/* Founders Section */}
-      <section className="py-24 bg-white relative">
+      <section className="py-16 md:py-24 bg-white relative">
         <div className="container-custom px-4">
-             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <FadeIn direction="right">
-                    <div className="relative h-[700px] w-full group overflow-hidden shadow-2xl rounded-sm">
+                    <div className="relative h-[400px] md:h-[700px] w-full group overflow-hidden shadow-2xl rounded-sm">
                         <div className="absolute inset-0 bg-gold/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
                         <img 
                             src="https://images.pexels.com/photos/5717632/pexels-photo-5717632.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
                             alt="Anne & Shakirah - SoftLife Realty Founders" 
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                         />
-                        <div className="absolute bottom-10 left-10 z-20">
-                            <p className="text-white text-4xl font-serif italic drop-shadow-lg">Anne & Shakirah</p>
-                            <p className="text-gold text-sm font-bold tracking-widest uppercase mt-2">Founders & Principals</p>
+                        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
+                            <p className="text-white text-2xl md:text-4xl font-serif italic drop-shadow-lg">Anne & Shakirah</p>
+                            <p className="text-gold text-xs md:text-sm font-bold tracking-widest uppercase mt-2">Founders & Principals</p>
                         </div>
                     </div>
                 </FadeIn>
                 
                 <FadeIn direction="left">
                     <div className="pl-0 lg:pl-10">
-                        <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-sm">The Visionaries</h4>
-                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-8 leading-tight">
+                        <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-xs md:text-sm">The Visionaries</h4>
+                        <h2 className="text-3xl md:text-5xl font-serif font-bold text-charcoal mb-6 md:mb-8 leading-tight">
                             Curating Lifestyles, <br/> Not Just Homes.
                         </h2>
-                        <p className="text-gray-600 text-lg leading-relaxed mb-6 font-light">
+                        <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6 font-light">
                             With a shared vision for excellence and a deep understanding of the global market, Anne and Shakirah established SoftLife Realty to offer a boutique experience for the modern investor.
                         </p>
                         <p className="text-gray-600 text-lg leading-relaxed mb-8 font-light">

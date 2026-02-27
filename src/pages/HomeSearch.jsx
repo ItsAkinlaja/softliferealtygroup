@@ -108,7 +108,7 @@ const HomeSearch = () => {
         keywords="property search, luxury homes for sale, dallas real estate listings, dubai apartments, penthouses for sale"
       />
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
+      <section className="relative h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
           src="https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
@@ -118,7 +118,7 @@ const HomeSearch = () => {
         <div className="relative z-20 container-custom px-4 flex flex-col items-center w-full">
             <Breadcrumbs className="text-white/80 mb-6" />
             <FadeIn>
-                <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8 tracking-tight drop-shadow-lg">
+                <h1 className="text-3xl md:text-6xl font-serif font-bold text-white mb-8 tracking-tight drop-shadow-lg">
                     Find Your <span className="text-gold italic">Sanctuary</span>
                 </h1>
                 
@@ -150,7 +150,7 @@ const HomeSearch = () => {
       </section>
 
       {/* Results */}
-      <section className="py-20">
+      <section className="py-16 md:py-20">
         <div className="container-custom px-4">
             <div className="flex justify-between items-end mb-10 border-b border-gray-200 pb-4">
                 <div>

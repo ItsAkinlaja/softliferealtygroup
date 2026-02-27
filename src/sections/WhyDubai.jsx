@@ -27,7 +27,7 @@ const WhyInvest = () => {
     ];
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/80 z-10"></div>
@@ -39,21 +39,21 @@ const WhyInvest = () => {
       </div>
 
       <div className="container-custom relative z-20 px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
             
             {/* Left Content */}
             <FadeIn direction="right">
                 <div className="text-white">
-                    <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-sm">Our Promise</h4>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-white leading-tight">
+                    <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-xs md:text-sm">Our Promise</h4>
+                    <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-white leading-tight">
                         Why Choose <span className="text-gold italic">SoftLife?</span>
                     </h2>
                     <div className="h-1 w-20 bg-gold mb-8"></div>
-                    <p className="text-lg text-gray-300 mb-10 leading-relaxed font-light max-w-xl">
+                    <p className="text-base md:text-lg text-gray-300 mb-8 md:mb-10 leading-relaxed font-light max-w-xl">
                         We are more than just real estate agents; we are your strategic partners in building wealth through property. With a focus on buying and selling, we deliver results that exceed expectations.
                     </p>
                     
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                         {reasons.map((reason, idx) => (
                             <div key={idx} className="flex items-start space-x-4 group">
                                 <div className="bg-white/5 p-4 rounded-sm text-gold border border-white/10 group-hover:bg-gold group-hover:text-white transition-all duration-300">

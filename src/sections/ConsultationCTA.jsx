@@ -9,31 +9,55 @@ const ConsultationCTA = () => {
         phone: '',
         interest: 'General Inquiry'
     });
+    const [status, setStatus] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert('Thank you! Your inquiry has been received. We will contact you shortly.');
-        setFormData({ name: '', email: '', phone: '', interest: 'General Inquiry' });
+        setStatus('sending');
+        
+        try {
+            const response = await fetch("https://formspree.io/f/xpwqrzvk", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                alert('Thank you! Your inquiry has been received. We will contact you shortly.');
+                setFormData({ name: '', email: '', phone: '', interest: 'General Inquiry' });
+            } else {
+                setStatus('error');
+                alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
+            }
+        } catch (error) {
+            setStatus('error');
+            alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
+        }
+        
+        setStatus('');
     };
 
   return (
-    <section id="contact" className="relative py-24 bg-beige overflow-hidden">
+    <section id="contact" className="relative py-16 md:py-24 bg-beige overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-white skew-x-12 transform origin-top-right z-0 hidden lg:block"></div>
       
       <div className="container-custom relative z-10 px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-center">
             
             {/* Form Section */}
             <FadeIn direction="right">
-                <div className="bg-white p-10 md:p-12 shadow-2xl rounded-sm border-t-4 border-gold relative">
-                    <h3 className="text-3xl font-serif font-bold mb-2 text-charcoal">Get in Touch</h3>
+                <div className="bg-white p-6 md:p-12 shadow-2xl rounded-sm border-t-4 border-gold relative">
+                    <h3 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-charcoal">Get in Touch</h3>
                     <div className="h-1 w-16 bg-gold mb-6"></div>
-                    <p className="text-gray-500 mb-8 font-light leading-relaxed">
+                    <p className="text-sm md:text-base text-gray-500 mb-6 md:mb-8 font-light leading-relaxed">
                         Interested in buying or selling? Fill out the form below and an agent will be in touch shortly.
                     </p>
                     <form onSubmit={handleSubmit} className="space-y-6">
