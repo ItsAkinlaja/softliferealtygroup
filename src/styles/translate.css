@@ -1,8 +1,24 @@
+/* Force hide the Google branding image/icon */
+.goog-te-gadget-icon {
+    display: none !important;
+    background: none !important;
+}
+
+/* Hide the "Powered by Google" text */
+.goog-logo-link, .goog-logo-link:link, .goog-logo-link:visited, .goog-logo-link:hover, .goog-logo-link:active {
+    display: none !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+}
+
+/* Ensure the gadget container hides overflow text */
 .goog-te-gadget {
   font-family: 'Inter', sans-serif !important;
   color: transparent !important;
+  font-size: 0 !important; /* Hide "Powered by" text */
 }
 
+/* Style the dropdown itself */
 .goog-te-gadget .goog-te-combo {
   margin: 0 !important;
   padding: 8px 12px !important;
@@ -15,35 +31,27 @@
   cursor: pointer !important;
   appearance: none !important;
   -webkit-appearance: none !important;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
-  background-position: right 0.5rem center !important;
+  /* Custom arrow icon */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23C5A059' stroke-width='2'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' d='M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129' /%3e%3c/svg%3e") !important;
+  background-position: left 0.5rem center !important;
   background-repeat: no-repeat !important;
-  background-size: 1.5em 1.5em !important;
-  padding-right: 2.5rem !important;
+  background-size: 1.2em 1.2em !important;
+  padding-left: 2.5rem !important; /* Make space for the icon */
+  min-width: 140px;
 }
 
-/* Hide Google Branding */
+/* Hide Google Branding spans */
 .goog-te-gadget span {
   display: none !important;
 }
 
-.goog-te-gadget-simple {
-  background-color: transparent !important;
-  border: none !important;
-  padding: 0 !important;
-}
-
+/* Hide top banner frame */
 .goog-te-banner-frame.skiptranslate {
   display: none !important;
 }
 
 body {
   top: 0px !important;
-}
-
-/* Hide the "Powered by Google" text */
-.goog-logo-link {
-    display: none !important;
 }
 
 .goog-te-gadget {

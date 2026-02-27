@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-[80vh] md:h-screen w-full overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/50 z-10"></div>
