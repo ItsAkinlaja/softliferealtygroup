@@ -1,98 +1,129 @@
 import React from 'react';
 import { ArrowRight, Globe, Users, Award, Briefcase } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 const About = () => {
   return (
-    <div className="bg-white min-h-screen pt-20">
+    <div className="bg-beige min-h-screen font-sans text-charcoal">
       {/* Hero Section */}
-      <section className="container-custom px-4 mb-20 text-center">
-        <FadeIn>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-black uppercase tracking-wide mb-6">
-            About SoftLife Realty
-          </h1>
-          <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
-            Founded by Anne & Shakirah, SoftLife Realty is redefining the global real estate experience. Bridging the gap between luxury living and strategic investment, we connect discerning clients with exceptional properties worldwide.
-          </p>
-        </FadeIn>
+      <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" 
+          alt="Luxury Office Interior" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="relative z-20 container-custom px-4 flex flex-col items-center">
+          <Breadcrumbs className="text-white/80 mb-6" />
+          <FadeIn>
+            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tight leading-none drop-shadow-2xl">
+              About <span className="text-gold italic">SoftLife</span>
+            </h1>
+            <div className="h-1 w-24 bg-gold mx-auto mb-8"></div>
+            <p className="text-xl md:text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+              Redefining global real estate with elegance, expertise, and a personal touch.
+            </p>
+          </FadeIn>
+        </div>
       </section>
 
       {/* Founders Section */}
-      <section className="mb-20 bg-gray-50 py-20">
+      <section className="py-24 bg-white relative">
         <div className="container-custom px-4">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <FadeIn direction="right">
-                    <div className="relative h-[600px] w-full">
-                         {/* Placeholder for Founders Image - using a high-quality professional abstract for now */}
+                    <div className="relative h-[700px] w-full group overflow-hidden shadow-2xl rounded-sm">
+                        <div className="absolute inset-0 bg-gold/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
                         <img 
-                        src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" 
-                        alt="Anne & Shakirah - SoftLife Realty Founders" 
-                        className="w-full h-full object-cover grayscale"
+                            src="https://images.pexels.com/photos/5717632/pexels-photo-5717632.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                            alt="Anne & Shakirah - SoftLife Realty Founders" 
+                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                         />
+                        <div className="absolute bottom-10 left-10 z-20">
+                            <p className="text-white text-4xl font-serif italic drop-shadow-lg">Anne & Shakirah</p>
+                            <p className="text-gold text-sm font-bold tracking-widest uppercase mt-2">Founders & Principals</p>
+                        </div>
                     </div>
                 </FadeIn>
+                
                 <FadeIn direction="left">
-                    <h2 className="text-3xl font-serif font-bold text-black uppercase tracking-wide mb-6">
-                        Meet The Founders
-                    </h2>
-                    <h3 className="text-xl text-gray-800 font-medium mb-4 uppercase tracking-wider">Anne & Shakirah</h3>
-                    <div className="w-20 h-1 bg-black mb-8"></div>
-                    <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                        With a shared vision for excellence and a deep understanding of the global market, Anne and Shakirah established SoftLife Realty to offer a boutique experience for the modern investor.
-                    </p>
-                    <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                        Their partnership combines years of industry expertise, a network of exclusive connections, and a relentless drive to deliver results. Whether navigating complex cross-border transactions or finding the perfect family home, Anne and Shakirah are dedicated to your success.
-                    </p>
-                    <p className="text-gray-600 leading-relaxed font-light italic">
-                        "We don't just sell real estate; we curate lifestyles."
-                    </p>
+                    <div className="pl-0 lg:pl-10">
+                        <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-sm">The Visionaries</h4>
+                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-8 leading-tight">
+                            Curating Lifestyles, <br/> Not Just Homes.
+                        </h2>
+                        <p className="text-gray-600 text-lg leading-relaxed mb-6 font-light">
+                            With a shared vision for excellence and a deep understanding of the global market, Anne and Shakirah established SoftLife Realty to offer a boutique experience for the modern investor.
+                        </p>
+                        <p className="text-gray-600 text-lg leading-relaxed mb-8 font-light">
+                            Their partnership combines years of industry expertise, a network of exclusive connections, and a relentless drive to deliver results. Whether navigating complex cross-border transactions or finding the perfect family home, Anne and Shakirah are dedicated to your success.
+                        </p>
+                        
+                        <div className="border-l-4 border-gold pl-6 py-2 mb-10">
+                            <p className="text-xl font-serif italic text-charcoal">
+                                "We believe real estate is the art of matching a soul to a setting. It's about finding the place where your life softens and your dreams expand."
+                            </p>
+                        </div>
+
+                        <a href="#contact" className="btn-primary inline-flex items-center group">
+                            Work With Us <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                        </a>
+                    </div>
                 </FadeIn>
              </div>
         </div>
       </section>
 
-      {/* Our Mission */}
-      <section className="container-custom px-4 mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <FadeIn direction="right">
-             <h2 className="text-3xl font-serif font-bold text-black uppercase tracking-wide mb-6">Our Mission</h2>
-             <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                At SoftLife Realty, our mission is simple: to empower our clients to build wealth and secure their dream lifestyle through real estate. We believe that every transaction is a stepping stone to a better future.
-             </p>
-             <p className="text-gray-600 leading-relaxed font-light">
-                Whether you are buying your first home in Dallas, selling a luxury estate in Beverly Hills, or investing in a penthouse in Dubai, we bring the same level of dedication, expertise, and integrity to the table.
-             </p>
-          </FadeIn>
-          <FadeIn direction="left">
-             <div className="grid grid-cols-2 gap-6">
-                <div className="p-8 border border-gray-100 text-center hover:bg-black hover:text-white transition-colors duration-300 group">
-                    <Globe size={32} className="mx-auto mb-4 text-black group-hover:text-white" />
-                    <h3 className="font-bold uppercase tracking-widest mb-2">Global Reach</h3>
-                </div>
-                <div className="p-8 border border-gray-100 text-center hover:bg-black hover:text-white transition-colors duration-300 group">
-                    <Users size={32} className="mx-auto mb-4 text-black group-hover:text-white" />
-                    <h3 className="font-bold uppercase tracking-widest mb-2">Client Focus</h3>
-                </div>
-                <div className="p-8 border border-gray-100 text-center hover:bg-black hover:text-white transition-colors duration-300 group">
-                    <Award size={32} className="mx-auto mb-4 text-black group-hover:text-white" />
-                    <h3 className="font-bold uppercase tracking-widest mb-2">Excellence</h3>
-                </div>
-                <div className="p-8 border border-gray-100 text-center hover:bg-black hover:text-white transition-colors duration-300 group">
-                    <Briefcase size={32} className="mx-auto mb-4 text-black group-hover:text-white" />
-                    <h3 className="font-bold uppercase tracking-widest mb-2">Integrity</h3>
-                </div>
-             </div>
-          </FadeIn>
+      {/* Our Mission Grid */}
+      <section className="py-24 bg-beige">
+        <div className="container-custom px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif font-bold text-charcoal mb-4">Our Core Values</h2>
+            <div className="h-0.5 w-16 bg-gold mx-auto"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+                { icon: <Globe size={32} />, title: "Global Reach", desc: "Connecting you to opportunities across borders." },
+                { icon: <Users size={32} />, title: "Client Focus", desc: "Your goals are the compass that guides our work." },
+                { icon: <Award size={32} />, title: "Excellence", desc: "Setting the standard for luxury service." },
+                { icon: <Briefcase size={32} />, title: "Integrity", desc: "Trust is the currency of our business." }
+            ].map((item, idx) => (
+                <FadeIn key={idx} delay={idx * 0.1}>
+                    <div className="bg-white p-10 shadow-sm hover:shadow-xl transition-all duration-300 border-t-4 border-transparent hover:border-gold group h-full">
+                        <div className="mb-6 text-charcoal group-hover:text-gold transition-colors duration-300 transform group-hover:-translate-y-1">
+                            {item.icon}
+                        </div>
+                        <h3 className="text-xl font-serif font-bold text-charcoal mb-3">{item.title}</h3>
+                        <p className="text-gray-500 font-light leading-relaxed">
+                            {item.desc}
+                        </p>
+                    </div>
+                </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-gray-50 py-20">
-        <div className="container-custom px-4 text-center">
-            <h2 className="text-3xl font-serif font-bold text-black uppercase tracking-wide mb-6">Ready to work with Anne & Shakirah?</h2>
-            <a href="/#contact" className="btn-primary inline-flex items-center">
-                Contact Us Today <ArrowRight className="ml-2" size={20} />
-            </a>
+      {/* Luxury CTA */}
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-charcoal">
+            <img 
+                src="https://images.pexels.com/photos/245240/pexels-photo-245240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                alt="Luxury Pool" 
+                className="absolute inset-0 w-full h-full object-cover opacity-20"
+            />
+        </div>
+        <div className="container-custom px-4 relative z-10 text-center">
+            <FadeIn>
+                <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8">
+                    Ready to elevate your lifestyle?
+                </h2>
+                <a href="#contact" className="inline-block bg-white text-charcoal px-10 py-4 font-bold tracking-widest uppercase hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105">
+                    Contact Anne & Shakirah
+                </a>
+            </FadeIn>
         </div>
       </section>
     </div>
