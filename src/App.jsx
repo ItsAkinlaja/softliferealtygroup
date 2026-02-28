@@ -9,6 +9,7 @@ import BuyersGuide from './pages/BuyersGuide';
 import SellersGuide from './pages/SellersGuide';
 import HomeSearch from './pages/HomeSearch';
 import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="sell/guide" element={<SellersGuide />} />
           <Route path="search" element={<HomeSearch />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="faq" element={<FAQ />} />
         </Route>
       </Routes>
     </Router>

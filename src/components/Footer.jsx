@@ -49,6 +49,7 @@ const Footer = () => {
               <li><Link to="/buy/guide" className="hover:text-gold transition-colors flex items-center group"><ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" /> Buyers Guide</Link></li>
               <li><Link to="/sell/guide" className="hover:text-gold transition-colors flex items-center group"><ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" /> Sellers Guide</Link></li>
               <li><Link to="/about" className="hover:text-gold transition-colors flex items-center group"><ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" /> About Us</Link></li>
+              <li><Link to="/faq" className="hover:text-gold transition-colors flex items-center group"><ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" /> FAQ</Link></li>
               <li><Link to="/contact" className="hover:text-gold transition-colors flex items-center group"><ArrowRight size={12} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" /> Contact</Link></li>
             </ul>
           </div>

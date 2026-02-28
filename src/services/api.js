@@ -24,7 +24,7 @@ const PROPERTIES = [
     bedrooms: 6,
     bathrooms: 8,
     area: "12,000 sqft",
-    image: "https://images.unsplash.com/photo-1600596542815-2a4304aa5d25?q=80&w=2075&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1576941081813-e72478522304?q=80&w=2070&auto=format&fit=crop",
     developer: "Private",
     paymentPlan: "Cash / Mortgage",
     completion: "Ready",

@@ -3,7 +3,9 @@ import Hero from '../sections/Hero';
 import GoldenVisaInfo from '../sections/GoldenVisaInfo';
 import WhyInvest from '../sections/WhyDubai';
 import FeaturedProjects from '../sections/FeaturedProjects';
+import SignatureNeighborhoods from '../sections/SignatureNeighborhoods';
 import VideoSection from '../sections/VideoSection';
+import Testimonials from '../sections/Testimonials';
 import ConsultationCTA from '../sections/ConsultationCTA';
 import FadeIn from '../components/FadeIn';
 import SEO from '../components/SEO';
@@ -18,6 +20,9 @@ const Home = () => {
       />
       <Hero />
       <FadeIn>
+        <SignatureNeighborhoods />
+      </FadeIn>
+      <FadeIn>
         <FeaturedProjects />
       </FadeIn>
       <FadeIn>
@@ -28,6 +33,9 @@ const Home = () => {
       </FadeIn>
       <FadeIn>
         <VideoSection />
+      </FadeIn>
+      <FadeIn>
+        <Testimonials />
       </FadeIn>
       <FadeIn>
         <ConsultationCTA />

@@ -1,0 +1,83 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import FadeIn from '../components/FadeIn';
+
+const neighborhoods = [
+  {
+    id: 1,
+    name: "Downtown Dubai",
+    location: "Dubai, UAE",
+    image: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=1935&auto=format&fit=crop",
+    link: "/dubai-real-estate"
+  },
+  {
+    id: 2,
+    name: "Highland Park",
+    location: "Dallas, USA",
+    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop",
+    link: "/search?location=dallas"
+  },
+  {
+    id: 3,
+    name: "Palm Jumeirah",
+    location: "Dubai, UAE",
+    image: "https://images.unsplash.com/photo-1627909383637-25e173e2183c?q=80&w=2070&auto=format&fit=crop",
+    link: "/dubai-real-estate"
+  },
+  {
+    id: 4,
+    name: "Preston Hollow",
+    location: "Dallas, USA",
+    image: "https://images.unsplash.com/photo-1625834317364-b32c32e36c2e?q=80&w=2070&auto=format&fit=crop",
+    link: "/search?location=dallas"
+  }
+];
+
+const SignatureNeighborhoods = () => {
+  return (
+    <section className="section-padding bg-charcoal text-white overflow-hidden">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <FadeIn>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Signature Locations</h2>
+            <div className="h-1 w-24 bg-gold mx-auto mb-6"></div>
+            <p className="text-gray-400 max-w-2xl mx-auto font-light text-lg">
+              Discover the most prestigious addresses in our portfolio. From the skyline of Dubai to the estates of Dallas.
+            </p>
+          </FadeIn>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {neighborhoods.map((item, index) => (
+            <FadeIn key={item.id} delay={index * 0.1}>
+              <Link to={item.link} className="group relative block h-[400px] overflow-hidden rounded-sm">
+                {/* Image */}
+                <div className="absolute inset-0 w-full h-full">
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90"></div>
+                </div>
+
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <p className="text-gold text-xs font-bold tracking-[0.2em] uppercase mb-2">{item.location}</p>
+                  <h3 className="text-3xl font-serif text-white mb-4 group-hover:text-gold transition-colors duration-300">{item.name}</h3>
+                  <span className="inline-flex items-center text-white text-sm font-medium tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 border-b border-gold pb-1">
+                    Explore Properties
+                  </span>
+                </div>
+              </Link>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default SignatureNeighborhoods;
