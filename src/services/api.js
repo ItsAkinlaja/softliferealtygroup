@@ -16,21 +16,6 @@ const PROPERTIES = [
     features: ["Private Pool", "Beach Access", "Michelin Dining", "Concierge"]
   },
   {
-    id: 2,
-    title: "Beverly Hills Estate",
-    location: "Los Angeles, USA",
-    price: "$12,500,000",
-    type: "Mansion",
-    bedrooms: 6,
-    bathrooms: 8,
-    area: "12,000 sqft",
-    image: "https://images.unsplash.com/photo-1576941081813-e72478522304?q=80&w=2070&auto=format&fit=crop",
-    developer: "Private",
-    paymentPlan: "Cash / Mortgage",
-    completion: "Ready",
-    features: ["Home Theater", "Wine Cellar", "Infinity Pool", "Guest House"]
-  },
-  {
     id: 3,
     title: "Como Residences",
     location: "Palm Jumeirah, Dubai",

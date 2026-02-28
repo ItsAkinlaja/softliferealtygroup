@@ -19,16 +19,16 @@ const neighborhoods = [
   },
   {
     id: 3,
-    name: "Palm Jumeirah",
+    name: "Emirates Hills",
     location: "Dubai, UAE",
-    image: "https://images.unsplash.com/photo-1627909383637-25e173e2183c?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1613553507747-5f8d62ad5904?q=80&w=2070&auto=format&fit=crop",
     link: "/dubai-real-estate"
   },
   {
     id: 4,
-    name: "Preston Hollow",
+    name: "Southlake",
     location: "Dallas, USA",
-    image: "https://images.unsplash.com/photo-1625834317364-b32c32e36c2e?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop",
     link: "/search?location=dallas"
   }
 ];
@@ -37,11 +37,14 @@ const SignatureNeighborhoods = () => {
   return (
     <section className="section-padding bg-charcoal text-white overflow-hidden">
       <div className="container-custom">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 relative">
           <FadeIn>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Signature Locations</h2>
-            <div className="h-1 w-24 bg-gold mx-auto mb-6"></div>
-            <p className="text-gray-400 max-w-2xl mx-auto font-light text-lg">
+            <p className="text-gold font-script text-6xl md:text-7xl mb-4 opacity-90 transform -rotate-3">
+              Exclusive Portfolio
+            </p>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4 relative z-10">Signature Locations</h2>
+            <div className="h-1 w-24 bg-gold mx-auto mb-6 relative z-10"></div>
+            <p className="text-gray-400 max-w-2xl mx-auto font-light text-lg relative z-10">
               Discover the most prestigious addresses in our portfolio. From the skyline of Dubai to the estates of Dallas.
             </p>
           </FadeIn>

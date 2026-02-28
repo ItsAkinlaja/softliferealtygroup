@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -12,6 +13,7 @@
   
   --font-sans: Inter, sans-serif;
   --font-serif: Playfair Display, serif;
+  --font-script: "Great Vibes", cursive;
 }
 
 @layer base {

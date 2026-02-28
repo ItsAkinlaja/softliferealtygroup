@@ -52,7 +52,8 @@ const Testimonials = () => {
   // Auto-advance
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+      setIsAnimating(true);
     }, 6000);
     return () => clearInterval(interval);
   }, []);

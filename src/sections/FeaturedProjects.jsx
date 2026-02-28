@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 import { getProperties } from '../services/api';
+import { fetchMLSListings } from '../services/mlsApi';
 
 const FeaturedProjects = () => {
   const [properties, setProperties] = useState([]);
@@ -9,8 +10,14 @@ const FeaturedProjects = () => {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const data = await getProperties();
-      setProperties(data);
+      // 1. Fetch manual signature listings
+      const manualData = await getProperties();
+      
+      // 2. Fetch a few MLS listings to fill the grid
+      const mlsData = await fetchMLSListings(3);
+
+      // 3. Combine them (Manual first)
+      setProperties([...manualData.slice(0, 3), ...mlsData]);
       setLoading(false);
     };
 

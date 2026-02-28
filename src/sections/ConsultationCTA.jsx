@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ArrowRight, Phone, Mail, Instagram, MessageCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 
 const ConsultationCTA = () => {
+    const location = useLocation();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         phone: '',
         interest: 'General Inquiry'
     });
-    const [status, setStatus] = useState('');
+    // Removed unused status state
+    // const [status, setStatus] = useState('');
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const interestParam = params.get('interest');
+        if (interestParam) {
+            setFormData(prev => ({
+                ...prev,
+                interest: `Inquiry about: ${interestParam}`
+            }));
+        }
+    }, [location.search]); // Only depend on location.search to avoid unnecessary updates
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,7 +31,6 @@ const ConsultationCTA = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('sending');
         
         try {
             const response = await fetch("https://formspree.io/f/xpwqrzvk", {
@@ -29,19 +42,15 @@ const ConsultationCTA = () => {
             });
 
             if (response.ok) {
-                setStatus('success');
                 alert('Thank you! Your inquiry has been received. We will contact you shortly.');
                 setFormData({ name: '', email: '', phone: '', interest: 'General Inquiry' });
             } else {
-                setStatus('error');
                 alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
             }
         } catch (error) {
-            setStatus('error');
+            console.error("Form submission error:", error);
             alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
         }
-        
-        setStatus('');
     };
 
   return (
@@ -95,18 +104,13 @@ const ConsultationCTA = () => {
                             />
                         </div>
                         <div className="group">
-                            <select 
+                            <input
                                 name="interest"
                                 value={formData.interest}
                                 onChange={handleChange}
-                                className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent text-gray-500"
-                            >
-                                <option>General Inquiry</option>
-                                <option>Buying a Home</option>
-                                <option>Selling a Home</option>
-                                <option>Home Valuation</option>
-                                <option>Dubai Real Estate</option>
-                            </select>
+                                className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
+                                placeholder="I'm interested in..."
+                            />
                         </div>
                         <button type="submit" className="w-full btn-primary mt-8 flex justify-center items-center py-4 text-lg group">
                             Submit Inquiry

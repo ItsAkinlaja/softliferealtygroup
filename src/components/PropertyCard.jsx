@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapPin, Bed, Bath, Maximize, ArrowRight } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PropertyCard = ({ property }) => {
   return (
@@ -54,10 +55,13 @@ const PropertyCard = ({ property }) => {
             </div>
         </div>
 
-        <button className="w-full btn-secondary py-3 flex items-center justify-center group-hover:bg-charcoal group-hover:text-white group-hover:border-charcoal mt-auto transition-all duration-300">
+        <Link 
+          to={`/contact?interest=${encodeURIComponent(property.title)}`}
+          className="w-full btn-secondary py-3 flex items-center justify-center group-hover:bg-charcoal group-hover:text-white group-hover:border-charcoal mt-auto transition-all duration-300"
+        >
           Request Details
           <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-        </button>
+        </Link>
       </div>
     </div>
   );
