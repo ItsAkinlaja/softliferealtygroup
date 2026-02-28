@@ -6,12 +6,14 @@ const VideoSection = () => {
   const videoRef = useRef(null);
 
   const togglePlay = () => {
-    if (isPlaying) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch(e => console.error("Play failed:", e));
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -19,22 +21,23 @@ const VideoSection = () => {
       <div className="absolute inset-0">
         <video
           ref={videoRef}
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover"
           poster="https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=2069&auto=format&fit=crop"
           loop
           playsInline
+          muted
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-dubai-skyline-at-night-4527-large.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
+          <source src="https://cdn.pixabay.com/video/2020/05/25/40139-424930062_large.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay */}
-        <div className={`absolute inset-0 bg-black/40 transition-opacity duration-500 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}></div>
+        {/* Dark overlay - Always present but less opaque when playing */}
+        <div className={`absolute inset-0 bg-black/40 pointer-events-none transition-opacity duration-500 ${isPlaying ? 'opacity-20' : 'opacity-60'}`}></div>
       </div>
       
-      <div className={`relative z-10 text-center px-4 transition-all duration-500 ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+      {/* Content Layer - always on top */}
+      <div className={`relative z-20 text-center px-4 transition-all duration-500 ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <button 
           onClick={togglePlay}
-          className="bg-white/20 backdrop-blur-md p-6 rounded-full text-white mb-6 hover:bg-gold hover:scale-110 transition-all duration-300 group border border-white/30"
+          className="bg-white/20 backdrop-blur-md p-6 rounded-full text-white mb-6 hover:bg-gold hover:scale-110 transition-all duration-300 border border-white/30 cursor-pointer"
         >
           <Play size={48} className="fill-white ml-1" />
         </button>
@@ -46,16 +49,12 @@ const VideoSection = () => {
         </p>
       </div>
 
-      {/* Pause button when playing (optional, visible on hover) */}
+      {/* Invisible Click Layer for Pausing */}
       {isPlaying && (
-        <div className="absolute bottom-8 right-8 z-20">
-           <button 
+        <div 
+            className="absolute inset-0 z-10 cursor-pointer"
             onClick={togglePlay}
-            className="bg-black/50 backdrop-blur-sm p-3 rounded-full text-white hover:bg-gold transition-colors"
-          >
-            <Pause size={24} />
-          </button>
-        </div>
+        ></div>
       )}
     </section>
   );

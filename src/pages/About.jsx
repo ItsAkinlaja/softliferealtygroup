@@ -16,8 +16,8 @@ const About = () => {
       <section className="relative h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <img 
-          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" 
-          alt="Luxury Office Interior" 
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" 
+          alt="Luxury Home Exterior" 
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 container-custom px-4 flex flex-col items-center">
@@ -42,9 +42,9 @@ const About = () => {
                     <div className="relative h-[400px] md:h-[700px] w-full group overflow-hidden shadow-2xl rounded-sm">
                         <div className="absolute inset-0 bg-gold/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
                         <img 
-                            src="https://images.pexels.com/photos/5717632/pexels-photo-5717632.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                            src="/Annie & Shakirah.jpeg" 
                             alt="Anne & Shakirah - SoftLife Realty Founders" 
-                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-105"
                         />
                         <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
                             <p className="text-white text-2xl md:text-4xl font-serif italic drop-shadow-lg">Anne & Shakirah</p>

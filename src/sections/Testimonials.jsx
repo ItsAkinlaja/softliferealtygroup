@@ -8,53 +8,32 @@ const testimonials = [
     name: "Sarah & James Thompson",
     location: "Dallas, Texas",
     text: "Working with SoftLife Realty Group was an absolute dream. Anne's attention to detail and understanding of the luxury market in Dallas helped us find a home that wasn't even on our radar. Truly exceptional service.",
-    image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1974&auto=format&fit=crop"
+    initials: "SJ"
   },
   {
     id: 2,
     name: "Ahmed Al-Fayed",
     location: "Dubai, UAE",
     text: "As an international investor, I needed someone I could trust implicitly. Shakirah navigated the Golden Visa process and property acquisition seamlessly. The level of professionalism is unmatched.",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop"
+    initials: "AA"
   },
   {
     id: 3,
     name: "Elena Rodriguez",
     location: "Highland Park, Dallas",
     text: "We were selling a unique property that required a specific buyer. The marketing strategy was sophisticated and targeted. We closed above asking price in record time.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
+    initials: "ER"
   }
 ];
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const nextSlide = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsAnimating(false);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [currentIndex]);
 
   // Auto-advance
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-      setIsAnimating(true);
-    }, 6000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -72,68 +51,101 @@ const Testimonials = () => {
           </FadeIn>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="relative bg-white rounded-sm shadow-xl overflow-hidden min-h-[400px] md:min-h-[350px]">
-            <div className="absolute top-0 left-0 w-2 h-full bg-gold z-20"></div>
-            
-            <div className="relative h-full">
-              {testimonials.map((testimonial, index) => (
+        <div className="max-w-6xl mx-auto">
+          {/* Desktop Grid (Hidden on Mobile) */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => {
+              const isActive = index === currentIndex;
+              return (
                 <div 
                   key={testimonial.id}
-                  className={`absolute inset-0 transition-all duration-700 ease-in-out transform ${
-                    index === currentIndex 
-                      ? 'opacity-100 translate-x-0' 
-                      : index < currentIndex 
-                        ? 'opacity-0 -translate-x-10' 
-                        : 'opacity-0 translate-x-10'
-                  }`}
+                  className={`bg-white p-8 rounded-sm shadow-lg border-t-4 border-gold transition-all duration-500 transform ${isActive ? 'md:-translate-y-4 shadow-2xl' : 'hover:-translate-y-2'}`}
                 >
-                  <div className="flex flex-col md:flex-row h-full">
-                    {/* Image Side */}
-                    <div className="w-full md:w-2/5 h-64 md:h-full relative">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name} 
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="flex flex-col h-full">
+                    <div className="mb-6">
+                      <div className="w-16 h-16 bg-charcoal text-gold rounded-full flex items-center justify-center text-xl font-serif font-bold mx-auto mb-4 border-2 border-gold">
+                        {testimonial.initials}
+                      </div>
+                      <div className="text-center">
+                        <h4 className="text-lg font-serif font-bold text-charcoal">{testimonial.name}</h4>
+                        <p className="text-gold text-xs font-bold uppercase tracking-wider">{testimonial.location}</p>
+                      </div>
                     </div>
-
-                    {/* Content Side */}
-                    <div className="w-full md:w-3/5 p-8 md:p-12 flex flex-col justify-center relative">
-                      <Quote className="text-gold/20 absolute top-8 right-8 w-16 h-16 md:w-24 md:h-24" />
-                      
-                      <p className="text-gray-600 text-lg md:text-xl leading-relaxed italic mb-8 relative z-10">
+                    
+                    <div className="relative flex-grow">
+                      <Quote className="text-gold/10 absolute -top-2 -left-2 w-8 h-8" />
+                      <p className="text-gray-600 text-sm leading-relaxed italic relative z-10 pt-4 text-center">
                         "{testimonial.text}"
                       </p>
-                      
-                      <div>
-                        <h4 className="text-xl font-serif font-bold text-charcoal">{testimonial.name}</h4>
-                        <p className="text-gold text-sm font-medium uppercase tracking-wider">{testimonial.location}</p>
-                      </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
+          </div>
 
-            {/* Controls */}
-            <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 flex space-x-2 z-30">
-              <button 
-                onClick={prevSlide}
-                className="p-3 bg-white border border-gray-100 text-charcoal hover:bg-gold hover:text-white transition-all duration-300 rounded-full shadow-md"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="p-3 bg-white border border-gray-100 text-charcoal hover:bg-gold hover:text-white transition-all duration-300 rounded-full shadow-md"
-                aria-label="Next testimonial"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
+          {/* Mobile Swipe Carousel */}
+          <div className="md:hidden relative h-[400px]">
+            {testimonials.map((testimonial, index) => {
+              let position = 'opacity-0 pointer-events-none translate-x-full';
+              if (index === currentIndex) {
+                position = 'opacity-100 translate-x-0 z-10';
+              } else if (index === (currentIndex - 1 + testimonials.length) % testimonials.length) {
+                 position = 'opacity-0 pointer-events-none -translate-x-full';
+              }
+
+              return (
+                <div 
+                  key={testimonial.id}
+                  className={`absolute inset-0 transition-all duration-500 ease-out transform ${position}`}
+                >
+                    <div className="bg-white p-8 rounded-sm shadow-xl border-t-4 border-gold h-full flex flex-col justify-center">
+                        <div className="mb-6">
+                            <div className="w-20 h-20 bg-charcoal text-gold rounded-full flex items-center justify-center text-2xl font-serif font-bold mx-auto mb-4 border-2 border-gold shadow-md">
+                                {testimonial.initials}
+                            </div>
+                            <div className="text-center">
+                                <h4 className="text-xl font-serif font-bold text-charcoal">{testimonial.name}</h4>
+                                <p className="text-gold text-xs font-bold uppercase tracking-wider">{testimonial.location}</p>
+                            </div>
+                        </div>
+                        
+                        <div className="relative text-center">
+                            <Quote className="text-gold/10 absolute -top-4 left-0 w-10 h-10" />
+                            <p className="text-gray-600 text-base leading-relaxed italic relative z-10 px-4">
+                                "{testimonial.text}"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+              );
+            })}
+            
+            {/* Mobile Controls */}
+            <button 
+                onClick={() => setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 p-2 bg-white/80 shadow-md rounded-full text-charcoal z-20"
+            >
+                <ChevronLeft size={24} />
+            </button>
+            <button 
+                onClick={() => setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 p-2 bg-white/80 shadow-md rounded-full text-charcoal z-20"
+            >
+                <ChevronRight size={24} />
+            </button>
+          </div>
+          
+          {/* Mobile Dots Indicator */}
+          <div className="flex justify-center mt-8 md:hidden">
+            {testimonials.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2 h-2 rounded-full mx-1 transition-all duration-300 ${idx === currentIndex ? 'bg-gold w-6' : 'bg-gray-300'}`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

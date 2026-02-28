@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { ArrowRight, Phone, Mail, Instagram, MessageCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 
-const ConsultationCTA = () => {
+const ConsultationCTA = ({ embedded = false }) => {
     const location = useLocation();
     const [formData, setFormData] = useState({
         name: '',
@@ -52,6 +52,66 @@ const ConsultationCTA = () => {
             alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
         }
     };
+
+    if (embedded) {
+        return (
+            <div className="bg-white relative">
+                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-charcoal">Get in Touch</h3>
+                <div className="h-1 w-16 bg-gold mb-6"></div>
+                <p className="text-sm md:text-base text-gray-500 mb-6 md:mb-8 font-light leading-relaxed">
+                    Interested in buying or selling? Fill out the form below and an agent will be in touch shortly.
+                </p>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="group">
+                        <input 
+                            type="text" 
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
+                            placeholder="Full Name"
+                            required
+                        />
+                    </div>
+                    <div className="group">
+                        <input 
+                            type="email" 
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
+                            placeholder="Email Address"
+                            required
+                        />
+                    </div>
+                    <div className="group">
+                        <input 
+                            type="tel" 
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
+                            placeholder="Phone Number"
+                            required
+                        />
+                    </div>
+                    <div className="group">
+                        <input
+                            name="interest"
+                            value={formData.interest}
+                            onChange={handleChange}
+                            className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
+                            placeholder="I'm interested in..."
+                        />
+                    </div>
+                    <button type="submit" className="w-full btn-primary mt-8 flex justify-center items-center py-4 text-lg group">
+                        Submit Inquiry
+                        <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                </form>
+            </div>
+        );
+    }
 
   return (
     <section id="contact" className="relative py-16 md:py-24 bg-beige overflow-hidden">

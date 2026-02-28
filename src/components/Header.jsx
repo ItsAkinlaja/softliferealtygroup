@@ -100,52 +100,65 @@ const Header = () => {
       </header>
 
       {/* Mobile Menu Drawer & Backdrop */}
-      <div className={`fixed inset-0 z-[200] xl:hidden transition-all duration-300 ${isOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible delay-300'}`}>
+      <div className={`fixed inset-0 z-[200] xl:hidden transition-all duration-500 ${isOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible delay-500'}`}>
         {/* Backdrop - Click to close */}
         <div 
-          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 bg-charcoal/80 backdrop-blur-md transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => setIsOpen(false)}
         ></div>
 
         {/* Drawer Panel */}
-        <div className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-md bg-white shadow-2xl transform transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col h-full overflow-y-auto`}>
+        <div className={`absolute top-0 right-0 bottom-0 w-full md:w-[400px] bg-white shadow-2xl transform transition-transform duration-500 cubic-bezier(0.22, 1, 0.36, 1) ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col h-full overflow-y-auto`}>
             
-            {/* Drawer Header with Close Button */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-100">
-                <span className="text-xl font-serif font-bold text-charcoal">Menu</span>
-                <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-red-500 transition-colors p-2 rounded-full hover:bg-gray-100">
-                    <X size={28} />
+            {/* Drawer Header */}
+            <div className="flex justify-between items-center p-8 border-b border-gray-100">
+                <img src="/Soft_Life_Realty_Logo.png" alt="Logo" className="h-10 w-auto" />
+                <button 
+                    onClick={() => setIsOpen(false)} 
+                    className="group bg-gray-50 hover:bg-gold p-3 rounded-full transition-all duration-300"
+                >
+                    <X size={24} className="text-charcoal group-hover:text-white transition-colors" />
                 </button>
             </div>
 
             {/* Drawer Content */}
-            <div className="flex flex-col p-6 space-y-6">
-                <Link to="/" className="text-xl font-medium hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>Home</Link>
-                <Link to="/search" className="text-xl font-medium hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>Search Properties</Link>
+            <div className="flex flex-col px-8 py-8 space-y-6 flex-grow">
+                <Link to="/" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    Home
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">01</span>
+                </Link>
                 
-                <div className="space-y-4">
-                    <button onClick={() => toggleDropdown('services')} className="flex items-center justify-between w-full text-xl font-medium hover:text-gold transition-colors">
+                <Link to="/search" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    Search
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">02</span>
+                </Link>
+                
+                <div className="space-y-4 border-b border-gray-50 pb-4">
+                    <button onClick={() => toggleDropdown('services')} className="flex items-center justify-between w-full text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
                         <span>Services</span>
-                        <ChevronDown size={20} className={`transform transition-transform duration-300 ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
+                        <ChevronDown size={20} className={`transform transition-transform duration-300 ${activeDropdown === 'services' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
                     </button>
                     
-                    <div className={`pl-4 space-y-3 border-l-2 border-gray-100 overflow-hidden transition-all duration-300 ${activeDropdown === 'services' ? 'max-h-48 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                        <Link to="/valuation" className="block text-gray-600 hover:text-gold py-1" onClick={() => setIsOpen(false)}>Home Valuation</Link>
-                        <Link to="/buy/guide" className="block text-gray-600 hover:text-gold py-1" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
-                        <Link to="/sell/guide" className="block text-gray-600 hover:text-gold py-1" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
+                    <div className={`pl-4 space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'services' ? 'max-h-60 opacity-100 pt-2' : 'max-h-0 opacity-0'}`}>
+                        <Link to="/valuation" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Home Valuation</Link>
+                        <Link to="/buy/guide" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
+                        <Link to="/sell/guide" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
                     </div>
                 </div>
 
-                <Link to="/dubai-real-estate" className="text-xl font-medium hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>Dubai Real Estate</Link>
-                <Link to="/about" className="text-xl font-medium hover:text-gold transition-colors" onClick={() => setIsOpen(false)}>About Us</Link>
+                <Link to="/dubai-real-estate" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    Dubai
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">04</span>
+                </Link>
                 
-                <div className="pt-6 mt-4 border-t border-gray-100">
-                     <a href="#contact" className="btn-primary w-full text-center py-3 block" onClick={() => setIsOpen(false)}>Contact Us</a>
+                <Link to="/about" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    About
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">05</span>
+                </Link>
+                
+                <div className="mt-auto pt-8">
+                     <a href="/contact" className="btn-primary w-full text-center py-4 block text-lg" onClick={() => setIsOpen(false)}>Get in Touch</a>
                 </div>
-                
-                 {/* Google Translate Mobile - Placeholder if needed, or rely on desktop one if visible. 
-                     Since the desktop one is hidden in mobile view, we might need a mobile instance or just hide it. 
-                     The previous code had it. Let's keep it but ensure it doesn't conflict. */}
             </div>
         </div>
       </div>
