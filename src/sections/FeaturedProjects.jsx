@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 import { getProperties } from '../services/api';
 
@@ -26,9 +27,9 @@ const FeaturedProjects = () => {
                     Exclusive properties curated for the discerning investor.
                 </p>
             </div>
-            <a href="/search" className="hidden md:inline-flex items-center text-black font-bold hover:text-gray-600 transition-colors uppercase text-sm tracking-widest border-b border-black pb-1">
+            <Link to="/search" className="hidden md:inline-flex items-center text-black font-bold hover:text-gray-600 transition-colors uppercase text-sm tracking-widest border-b border-black pb-1">
                 View All Listings <span className="ml-2">&rarr;</span>
-            </a>
+            </Link>
         </div>
 
         {loading ? (
@@ -44,7 +45,7 @@ const FeaturedProjects = () => {
         )}
 
         <div className="mt-12 text-center md:hidden">
-            <a href="/search" className="btn-secondary w-full">View All Listings</a>
+            <Link to="/search" className="btn-secondary w-full">View All Listings</Link>
         </div>
       </div>
     </section>

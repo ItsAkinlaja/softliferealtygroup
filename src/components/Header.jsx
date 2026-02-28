@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,8 +53,8 @@ const Header = () => {
       <header className="bg-white/95 backdrop-blur-sm sticky top-0 z-[100] border-b border-sand shadow-sm transition-all duration-300">
         <div className="container-custom flex justify-between items-center py-4 px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src="/Soft_Life_Realty_Logo.png" alt="SoftLife Realty Logo" className="h-14 w-auto object-contain hover:opacity-90 transition-opacity" />
+          <Link to="/" className="flex items-center" onClick={() => window.scrollTo(0, 0)}>
+            <img src="/Soft_Life_Realty_Logo.png" alt="SoftLife Realty Logo" className="h-10 md:h-14 w-auto object-contain hover:opacity-90 transition-opacity" />
           </Link>
 
           {/* Desktop Nav */}
@@ -81,8 +81,11 @@ const Header = () => {
                 Contact
             </a>
 
-            {/* Google Translate Container */}
-            <div id="google_translate_element" className="ml-2 scale-90 origin-left"></div>
+            {/* Google Translate Container with Icon */}
+            <div className="ml-2 scale-90 origin-left flex items-center">
+              <Globe size={16} className="text-gold mr-2" />
+              <div id="google_translate_element"></div>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
