@@ -27,7 +27,7 @@ const VideoSection = () => {
           playsInline
           muted
         >
-          <source src="https://cdn.pixabay.com/video/2020/05/25/40139-424930062_large.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dewttmtbc/video/upload/v1772304291/cwdgbv4u6w5htjkem36g.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay - Always present but less opaque when playing */}
         <div className={`absolute inset-0 bg-black/40 pointer-events-none transition-opacity duration-500 ${isPlaying ? 'opacity-20' : 'opacity-60'}`}></div>
