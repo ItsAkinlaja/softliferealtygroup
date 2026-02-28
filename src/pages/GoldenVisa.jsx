@@ -15,13 +15,21 @@ const GoldenVisa = () => {
             keywords="uae golden visa, dubai golden visa, dubai residency by investment, buy property in dubai, dubai real estate investor visa"
         />
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
+        <section className="relative h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
             <div className="absolute inset-0 bg-black/50 z-10"></div>
-            <img 
-                src="https://images.unsplash.com/photo-1512453979798-5ea904ac66de?q=80&w=2009&auto=format&fit=crop" 
-                alt="Dubai Skyline" 
-                className="absolute inset-0 w-full h-full object-cover"
-            />
+            <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                preload="metadata"
+                poster="https://images.pexels.com/photos/3881107/pexels-photo-3881107.jpeg?auto=compress&cs=tinysrgb&w=2000&h=1200&dpr=1"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+            >
+                <source media="(max-width: 768px)" src="https://videos.pexels.com/video-files/854353/854353-hd_1920_1080_30fps.mp4" type="video/mp4" />
+                <source src="https://videos.pexels.com/video-files/7578544/7578544-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
             <div className="relative z-20 container-custom px-4 flex flex-col items-center">
                 <Breadcrumbs className="text-white/80 mb-6" />
                 <FadeIn>
