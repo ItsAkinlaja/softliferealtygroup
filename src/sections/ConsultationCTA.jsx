@@ -1,29 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ArrowRight, Phone, Mail, Instagram, MessageCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 
 const ConsultationCTA = ({ embedded = false }) => {
     const location = useLocation();
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        interest: 'General Inquiry'
-    });
-    // Removed unused status state
-    // const [status, setStatus] = useState('');
+    
+    // Helper to get interest from URL - memoized to be safe for useEffect
+    const getInterestFromUrl = useCallback(() => {
+        const params = new URLSearchParams(location.search);
+        return params.get('interest');
+    }, [location.search]);
 
-    useEffect(() => {
+    // Initialize state with URL params
+    const [formData, setFormData] = useState(() => {
         const params = new URLSearchParams(location.search);
         const interestParam = params.get('interest');
-        if (interestParam) {
-            setFormData(prev => ({
-                ...prev,
-                interest: `Inquiry about: ${interestParam}`
-            }));
+        return {
+            name: '',
+            email: '',
+            phone: '',
+            interest: interestParam ? `Inquiry about: ${interestParam}` : 'General Inquiry'
+        };
+    });
+
+    // Track the last processed interest param to avoid redundant updates
+    // and to safely trigger updates only when the URL actually changes
+    const lastInterestParam = useRef(getInterestFromUrl());
+
+    useEffect(() => {
+        const currentInterestParam = getInterestFromUrl();
+        
+        // Only update if the interest param has changed from what we last saw
+        if (currentInterestParam !== lastInterestParam.current) {
+            lastInterestParam.current = currentInterestParam;
+            
+            if (currentInterestParam) {
+                // Defer the state update to the next animation frame to avoid synchronous set state warning
+                // This ensures we're out of the current render cycle
+                requestAnimationFrame(() => {
+                    setFormData(prev => ({
+                        ...prev,
+                        interest: `Inquiry about: ${currentInterestParam}`
+                    }));
+                });
+            }
         }
-    }, [location.search]); // Only depend on location.search to avoid unnecessary updates
+    }, [getInterestFromUrl]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

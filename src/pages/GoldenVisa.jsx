@@ -23,7 +23,7 @@ const GoldenVisa = () => {
                 muted 
                 playsInline
                 preload="metadata"
-                poster="https://images.pexels.com/photos/3881107/pexels-photo-3881107.jpeg?auto=compress&cs=tinysrgb&w=2000&h=1200&dpr=1"
+                poster="https://res.cloudinary.com/dewttmtbc/image/upload/v1772351058/ozycyujmu4itfjlc8dqh.jpg"
                 className="absolute inset-0 w-full h-full object-cover object-center"
             >
                 <source media="(max-width: 768px)" src="https://videos.pexels.com/video-files/854353/854353-hd_1920_1080_30fps.mp4" type="video/mp4" />

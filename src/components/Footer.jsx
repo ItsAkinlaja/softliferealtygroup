@@ -81,9 +81,9 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light tracking-wide">
           <p>&copy; {new Date().getFullYear()} SoftLife Realty Group. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>

@@ -10,6 +10,9 @@ import SellersGuide from './pages/SellersGuide';
 import HomeSearch from './pages/HomeSearch';
 import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import Sitemap from './pages/Sitemap';
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
           <Route path="search" element={<HomeSearch />} />
           <Route path="contact" element={<Contact />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-service" element={<TermsOfService />} />
+          <Route path="sitemap" element={<Sitemap />} />
         </Route>
       </Routes>
     </Router>
