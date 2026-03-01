@@ -32,12 +32,15 @@ const Breadcrumbs = ({ className = "" }) => {
           const isLast = index === pathnames.length - 1;
           const name = routeNameMap[value] || value.replace(/-/g, ' ');
 
+          // Prevent linking to non-existent parent routes like /buy or /sell
+          const isNonExistentRoute = to === '/buy' || to === '/sell';
+
           return (
             <li key={to}>
               <div className="flex items-center">
                 <ChevronRight size={14} className="mx-1 text-gold/70" />
-                {isLast ? (
-                  <span className="text-gold font-bold pointer-events-none">
+                {isLast || isNonExistentRoute ? (
+                  <span className={`${isLast ? 'text-gold font-bold' : 'text-gray-400'} pointer-events-none`}>
                     {name}
                   </span>
                 ) : (
