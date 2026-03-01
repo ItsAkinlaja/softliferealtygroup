@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, Users, Award, Briefcase } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -72,9 +73,9 @@ const About = () => {
                             </p>
                         </div>
 
-                        <a href="#contact" className="btn-primary inline-flex items-center group">
+                        <Link to="/contact" className="btn-primary inline-flex items-center group">
                             Work With Us <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                        </a>
+                        </Link>
                     </div>
                 </FadeIn>
              </div>
@@ -126,9 +127,9 @@ const About = () => {
                 <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8">
                     Ready to elevate your lifestyle?
                 </h2>
-                <a href="#contact" className="inline-block bg-white text-charcoal px-10 py-4 font-bold tracking-widest uppercase hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105">
+                <Link to="/contact" className="inline-block bg-white text-charcoal px-10 py-4 font-bold tracking-widest uppercase hover:bg-gold hover:text-white transition-all duration-300 transform hover:scale-105">
                     Contact Anne & Shakirah
-                </a>
+                </Link>
             </FadeIn>
         </div>
       </section>

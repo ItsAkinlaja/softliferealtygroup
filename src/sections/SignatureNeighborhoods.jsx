@@ -8,28 +8,28 @@ const neighborhoods = [
     name: "Downtown Dubai",
     location: "Dubai, UAE",
     image: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=1935&auto=format&fit=crop",
-    link: "/dubai-real-estate"
+    link: "/contact?interest=Downtown%20Dubai"
   },
   {
     id: 2,
     name: "Highland Park",
     location: "Dallas, USA",
     image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop",
-    link: "/search?location=dallas"
+    link: "/contact?interest=Highland%20Park%20Dallas"
   },
   {
     id: 3,
     name: "Emirates Hills",
     location: "Dubai, UAE",
     image: "https://images.unsplash.com/photo-1613553507747-5f8d62ad5904?q=80&w=2070&auto=format&fit=crop",
-    link: "/dubai-real-estate"
+    link: "/contact?interest=Emirates%20Hills"
   },
   {
     id: 4,
     name: "Southlake",
     location: "Dallas, USA",
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop",
-    link: "/search?location=dallas"
+    link: "/contact?interest=Southlake%20Dallas"
   }
 ];
 
