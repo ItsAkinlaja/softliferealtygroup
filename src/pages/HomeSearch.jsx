@@ -144,11 +144,14 @@ const HomeSearch = () => {
     
     // Simulate network delay for load more
     setTimeout(() => {
+        // We need to slice from the current properties list, which holds ALL fetched/filtered items
+        // The offset tracks how many we are currently SHOWING
         const nextBatch = properties.slice(offset, offset + 20);
         
         if (nextBatch.length > 0) {
             setFilteredProperties(prev => [...prev, ...nextBatch]);
             setOffset(prev => prev + 20);
+            // Check if we still have more items in the properties array to show
             setHasMore(offset + 20 < properties.length);
         } else {
             setHasMore(false);
