@@ -38,9 +38,16 @@ export const fetchSpecificMLSListing = async (mlsId) => {
     return null;
   }
 };
-  export const fetchMLSListings = async (limit = 9, offset = 0) => {
+  export const fetchMLSListings = async (limit = 9, offset = 0, query = '') => {
   try {
-    const response = await fetch(`${API_URL}?limit=${limit}&offset=${offset}&status=active`, {
+    let url = `${API_URL}?limit=${limit}&offset=${offset}&status=active`;
+    
+    // SimplyRETS supports basic 'q' parameter for search
+    if (query) {
+        url += `&q=${encodeURIComponent(query)}`;
+    }
+
+    const response = await fetch(url, {
       headers: {
         "Authorization": AUTH
       }

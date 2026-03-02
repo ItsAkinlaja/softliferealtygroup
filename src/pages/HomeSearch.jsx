@@ -12,6 +12,9 @@ const HomeSearch = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   
   // Filter States
   const [searchQuery, setSearchQuery] = useState('');
@@ -54,18 +57,37 @@ const HomeSearch = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        // Fetch a larger batch of MLS data for search page
-        // In a real app, filtering would happen on the server side via API parameters
-        const mlsData = await fetchMLSListings(50, 0); 
-        setProperties(mlsData);
-        setFilteredProperties(mlsData);
-
-        // Check for URL params (e.g., from Signature Neighborhoods links)
+        // Fetch initial batch, potentially with search query from URL
         const params = new URLSearchParams(location.search);
-        const locationParam = params.get('location');
+        const locationParam = params.get('location') || '';
+        
         if (locationParam) {
             setSearchQuery(locationParam);
+            
+            // If URL has a search param, fetch the full batch immediately and filter it
+            // This mirrors the logic in handleSearch to ensure consistency
+            const mlsData = await fetchMLSListings(100, 0); 
+            
+            const query = locationParam.toLowerCase();
+            const filtered = mlsData.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.location.toLowerCase().includes(query) ||
+                (p.id && p.id.toString().includes(query))
+            );
+
+            setProperties(filtered);
+            setFilteredProperties(filtered.slice(0, 20));
+            setOffset(20);
+            setHasMore(filtered.length > 20);
+        } else {
+            // Default load without search param
+            const mlsData = await fetchMLSListings(20, 0); 
+            setProperties(mlsData);
+            setFilteredProperties(mlsData);
+            setOffset(20);
+            setHasMore(mlsData.length === 20);
         }
+
       } catch (error) {
         console.error("Failed to load listings:", error);
       } finally {
@@ -76,18 +98,76 @@ const HomeSearch = () => {
     loadData();
   }, [location.search]);
 
-  // Handle Filtering
+  // Handle Search Submission (Client-side Reset and Fetch from full list simulation)
+  // Since SimplyRETS test feed 'q' param is limited, we'll fetch a larger batch and filter locally for this demo
+  const handleSearch = async (e) => {
+    if (e.key === 'Enter' || e.type === 'click') {
+        setLoading(true);
+        try {
+            // Fetch a larger batch to ensure we have data to filter
+            // In a real production app with a full paid MLS feed, the server-side 'q' param would work.
+            // For this test feed, we fetch more and filter client-side to simulate the experience.
+            const mlsData = await fetchMLSListings(100, 0); 
+            
+            let filtered = mlsData;
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filtered = mlsData.filter(p => 
+                    p.title.toLowerCase().includes(query) || 
+                    p.location.toLowerCase().includes(query) ||
+                    (p.id && p.id.toString().includes(query))
+                );
+            }
+
+            setProperties(filtered); // Store the filtered subset as the "source of truth" for this search session
+            setFilteredProperties(filtered.slice(0, 20)); // Show first 20
+            setOffset(20);
+            setHasMore(filtered.length > 20);
+        } catch (error) {
+            console.error("Failed to search listings:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+  };
+
+  // Handle Load More
+  const handleLoadMore = async () => {
+    if (loadingMore || !hasMore) return;
+    
+    setLoadingMore(true);
+    
+    // Simulate network delay for load more
+    setTimeout(() => {
+        const nextBatch = properties.slice(offset, offset + 20);
+        
+        if (nextBatch.length > 0) {
+            setFilteredProperties(prev => [...prev, ...nextBatch]);
+            setOffset(prev => prev + 20);
+            setHasMore(offset + 20 < properties.length);
+        } else {
+            setHasMore(false);
+        }
+        setLoadingMore(false);
+    }, 500);
+  };
+
+  // Handle Filtering (Client-side for other filters)
   useEffect(() => {
+    // Start with the properties we fetched (which might already be search-filtered)
     let result = [...properties];
 
-    // 1. Search Query (Location, Title, MLS#)
+    // 1. Search Query - Already handled in handleSearch for the initial fetch, 
+    // but we keep this here if the user types without hitting enter (optional)
+    // or to refine the already-fetched batch.
     if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        result = result.filter(p => 
-            p.title.toLowerCase().includes(query) || 
-            p.location.toLowerCase().includes(query) ||
-            (p.id && p.id.toString().includes(query))
-        );
+         const query = searchQuery.toLowerCase();
+         // Double check filtering in case properties changed
+         result = result.filter(p => 
+             p.title.toLowerCase().includes(query) || 
+             p.location.toLowerCase().includes(query) ||
+             (p.id && p.id.toString().includes(query))
+         );
     }
 
     // 2. Price Range
@@ -145,7 +225,7 @@ const HomeSearch = () => {
             return priceA - priceB;
         });
     } else {
-        // Default: Newest Listed (mocked by random or ID for now)
+        // Default: Newest Listed
         result.sort((a, b) => b.id - a.id);
     }
 
@@ -183,14 +263,21 @@ const HomeSearch = () => {
         <div className="container-custom px-4 flex flex-col md:flex-row gap-4 justify-between items-center">
             {/* Search Input */}
             <div className="relative w-full md:w-1/3">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                 <input 
                     type="text" 
+                    placeholder="City, Neighborhood, or MLS#" 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by location, building, or MLS#" 
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm text-sm"
+                    onKeyDown={handleSearch}
+                    className="w-full pl-10 pr-12 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                 />
+                <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <button 
+                    onClick={handleSearch}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-charcoal text-white p-1.5 rounded-sm hover:bg-gold transition-colors"
+                >
+                    <Search size={14} />
+                </button>
             </div>
 
             {/* Filters */}
@@ -319,7 +406,9 @@ const HomeSearch = () => {
       <section className="section-padding pt-8 md:pt-12 min-h-[50vh]">
         <div className="container-custom">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8 gap-4">
-                <p className="text-gray-500 text-sm">Showing <span className="font-bold text-charcoal">{filteredProperties.length}</span> Properties</p>
+                <p className="text-gray-500 text-sm">
+                    Showing <span className="font-bold text-charcoal">{filteredProperties.length}</span> Properties
+                </p>
                 <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500 hidden md:inline">Sort by:</span>
                     <div className="relative">
@@ -343,13 +432,34 @@ const HomeSearch = () => {
                     <p className="mt-4 text-gray-400 text-sm">Loading MLS Data...</p>
                  </div>
             ) : filteredProperties.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredProperties.map((property) => (
-                        <div key={property.id} className="h-full">
-                            <PropertyCard property={property} />
+                <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredProperties.map((property) => (
+                            <div key={property.id} className="h-full">
+                                <PropertyCard property={property} />
+                            </div>
+                        ))}
+                    </div>
+                    
+                    {hasMore && (
+                        <div className="mt-12 text-center">
+                            <button 
+                                onClick={handleLoadMore}
+                                disabled={loadingMore}
+                                className="px-8 py-3 bg-white border border-charcoal text-charcoal hover:bg-charcoal hover:text-white transition-all uppercase tracking-widest text-xs font-bold shadow-sm flex items-center justify-center mx-auto"
+                            >
+                                {loadingMore ? (
+                                    <>
+                                        <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-charcoal mr-2"></div>
+                                        Loading...
+                                    </>
+                                ) : (
+                                    "Load More Listings"
+                                )}
+                            </button>
                         </div>
-                    ))}
-                </div>
+                    )}
+                </>
             ) : (
                 <div className="text-center py-20 bg-white rounded-sm shadow-sm">
                     <p className="text-xl font-serif text-charcoal mb-2">No properties found.</p>
