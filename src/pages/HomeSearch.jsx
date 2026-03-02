@@ -54,6 +54,11 @@ const HomeSearch = () => {
 
   // Load Initial Data
   useEffect(() => {
+    // Scroll to top immediately when a new search is loaded
+    if (typeof window !== 'undefined') {
+        window.scrollTo(0, 0);
+    }
+
     const loadData = async () => {
       setLoading(true);
       try {
