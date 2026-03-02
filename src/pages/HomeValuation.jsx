@@ -1,8 +1,14 @@
 import React from 'react';
-import { ArrowRight, CheckCircle, TrendingUp, Home, DollarSign } from 'lucide-react';
+import { TrendingUp, Home, DollarSign, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const HomeValuation = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Simulate form submission
+    alert("Thank you! Your valuation request has been received. One of our experts will contact you shortly.");
+  };
+
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
       <SEO 
@@ -94,7 +100,7 @@ const HomeValuation = () => {
                         <p className="text-gray-500">Please provide the details below. Your privacy is our priority.</p>
                     </div>
 
-                    <form className="space-y-8">
+                    <form className="space-y-8" onSubmit={handleSubmit}>
                         {/* Property Details */}
                         <div>
                             <h4 className="text-sm font-bold text-gold uppercase tracking-widest mb-6 flex items-center">

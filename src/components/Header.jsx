@@ -68,18 +68,20 @@ const Header = () => {
                 </button>
                 <div className="absolute left-0 mt-0 w-56 bg-white border border-sand shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-50">
                     <Link to="/valuation" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50">Home Valuation</Link>
+                    <Link to="/mortgage-calculator" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50">Mortgage Calculator</Link>
                     <Link to="/buy/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50">Buyers Guide</Link>
                     <Link to="/sell/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors">Sellers Guide</Link>
                 </div>
             </div>
 
+            <Link to="/lifestyle-quiz" className="hover:text-gold transition-colors uppercase">Quiz</Link>
             <Link to="/dubai-real-estate" className="hover:text-gold transition-colors uppercase">Dubai</Link>
             <Link to="/about" className="hover:text-gold transition-colors uppercase">About</Link>
             
             {/* CTA Button */}
-            <a href="#contact" className="bg-charcoal text-white px-6 py-2.5 hover:bg-gold transition-colors uppercase tracking-wider text-xs font-bold rounded-sm shadow-md">
+            <Link to="/contact" className="bg-charcoal text-white px-6 py-2.5 hover:bg-gold transition-colors uppercase tracking-wider text-xs font-bold rounded-sm shadow-md">
                 Contact
-            </a>
+            </Link>
 
             {/* Google Translate Container with Icon */}
             <div className="ml-2 scale-90 origin-left flex items-center">
@@ -141,23 +143,29 @@ const Header = () => {
                     
                     <div className={`pl-4 space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'services' ? 'max-h-60 opacity-100 pt-2' : 'max-h-0 opacity-0'}`}>
                         <Link to="/valuation" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Home Valuation</Link>
+                        <Link to="/mortgage-calculator" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Mortgage Calculator</Link>
                         <Link to="/buy/guide" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
                         <Link to="/sell/guide" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
                     </div>
                 </div>
 
+                <Link to="/lifestyle-quiz" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    Quiz
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">04</span>
+                </Link>
+
                 <Link to="/dubai-real-estate" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
                     Dubai
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">04</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">05</span>
                 </Link>
                 
                 <Link to="/about" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
                     About
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">05</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">06</span>
                 </Link>
                 
                 <div className="mt-auto pt-8">
-                     <a href="/contact" className="btn-primary w-full text-center py-4 block text-lg" onClick={() => setIsOpen(false)}>Get in Touch</a>
+                     <Link to="/contact" className="btn-primary w-full text-center py-4 block text-lg" onClick={() => setIsOpen(false)}>Get in Touch</Link>
                 </div>
             </div>
         </div>
