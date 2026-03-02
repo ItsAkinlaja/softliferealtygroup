@@ -237,6 +237,31 @@ const HomeSearch = () => {
     setFilteredProperties(result);
   }, [properties, searchQuery, priceRange, bedrooms, propertyType, bathrooms, minArea, sortBy]);
 
+  // Handle Reset Filters
+  const handleReset = async () => {
+    setLoading(true);
+    setSearchQuery('');
+    setPriceRange('Any');
+    setBedrooms('Any');
+    setPropertyType('Any');
+    setBathrooms('Any');
+    setMinArea('');
+    setShowMoreFilters(false);
+    
+    try {
+        // Reset to default API fetch (first 20 results, no query)
+        const mlsData = await fetchMLSListings(20, 0); 
+        setProperties(mlsData);
+        setFilteredProperties(mlsData);
+        setOffset(20);
+        setHasMore(mlsData.length === 20);
+    } catch (error) {
+        console.error("Failed to reset listings:", error);
+    } finally {
+        setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
       <SEO 
@@ -370,15 +395,7 @@ const HomeSearch = () => {
                                 />
                             </div>
                             <button 
-                                onClick={() => {
-                                    setBathrooms('Any');
-                                    setMinArea('');
-                                    setPriceRange('Any');
-                                    setBedrooms('Any');
-                                    setPropertyType('Any');
-                                    setSearchQuery('');
-                                    setShowMoreFilters(false);
-                                }}
+                                onClick={handleReset}
                                 className="w-full text-center py-2 bg-gray-100 hover:bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-600 transition-colors"
                             >
                                 Reset All Filters
@@ -391,14 +408,7 @@ const HomeSearch = () => {
             {/* Mobile Reset Filters Button */}
             <div className="md:hidden mt-2 w-full">
                 <button 
-                    onClick={() => {
-                        setPriceRange('Any');
-                        setBedrooms('Any');
-                        setPropertyType('Any');
-                        setBathrooms('Any');
-                        setMinArea('');
-                        setSearchQuery('');
-                    }}
+                    onClick={handleReset}
                     className="w-full py-3 bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors"
                 >
                     Reset Filters
