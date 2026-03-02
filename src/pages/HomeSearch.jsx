@@ -257,22 +257,44 @@ const HomeSearch = () => {
                                 onClick={() => {
                                     setBathrooms('Any');
                                     setMinArea('');
+                                    setPriceRange('Any');
+                                    setBedrooms('Any');
+                                    setPropertyType('Any');
+                                    setSearchQuery('');
+                                    setShowMoreFilters(false);
                                 }}
-                                className="text-xs text-gray-500 hover:text-gold underline"
+                                className="w-full text-center py-2 bg-gray-100 hover:bg-gray-200 text-xs font-bold uppercase tracking-wider text-gray-600 transition-colors"
                             >
-                                Reset Extra Filters
+                                Reset All Filters
                             </button>
                         </div>
                     )}
                 </div>
             </div>
+            
+            {/* Mobile Reset Filters Button */}
+            <div className="md:hidden mt-2 w-full">
+                <button 
+                    onClick={() => {
+                        setPriceRange('Any');
+                        setBedrooms('Any');
+                        setPropertyType('Any');
+                        setBathrooms('Any');
+                        setMinArea('');
+                        setSearchQuery('');
+                    }}
+                    className="w-full py-3 bg-gray-100 text-gray-500 text-xs font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors"
+                >
+                    Reset Filters
+                </button>
+            </div>
         </div>
       </div>
 
       {/* Results Grid */}
-      <section className="section-padding pt-12">
+      <section className="section-padding pt-8 md:pt-12 min-h-[50vh]">
         <div className="container-custom">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8 gap-4">
                 <p className="text-gray-500 text-sm">Showing <span className="font-bold text-charcoal">{filteredProperties.length}</span> Properties</p>
                 <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500 hidden md:inline">Sort by:</span>

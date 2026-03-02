@@ -5,13 +5,13 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import FadeIn from '../components/FadeIn';
 
 const MortgageCalculator = () => {
-  const [loanAmount, setLoanAmount] = useState("500,000");
-  const [interestRate, setInterestRate] = useState("6.5");
+  const [loanAmount, setLoanAmount] = useState("");
+  const [interestRate, setInterestRate] = useState("");
   const [loanTerm, setLoanTerm] = useState("30");
-  const [downPayment, setDownPayment] = useState("100,000");
-  const [propertyTax, setPropertyTax] = useState("6,000"); // Annual
-  const [homeInsurance, setHomeInsurance] = useState("2,500"); // Annual
-  const [hoaFees, setHoaFees] = useState("300"); // Monthly
+  const [downPayment, setDownPayment] = useState("");
+  const [propertyTax, setPropertyTax] = useState(""); // Annual
+  const [homeInsurance, setHomeInsurance] = useState(""); // Annual
+  const [hoaFees, setHoaFees] = useState(""); // Monthly
 
   // Helper to parse currency string to number
   const parseValue = (val) => {
@@ -114,6 +114,7 @@ const MortgageCalculator = () => {
                                         type="text" 
                                         value={loanAmount}
                                         onChange={handleInputChange(setLoanAmount)}
+                                        placeholder="e.g. 500,000"
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                                     />
                                 </div>
@@ -126,6 +127,7 @@ const MortgageCalculator = () => {
                                         type="text" 
                                         value={downPayment}
                                         onChange={handleInputChange(setDownPayment)}
+                                        placeholder="e.g. 100,000"
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                                     />
                                 </div>
@@ -142,6 +144,7 @@ const MortgageCalculator = () => {
                                         type="text" 
                                         value={interestRate}
                                         onChange={handleInputChange(setInterestRate)}
+                                        placeholder="e.g. 6.5"
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                                     />
                                 </div>
