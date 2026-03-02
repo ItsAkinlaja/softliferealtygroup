@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
-import { getProperties } from '../services/api';
 import { fetchMLSListings } from '../services/mlsApi';
 
 const FeaturedProjects = () => {
@@ -10,15 +9,15 @@ const FeaturedProjects = () => {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      // 1. Fetch manual signature listings
-      const manualData = await getProperties();
-      
-      // 2. Fetch a few MLS listings to fill the grid
-      const mlsData = await fetchMLSListings(3);
-
-      // 3. Combine them (Manual first)
-      setProperties([...manualData.slice(0, 3), ...mlsData]);
-      setLoading(false);
+      try {
+        // Fetch only MLS listings for Featured Projects
+        const mlsData = await fetchMLSListings(6); // Fetch 6 items to fill the grid nicely
+        setProperties(mlsData);
+      } catch (error) {
+        console.error("Error fetching featured projects:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchProperties();

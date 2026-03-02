@@ -8,28 +8,28 @@ const neighborhoods = [
     name: "Downtown Dubai",
     location: "Dubai, UAE",
     image: "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=1935&auto=format&fit=crop",
-    link: "/contact?interest=Downtown%20Dubai"
+    link: "/search?location=Dubai"
   },
   {
     id: 2,
     name: "Highland Park",
     location: "Dallas, USA",
     image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop",
-    link: "/contact?interest=Highland%20Park%20Dallas"
+    link: "/search?location=Dallas"
   },
   {
     id: 3,
     name: "Emirates Hills",
     location: "Dubai, UAE",
     image: "https://images.unsplash.com/photo-1613553507747-5f8d62ad5904?q=80&w=2070&auto=format&fit=crop",
-    link: "/contact?interest=Emirates%20Hills"
+    link: "/search?location=Dubai"
   },
   {
     id: 4,
     name: "Southlake",
     location: "Dallas, USA",
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop",
-    link: "/contact?interest=Southlake%20Dallas"
+    link: "/search?location=Dallas"
   }
 ];
 
@@ -71,7 +71,7 @@ const SignatureNeighborhoods = () => {
                   <p className="text-gold text-xs font-bold tracking-[0.2em] uppercase mb-2">{item.location}</p>
                   <h3 className="text-3xl font-serif text-white mb-4 group-hover:text-gold transition-colors duration-300">{item.name}</h3>
                   <span className="inline-flex items-center text-white text-sm font-medium tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 border-b border-gold pb-1">
-                    Explore Properties
+                    View Listings
                   </span>
                 </div>
               </Link>

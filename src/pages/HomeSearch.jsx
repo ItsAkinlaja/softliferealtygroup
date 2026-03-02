@@ -5,122 +5,128 @@ import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
 import SEO from '../components/SEO';
 import { fetchMLSListings } from '../services/mlsApi';
-
-// Reusing mock data for now
-const MOCK_RESULTS = [
-    {
-        id: 1,
-        title: "The Royal Atlantis Residences",
-        location: "Palm Jumeirah, Dubai",
-        price: "$5,200,000",
-        type: "Penthouse",
-        bedrooms: 4,
-        bathrooms: 5,
-        area: "4,500 sqft",
-        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop",
-        developer: "Kerzner International",
-        paymentPlan: "Ready to Move",
-        completion: "Ready",
-        features: ["Private Pool", "Beach Access", "Michelin Dining", "Concierge"]
-      },
-      {
-        id: 3,
-        title: "Mayfair Townhouse",
-        location: "London, UK",
-        price: "$10,800,000",
-        type: "Townhouse",
-        bedrooms: 3,
-        bathrooms: 3,
-        area: "2,800 sqft",
-        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
-        developer: "Grosvenor",
-        paymentPlan: "Flexible",
-        completion: "Ready",
-        features: ["Historic Facade", "Modern Interior", "Private Garden", "Central Location"]
-      },
-      {
-        id: 4,
-        title: "Skyline Penthouse",
-        location: "New York, USA",
-        price: "$18,000,000",
-        type: "Penthouse",
-        bedrooms: 5,
-        bathrooms: 6,
-        area: "6,000 sqft",
-        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop",
-        developer: "Extell",
-        paymentPlan: "Cash",
-        completion: "Ready",
-        features: ["Central Park View", "Private Elevator", "Concierge", "Spa"]
-      },
-      {
-        id: 5,
-        title: "Mediterranean Villa",
-        location: "Marbella, Spain",
-        price: "$4,500,000",
-        type: "Villa",
-        bedrooms: 5,
-        bathrooms: 5,
-        area: "5,000 sqft",
-        image: "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=2080&auto=format&fit=crop",
-        developer: "Private",
-        paymentPlan: "Mortgage Available",
-        completion: "Ready",
-        features: ["Sea View", "Infinity Pool", "Smart Home", "Gated Community"]
-      },
-      {
-        id: 6,
-        title: "Waterfront Mansion",
-        location: "Miami, USA",
-        price: "$22,000,000",
-        type: "Mansion",
-        bedrooms: 7,
-        bathrooms: 9,
-        area: "10,000 sqft",
-        image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop",
-        developer: "Private",
-        paymentPlan: "Cash",
-        completion: "Ready",
-        features: ["Private Dock", "Home Cinema", "Gym", "Rooftop Terrace"]
-      }
-];
+import { useLocation } from 'react-router-dom';
 
 const HomeSearch = () => {
-  const [properties, setProperties] = useState(MOCK_RESULTS);
+  const location = useLocation();
+  const [properties, setProperties] = useState([]);
+  const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
-  const [offset, setOffset] = useState(0);
+  
+  // Filter States
+  const [searchQuery, setSearchQuery] = useState('');
+  const [priceRange, setPriceRange] = useState('Any');
+  const [bedrooms, setBedrooms] = useState('Any');
+  const [propertyType, setPropertyType] = useState('Any');
+  const [sortBy, setSortBy] = useState('Newest Listed');
+  
+  // More Filters State
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
+  const [bathrooms, setBathrooms] = useState('Any');
+  const [minArea, setMinArea] = useState('');
 
+  // Load Initial Data
   useEffect(() => {
     const loadData = async () => {
-      // Fetch fresh MLS data
-      const mlsData = await fetchMLSListings(6, 0);
-      
-      // Combine manual "Featured" listings with MLS data
-      setProperties([...MOCK_RESULTS, ...mlsData]);
-      setOffset(6); // Next fetch starts after the first 6
-      setLoading(false);
+      setLoading(true);
+      try {
+        // Fetch a larger batch of MLS data for search page
+        // In a real app, filtering would happen on the server side via API parameters
+        const mlsData = await fetchMLSListings(50, 0); 
+        setProperties(mlsData);
+        setFilteredProperties(mlsData);
+
+        // Check for URL params (e.g., from Signature Neighborhoods links)
+        const params = new URLSearchParams(location.search);
+        const locationParam = params.get('location');
+        if (locationParam) {
+            setSearchQuery(locationParam);
+        }
+      } catch (error) {
+        console.error("Failed to load listings:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     loadData();
-  }, []);
+  }, [location.search]);
 
-  const handleLoadMore = async () => {
-    setLoadingMore(true);
-    try {
-      // Fetch next batch
-      const nextBatch = await fetchMLSListings(6, offset);
-      
-      if (nextBatch.length > 0) {
-          setProperties(prev => [...prev, ...nextBatch]);
-          setOffset(prev => prev + 6);
-      }
-    } catch (error) {
-      console.error("Failed to load more listings:", error);
-    } finally {
-      setLoadingMore(false);
+  // Handle Filtering
+  useEffect(() => {
+    let result = [...properties];
+
+    // 1. Search Query (Location, Title, MLS#)
+    if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        result = result.filter(p => 
+            p.title.toLowerCase().includes(query) || 
+            p.location.toLowerCase().includes(query) ||
+            (p.id && p.id.toString().includes(query))
+        );
     }
-  };
+
+    // 2. Price Range
+    if (priceRange !== 'Any') {
+        result = result.filter(p => {
+            const price = parseInt(p.price.replace(/[^0-9]/g, ''));
+            if (priceRange === 'Under $1M') return price < 1000000;
+            if (priceRange === '$1M - $3M') return price >= 1000000 && price <= 3000000;
+            if (priceRange === '$3M - $5M') return price > 3000000 && price <= 5000000;
+            if (priceRange === '$5M+') return price > 5000000;
+            return true;
+        });
+    }
+
+    // 3. Bedrooms
+    if (bedrooms !== 'Any') {
+        result = result.filter(p => {
+            if (bedrooms === '4+') return p.bedrooms >= 4;
+            return p.bedrooms === parseInt(bedrooms);
+        });
+    }
+
+    // 4. Property Type
+    if (propertyType !== 'Any') {
+        result = result.filter(p => p.type === propertyType);
+    }
+
+    // 5. More Filters: Bathrooms
+    if (bathrooms !== 'Any') {
+        result = result.filter(p => {
+            if (bathrooms === '4+') return p.bathrooms >= 4;
+            return p.bathrooms >= parseInt(bathrooms);
+        });
+    }
+
+    // 6. More Filters: Min Area
+    if (minArea) {
+        result = result.filter(p => {
+            const area = parseInt(p.area.replace(/[^0-9]/g, ''));
+            return area >= parseInt(minArea);
+        });
+    }
+
+    // 7. Sorting
+    if (sortBy === 'Price (High to Low)') {
+        result.sort((a, b) => {
+            const priceA = parseInt(a.price.replace(/[^0-9]/g, ''));
+            const priceB = parseInt(b.price.replace(/[^0-9]/g, ''));
+            return priceB - priceA;
+        });
+    } else if (sortBy === 'Price (Low to High)') {
+        result.sort((a, b) => {
+            const priceA = parseInt(a.price.replace(/[^0-9]/g, ''));
+            const priceB = parseInt(b.price.replace(/[^0-9]/g, ''));
+            return priceA - priceB;
+        });
+    } else {
+        // Default: Newest Listed (mocked by random or ID for now)
+        result.sort((a, b) => b.id - a.id);
+    }
+
+    setFilteredProperties(result);
+  }, [properties, searchQuery, priceRange, bedrooms, propertyType, bathrooms, minArea, sortBy]);
 
   return (
     <div className="bg-beige min-h-screen font-sans text-charcoal">
@@ -132,7 +138,12 @@ const HomeSearch = () => {
       
       {/* Header */}
       <section className="relative h-[30vh] min-h-[250px] bg-charcoal flex flex-col justify-center items-center text-center">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        {/* Background Image Overlay */}
+        <div className="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" alt="Luxury Texture" className="w-full h-full object-cover opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-b from-charcoal/90 to-charcoal/90"></div>
+        </div>
+        
         <div className="relative z-20 container-custom px-4">
           <Breadcrumbs className="text-white/60 mb-4 justify-center" />
           <FadeIn>
@@ -151,25 +162,109 @@ const HomeSearch = () => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                 <input 
                     type="text" 
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search by location, building, or MLS#" 
                     className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm text-sm"
                 />
             </div>
 
             {/* Filters */}
-            <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                <button className="flex items-center px-4 py-2 bg-white border border-gray-200 hover:border-gold hover:text-gold transition-colors text-sm whitespace-nowrap">
-                    Price Range <ChevronDown size={14} className="ml-2" />
-                </button>
-                <button className="flex items-center px-4 py-2 bg-white border border-gray-200 hover:border-gold hover:text-gold transition-colors text-sm whitespace-nowrap">
-                    Bedrooms <ChevronDown size={14} className="ml-2" />
-                </button>
-                <button className="flex items-center px-4 py-2 bg-white border border-gray-200 hover:border-gold hover:text-gold transition-colors text-sm whitespace-nowrap">
-                    Property Type <ChevronDown size={14} className="ml-2" />
-                </button>
-                <button className="flex items-center px-4 py-2 bg-charcoal text-white hover:bg-gold transition-colors text-sm whitespace-nowrap">
-                    <Filter size={14} className="mr-2" /> More Filters
-                </button>
+            <div className="flex flex-wrap gap-2 w-full md:w-auto items-center">
+                {/* Price Filter */}
+                <div className="relative group">
+                    <select 
+                        value={priceRange}
+                        onChange={(e) => setPriceRange(e.target.value)}
+                        className="appearance-none pl-4 pr-10 py-2 bg-white border border-gray-200 hover:border-gold focus:outline-none cursor-pointer text-sm"
+                    >
+                        <option value="Any">Price Range</option>
+                        <option value="Under $1M">Under $1M</option>
+                        <option value="$1M - $3M">$1M - $3M</option>
+                        <option value="$3M - $5M">$3M - $5M</option>
+                        <option value="$5M+">$5M+</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400" />
+                </div>
+
+                {/* Bedrooms Filter */}
+                <div className="relative group">
+                    <select 
+                        value={bedrooms}
+                        onChange={(e) => setBedrooms(e.target.value)}
+                        className="appearance-none pl-4 pr-10 py-2 bg-white border border-gray-200 hover:border-gold focus:outline-none cursor-pointer text-sm"
+                    >
+                        <option value="Any">Bedrooms</option>
+                        <option value="1">1 Bed</option>
+                        <option value="2">2 Beds</option>
+                        <option value="3">3 Beds</option>
+                        <option value="4+">4+ Beds</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400" />
+                </div>
+
+                {/* Property Type Filter */}
+                <div className="relative group">
+                    <select 
+                        value={propertyType}
+                        onChange={(e) => setPropertyType(e.target.value)}
+                        className="appearance-none pl-4 pr-10 py-2 bg-white border border-gray-200 hover:border-gold focus:outline-none cursor-pointer text-sm"
+                    >
+                        <option value="Any">Property Type</option>
+                        <option value="RES">Residential</option>
+                        <option value="CND">Condo</option>
+                        <option value="RNT">Rental</option>
+                    </select>
+                    <ChevronDown size={14} className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400" />
+                </div>
+
+                <div className="relative">
+                    <button 
+                        onClick={() => setShowMoreFilters(!showMoreFilters)}
+                        className={`flex items-center px-4 py-2 border transition-colors text-sm whitespace-nowrap ml-auto md:ml-0 ${showMoreFilters ? 'bg-gold border-gold text-white' : 'bg-charcoal text-white border-charcoal hover:bg-gold hover:border-gold'}`}
+                    >
+                        <Filter size={14} className="mr-2" /> More Filters
+                    </button>
+                    
+                    {/* More Filters Dropdown */}
+                    {showMoreFilters && (
+                        <div className="absolute right-0 top-full mt-2 w-64 bg-white shadow-xl border border-gray-100 p-4 z-50 rounded-sm animate-fade-in-up">
+                            <div className="mb-4">
+                                <label className="block text-xs font-bold text-charcoal mb-2 uppercase tracking-wide">Bathrooms</label>
+                                <select 
+                                    value={bathrooms}
+                                    onChange={(e) => setBathrooms(e.target.value)}
+                                    className="w-full p-2 bg-gray-50 border border-gray-200 text-sm focus:border-gold outline-none"
+                                >
+                                    <option value="Any">Any</option>
+                                    <option value="1">1+</option>
+                                    <option value="2">2+</option>
+                                    <option value="3">3+</option>
+                                    <option value="4+">4+</option>
+                                </select>
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-xs font-bold text-charcoal mb-2 uppercase tracking-wide">Min Sq. Ft.</label>
+                                <input 
+                                    type="number" 
+                                    value={minArea}
+                                    onChange={(e) => setMinArea(e.target.value)}
+                                    placeholder="e.g. 2000"
+                                    className="w-full p-2 bg-gray-50 border border-gray-200 text-sm focus:border-gold outline-none"
+                                />
+                            </div>
+                            <button 
+                                onClick={() => {
+                                    setBathrooms('Any');
+                                    setMinArea('');
+                                }}
+                                className="text-xs text-gray-500 hover:text-gold underline"
+                            >
+                                Reset Extra Filters
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
       </div>
@@ -177,15 +272,22 @@ const HomeSearch = () => {
       {/* Results Grid */}
       <section className="section-padding pt-12">
         <div className="container-custom">
-            <div className="flex justify-between items-center mb-8">
-                <p className="text-gray-500 text-sm">Showing <span className="font-bold text-charcoal">{properties.length}</span> Properties</p>
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <p className="text-gray-500 text-sm">Showing <span className="font-bold text-charcoal">{filteredProperties.length}</span> Properties</p>
                 <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500 hidden md:inline">Sort by:</span>
-                    <select className="bg-transparent border-none text-sm font-bold text-charcoal focus:outline-none cursor-pointer">
-                        <option>Newest Listed</option>
-                        <option>Price (High to Low)</option>
-                        <option>Price (Low to High)</option>
-                    </select>
+                    <div className="relative">
+                        <select 
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value)}
+                            className="appearance-none pl-2 pr-8 bg-transparent border-none text-sm font-bold text-charcoal focus:outline-none cursor-pointer text-right"
+                        >
+                            <option>Newest Listed</option>
+                            <option>Price (High to Low)</option>
+                            <option>Price (Low to High)</option>
+                        </select>
+                        <ChevronDown size={14} className="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none text-charcoal" />
+                    </div>
                 </div>
             </div>
 
@@ -194,26 +296,31 @@ const HomeSearch = () => {
                     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold mx-auto"></div>
                     <p className="mt-4 text-gray-400 text-sm">Loading MLS Data...</p>
                  </div>
-            ) : (
+            ) : filteredProperties.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {properties.map((property) => (
+                    {filteredProperties.map((property) => (
                         <FadeIn key={property.id}>
                             <PropertyCard property={property} />
                         </FadeIn>
                     ))}
                 </div>
+            ) : (
+                <div className="text-center py-20 bg-white rounded-sm shadow-sm">
+                    <p className="text-xl font-serif text-charcoal mb-2">No properties found.</p>
+                    <p className="text-gray-500 text-sm">Try adjusting your filters or search query.</p>
+                    <button 
+                        onClick={() => {
+                            setSearchQuery('');
+                            setPriceRange('Any');
+                            setBedrooms('Any');
+                            setPropertyType('Any');
+                        }}
+                        className="mt-6 btn-secondary"
+                    >
+                        Clear All Filters
+                    </button>
+                </div>
             )}
-            
-            {/* Pagination / Load More */}
-            <div className="mt-16 text-center">
-                <button 
-                  onClick={handleLoadMore} 
-                  disabled={loadingMore}
-                  className="btn-secondary min-w-[200px] disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loadingMore ? 'Loading...' : 'Load More Listings'}
-                </button>
-            </div>
         </div>
       </section>
     </div>
