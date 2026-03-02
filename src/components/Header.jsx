@@ -74,8 +74,8 @@ const Header = () => {
                 </div>
             </div>
 
-            <Link to="/lifestyle-quiz" className="hover:text-gold transition-colors uppercase">Quiz</Link>
             <Link to="/dubai-real-estate" className="hover:text-gold transition-colors uppercase">Dubai</Link>
+            <Link to="/lifestyle-quiz" className="hover:text-gold transition-colors uppercase">Quiz</Link>
             <Link to="/about" className="hover:text-gold transition-colors uppercase">About</Link>
             
             {/* CTA Button */}
@@ -149,13 +149,13 @@ const Header = () => {
                     </div>
                 </div>
 
-                <Link to="/lifestyle-quiz" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    Quiz
+                <Link to="/dubai-real-estate" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    Dubai
                     <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">04</span>
                 </Link>
 
-                <Link to="/dubai-real-estate" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    Dubai
+                <Link to="/lifestyle-quiz" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
+                    Quiz
                     <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">05</span>
                 </Link>
                 
