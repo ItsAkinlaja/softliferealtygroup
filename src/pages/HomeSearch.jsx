@@ -24,6 +24,30 @@ const HomeSearch = () => {
   const [showMoreFilters, setShowMoreFilters] = useState(false);
   const [bathrooms, setBathrooms] = useState('Any');
   const [minArea, setMinArea] = useState('');
+  
+  // Scroll State for Sticky Header
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showHeader, setShowHeader] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        // Hide header on scroll down, show on scroll up (with a small buffer)
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setShowHeader(false);
+        } else {
+          setShowHeader(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   // Load Initial Data
   useEffect(() => {
@@ -155,7 +179,7 @@ const HomeSearch = () => {
       </section>
 
       {/* Search & Filter Bar */}
-      <div className="sticky top-[72px] z-40 bg-white border-b border-gray-200 shadow-sm py-4">
+      <div className={`sticky top-[72px] z-40 bg-white border-b border-gray-200 shadow-sm py-4 transition-transform duration-300 ${showHeader ? 'translate-y-0' : '-translate-y-full md:translate-y-0'}`}>
         <div className="container-custom px-4 flex flex-col md:flex-row gap-4 justify-between items-center">
             {/* Search Input */}
             <div className="relative w-full md:w-1/3">
@@ -321,9 +345,9 @@ const HomeSearch = () => {
             ) : filteredProperties.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredProperties.map((property) => (
-                        <FadeIn key={property.id}>
+                        <div key={property.id} className="h-full">
                             <PropertyCard property={property} />
-                        </FadeIn>
+                        </div>
                     ))}
                 </div>
             ) : (
