@@ -5,35 +5,58 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import FadeIn from '../components/FadeIn';
 
 const MortgageCalculator = () => {
-  const [loanAmount, setLoanAmount] = useState(500000);
-  const [interestRate, setInterestRate] = useState(6.5);
-  const [loanTerm, setLoanTerm] = useState(30);
-  const [downPayment, setDownPayment] = useState(100000);
-  const [propertyTax, setPropertyTax] = useState(6000); // Annual
-  const [homeInsurance, setHomeInsurance] = useState(2500); // Annual
-  const [hoaFees, setHoaFees] = useState(300); // Monthly
+  const [loanAmount, setLoanAmount] = useState("500,000");
+  const [interestRate, setInterestRate] = useState("6.5");
+  const [loanTerm, setLoanTerm] = useState("30");
+  const [downPayment, setDownPayment] = useState("100,000");
+  const [propertyTax, setPropertyTax] = useState("6,000"); // Annual
+  const [homeInsurance, setHomeInsurance] = useState("2,500"); // Annual
+  const [hoaFees, setHoaFees] = useState("300"); // Monthly
+
+  // Helper to parse currency string to number
+  const parseValue = (val) => {
+    if (!val) return 0;
+    return Number(val.toString().replace(/,/g, ''));
+  };
+
+  // Helper to format number with commas
+  const formatValue = (val) => {
+    if (!val) return '';
+    const num = val.toString().replace(/,/g, '');
+    if (isNaN(num)) return val;
+    return Number(num).toLocaleString();
+  };
+
+  const handleInputChange = (setter) => (e) => {
+    const rawValue = e.target.value.replace(/,/g, '');
+    if (!isNaN(rawValue)) {
+      setter(formatValue(rawValue));
+    }
+  };
 
   const calculateMonthlyPayment = () => {
-    const principal = loanAmount - downPayment;
-    const monthlyRate = interestRate / 100 / 12;
-    const numberOfPayments = loanTerm * 12;
+    const principal = parseValue(loanAmount) - parseValue(downPayment);
+    const rate = parseValue(interestRate);
+    const monthlyRate = rate / 100 / 12;
+    const term = parseValue(loanTerm);
+    const numberOfPayments = term * 12;
 
     let monthlyPrincipalInterest = 0;
-    if (interestRate === 0) {
+    if (rate === 0) {
         monthlyPrincipalInterest = principal / numberOfPayments;
     } else {
         monthlyPrincipalInterest = (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
     }
 
-    const monthlyTax = propertyTax / 12;
-    const monthlyInsurance = homeInsurance / 12;
+    const monthlyTax = parseValue(propertyTax) / 12;
+    const monthlyInsurance = parseValue(homeInsurance) / 12;
     
     return {
-        principalInterest: monthlyPrincipalInterest,
-        tax: monthlyTax,
-        insurance: monthlyInsurance,
-        hoa: hoaFees,
-        total: monthlyPrincipalInterest + monthlyTax + monthlyInsurance + hoaFees
+        principalInterest: monthlyPrincipalInterest || 0,
+        tax: monthlyTax || 0,
+        insurance: monthlyInsurance || 0,
+        hoa: parseValue(hoaFees) || 0,
+        total: (monthlyPrincipalInterest + monthlyTax + monthlyInsurance + parseValue(hoaFees)) || 0
     };
   };
 
@@ -88,9 +111,9 @@ const MortgageCalculator = () => {
                                 <div className="relative">
                                     <DollarSign size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         value={loanAmount}
-                                        onChange={(e) => setLoanAmount(Number(e.target.value))}
+                                        onChange={handleInputChange(setLoanAmount)}
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                                     />
                                 </div>
@@ -100,9 +123,9 @@ const MortgageCalculator = () => {
                                 <div className="relative">
                                     <DollarSign size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         value={downPayment}
-                                        onChange={(e) => setDownPayment(Number(e.target.value))}
+                                        onChange={handleInputChange(setDownPayment)}
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                                     />
                                 </div>
@@ -116,10 +139,9 @@ const MortgageCalculator = () => {
                                 <div className="relative">
                                     <Percent size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         value={interestRate}
-                                        onChange={(e) => setInterestRate(Number(e.target.value))}
-                                        step="0.1"
+                                        onChange={handleInputChange(setInterestRate)}
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                                     />
                                 </div>
@@ -130,7 +152,7 @@ const MortgageCalculator = () => {
                                     <Calendar size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                     <select 
                                         value={loanTerm}
-                                        onChange={(e) => setLoanTerm(Number(e.target.value))}
+                                        onChange={handleInputChange(setLoanTerm)}
                                         className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors appearance-none rounded-sm"
                                     >
                                         <option value="15">15 Years</option>
@@ -148,27 +170,27 @@ const MortgageCalculator = () => {
                                 <div>
                                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Property Tax / Year</label>
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         value={propertyTax}
-                                        onChange={(e) => setPropertyTax(Number(e.target.value))}
+                                        onChange={handleInputChange(setPropertyTax)}
                                         className="w-full p-2 text-sm bg-gray-50 border border-gray-200 focus:border-gold outline-none rounded-sm"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Home Insurance / Year</label>
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         value={homeInsurance}
-                                        onChange={(e) => setHomeInsurance(Number(e.target.value))}
+                                        onChange={handleInputChange(setHomeInsurance)}
                                         className="w-full p-2 text-sm bg-gray-50 border border-gray-200 focus:border-gold outline-none rounded-sm"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">HOA Fees / Month</label>
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         value={hoaFees}
-                                        onChange={(e) => setHoaFees(Number(e.target.value))}
+                                        onChange={handleInputChange(setHoaFees)}
                                         className="w-full p-2 text-sm bg-gray-50 border border-gray-200 focus:border-gold outline-none rounded-sm"
                                     />
                                 </div>
