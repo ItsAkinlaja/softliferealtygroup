@@ -38,63 +38,68 @@ const Contact = () => {
 
       {/* Contact Info Grid */}
       <section className="py-20 bg-white relative -mt-16 z-30 container-custom px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Dallas Office */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            
+            {/* Left: Contact Info */}
             <FadeIn delay={0.1}>
-                <div className="bg-beige p-10 rounded-sm shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-gold h-full text-center group">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-gold mx-auto mb-6 shadow-md group-hover:bg-gold group-hover:text-white transition-colors">
-                        <MapPin size={28} />
-                    </div>
-                    <h3 className="text-2xl font-serif font-bold mb-2">Dallas, USA</h3>
-                    <p className="text-gray-500 mb-6 font-light">Headquarters</p>
-                    <div className="space-y-3 text-charcoal font-medium">
-                        <p>Highland Park, Dallas</p>
-                        <p>Texas, 75205</p>
-                        <a href="tel:+14698231886" className="block hover:text-gold transition-colors mt-4">+1 (469) 823-1886</a>
-                    </div>
-                </div>
-            </FadeIn>
+                <div className="space-y-12">
+                    <div className="bg-beige p-10 rounded-sm shadow-xl border-l-4 border-gold h-full">
+                        <h3 className="text-3xl font-serif font-bold text-charcoal mb-8 border-b border-gray-200 pb-4">Contact Information</h3>
+                        
+                        <div className="space-y-8">
+                            <div className="flex items-start group">
+                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold shadow-md mr-6 group-hover:bg-gold group-hover:text-white transition-colors flex-shrink-0">
+                                    <Phone size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="text-lg font-bold text-charcoal mb-2">Call Us Directly</h4>
+                                    <div className="space-y-2">
+                                        <a href="tel:+14698231886" className="block text-xl text-gray-600 hover:text-gold transition-colors font-medium">+1 (469) 823-1886</a>
+                                        <a href="tel:+14699702664" className="block text-xl text-gray-600 hover:text-gold transition-colors font-medium">+1 (469) 970-2664</a>
+                                    </div>
+                                </div>
+                            </div>
 
-            {/* Direct Contact */}
-            <FadeIn delay={0.2}>
-                <div className="bg-white p-10 rounded-sm shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-gold h-full text-center group transform md:-translate-y-4 relative overflow-hidden">
-                    {/* Light White Gradient Background */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100 opacity-80"></div>
-                    
-                    <div className="relative z-10">
-                        <div className="w-16 h-16 bg-charcoal rounded-full flex items-center justify-center text-gold mx-auto mb-6 shadow-md group-hover:bg-gold group-hover:text-white transition-colors">
-                            <Phone size={28} />
-                        </div>
-                        <h3 className="text-2xl font-serif font-bold mb-2 text-charcoal">Direct Contact</h3>
-                        <p className="text-gray-500 mb-6 font-light">Available 24/7 for VIPs</p>
-                        <div className="space-y-4">
-                            <a href="mailto:info@softliferealtygroup.com" className="block text-lg text-charcoal hover:text-gold transition-colors font-medium">info@softliferealtygroup.com</a>
-                            <div className="flex justify-center gap-4 mt-6">
-                                <a href="https://wa.me/14698231886" className="p-3 bg-[#25D366] rounded-full hover:bg-white hover:text-[#25D366] text-white shadow-md transition-all hover:scale-110">
-                                    <MessageCircle size={20} />
-                                </a>
-                                <a href="https://instagram.com/softliferealtygroup" className="p-3 bg-gradient-to-tr from-yellow-500 via-red-500 to-purple-500 rounded-full hover:bg-white hover:text-purple-600 text-white shadow-md transition-all hover:scale-110">
-                                    <Instagram size={20} />
-                                </a>
+                            <div className="flex items-start group">
+                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold shadow-md mr-6 group-hover:bg-gold group-hover:text-white transition-colors flex-shrink-0">
+                                    <Mail size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="text-lg font-bold text-charcoal mb-2">Email Us</h4>
+                                    <a href="mailto:info@softliferealtygroup.com" className="block text-lg text-gray-600 hover:text-gold transition-colors">info@softliferealtygroup.com</a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start group">
+                                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold shadow-md mr-6 group-hover:bg-gold group-hover:text-white transition-colors flex-shrink-0">
+                                    <MapPin size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="text-lg font-bold text-charcoal mb-2">Office Locations</h4>
+                                    <p className="text-gray-600 mb-1">Highland Park, Dallas, TX 75205</p>
+                                    <p className="text-gray-600">Downtown Dubai, UAE</p>
+                                </div>
                             </div>
                         </div>
+
+                        <div className="flex gap-4 mt-10 border-t border-gray-200 pt-8">
+                            <a href="https://wa.me/14698231886" className="flex items-center justify-center w-full py-3 bg-[#25D366] text-white rounded-sm hover:bg-[#1da851] transition-colors shadow-md font-bold uppercase tracking-wide text-sm">
+                                <MessageCircle size={18} className="mr-2" /> WhatsApp 1
+                            </a>
+                            <a href="https://wa.me/14699702664" className="flex items-center justify-center w-full py-3 bg-[#25D366] text-white rounded-sm hover:bg-[#1da851] transition-colors shadow-md font-bold uppercase tracking-wide text-sm">
+                                <MessageCircle size={18} className="mr-2" /> WhatsApp 2
+                            </a>
+                        </div>
                     </div>
                 </div>
             </FadeIn>
 
-            {/* Dubai Office */}
-            <FadeIn delay={0.3}>
-                <div className="bg-beige p-10 rounded-sm shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-gold h-full text-center group">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-gold mx-auto mb-6 shadow-md group-hover:bg-gold group-hover:text-white transition-colors">
-                        <Globe size={28} />
-                    </div>
-                    <h3 className="text-2xl font-serif font-bold mb-2">Dubai, UAE</h3>
-                    <p className="text-gray-500 mb-6 font-light">International Office</p>
-                    <div className="space-y-3 text-charcoal font-medium">
-                        <p>Downtown Dubai</p>
-                        <p>United Arab Emirates</p>
-                        <a href="tel:+14699702664" className="block hover:text-gold transition-colors mt-4">+1 (469) 970-2664</a>
-                    </div>
+            {/* Right: Contact Form (Moved Up) */}
+            <FadeIn delay={0.2}>
+                <div className="bg-white p-10 rounded-sm shadow-2xl border-t-4 border-gold h-full">
+                    <h3 className="text-3xl font-serif font-bold text-charcoal mb-2">Send a Message</h3>
+                    <p className="text-gray-500 mb-8">Whether you're buying, selling, or relocating, we're here to assist you.</p>
+                    <ConsultationCTA embedded={true} />
                 </div>
             </FadeIn>
         </div>

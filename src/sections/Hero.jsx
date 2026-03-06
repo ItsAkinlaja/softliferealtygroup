@@ -25,23 +25,23 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4 container-custom">
         <FadeIn>
-            <h1 className="text-3xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-4 md:mb-6 tracking-tight leading-none uppercase drop-shadow-2xl">
-              Your Global <br/> <span className="text-gold italic">Real Estate Partner</span>
+            <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-4 md:mb-6 tracking-tight leading-none uppercase drop-shadow-2xl">
+              Homes for Sale in <br/> <span className="text-gold italic font-serif">Dallas, Texas</span>
             </h1>
-            <p className="text-base md:text-xl text-white/90 font-light mb-8 md:mb-12 max-w-2xl mx-auto drop-shadow-md leading-relaxed">
-                Connecting you with exclusive properties and investment opportunities in Dallas, Dubai, and beyond.
+            <p className="text-base md:text-xl text-white/90 font-sans font-light mb-8 md:mb-12 max-w-3xl mx-auto drop-shadow-md leading-relaxed">
+                Soft Life Realty Group helps buyers discover beautiful homes for sale in Dallas, Texas. Whether you’re relocating to Dallas or searching for the perfect neighborhood, our team is here to help.
             </p>
             
             <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full max-w-md md:max-w-none mx-auto">
               {/* Primary CTA - Search */}
-              <a href="/search" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-white text-charcoal font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-gold hover:text-white hover:shadow-lg hover:-translate-y-1 border border-white flex justify-center items-center text-sm md:text-base">
+              <a href="/search" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-white text-charcoal font-serif font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-gold hover:text-white hover:shadow-lg hover:-translate-y-1 border border-white flex justify-center items-center text-sm md:text-base">
                 <span className="relative z-10 flex items-center">
                   Start Search <Search className="ml-3 w-4 h-4 md:w-5 md:h-5 group-hover:rotate-90 transition-transform duration-500" />
                 </span>
               </a>
               
               {/* Secondary CTA - Valuation */}
-              <a href="/valuation" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-transparent border border-white text-white font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-white hover:text-charcoal hover:-translate-y-1 flex justify-center items-center text-sm md:text-base">
+              <a href="/valuation" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-transparent border border-white text-white font-serif font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-white hover:text-charcoal hover:-translate-y-1 flex justify-center items-center text-sm md:text-base">
                 <span className="relative z-10 flex items-center">
                   Get Valuation <Home className="ml-3 w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform duration-500" />
                 </span>

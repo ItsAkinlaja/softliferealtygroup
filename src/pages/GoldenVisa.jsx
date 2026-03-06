@@ -23,11 +23,9 @@ const GoldenVisa = () => {
                 muted 
                 playsInline
                 preload="metadata"
-                poster="https://res.cloudinary.com/dewttmtbc/image/upload/v1772351058/ozycyujmu4itfjlc8dqh.jpg"
                 className="absolute inset-0 w-full h-full object-cover object-center"
             >
-                <source media="(max-width: 768px)" src="https://videos.pexels.com/video-files/854353/854353-hd_1920_1080_30fps.mp4" type="video/mp4" />
-                <source src="https://videos.pexels.com/video-files/7578544/7578544-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+                <source src="https://videos.pexels.com/video-files/3763063/3763063-uhd_2560_1440_25fps.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div className="relative z-20 container-custom px-4 flex flex-col items-center">

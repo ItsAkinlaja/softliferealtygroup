@@ -15,6 +15,7 @@ import TermsOfService from './pages/TermsOfService';
 import Sitemap from './pages/Sitemap';
 import MortgageCalculator from './pages/MortgageCalculator';
 import LifestyleQuiz from './pages/LifestyleQuiz';
+import RelocationGuide from './pages/RelocationGuide';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="golden-visa" element={<GoldenVisa />} />
           <Route path="valuation" element={<HomeValuation />} />
           <Route path="mortgage-calculator" element={<MortgageCalculator />} />
+          <Route path="relocation-guide" element={<RelocationGuide />} />
           <Route path="lifestyle-quiz" element={<LifestyleQuiz />} />
           <Route path="dubai-real-estate" element={<GoldenVisa />} />
           <Route path="about" element={<About />} />

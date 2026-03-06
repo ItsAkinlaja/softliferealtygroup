@@ -25,6 +25,16 @@ const BuyersGuide = () => {
     doc.text("The Buyer's Journey: Comprehensive Guide", margin, yPos);
     yPos += 15;
 
+    // Contact Info Header
+    doc.setFontSize(10);
+    doc.setTextColor(80, 80, 80);
+    doc.text("www.softliferealtygroup.com", margin, yPos);
+    yPos += 5;
+    doc.text("+1 (469) 823-1886 | +1 (469) 970-2664", margin, yPos);
+    yPos += 5;
+    doc.text("info@softliferealtygroup.com", margin, yPos);
+    yPos += 10;
+
     doc.setDrawColor(190, 150, 90);
     doc.line(margin, yPos, pageWidth - margin, yPos);
     yPos += 15;
@@ -76,7 +86,7 @@ const BuyersGuide = () => {
     yPos += 10;
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text("www.softliferealty.com | Contact: +1 (555) 000-0000", margin, yPos);
+    doc.text("www.softliferealtygroup.com | +1 (469) 823-1886", margin, yPos);
 
     doc.save("SoftLife_Realty_Buyers_Guide.pdf");
   };

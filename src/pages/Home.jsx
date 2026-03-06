@@ -14,9 +14,9 @@ const Home = () => {
   return (
     <>
       <SEO 
-        title="Luxury Real Estate in Dallas & Dubai" 
-        description="SoftLife Realty Group connects you with premium properties in Dallas and Dubai. Explore our exclusive listings and expert valuation services today."
-        keywords="luxury real estate, dallas homes, dubai property, golden visa, real estate investment"
+        title="Homes for Sale in Dallas, TX | Soft Life Realty Group" 
+        description="Discover homes for sale in Dallas, TX with Soft Life Realty Group. Explore neighborhoods and get expert help relocating to Dallas."
+        keywords="homes for sale dallas tx, soft life realty group, dallas real estate, relocating to dallas, dubai real estate"
       />
       <Hero />
       <FadeIn>

@@ -79,8 +79,22 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Legal & Compliance Logos */}
+        <div className="border-t border-white/10 pt-12 pb-8 flex flex-col items-center text-center space-y-6">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+                <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Consumer Protection Notice</a>
+                <a href="https://www.trec.texas.gov/forms/information-about-brokerage-services" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Information About Brokerage Services</a>
+                <Link to="/disclaimer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Disclaimer</Link>
+            </div>
+            
+            <div className="flex items-center justify-center gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+                <img src="https://res.cloudinary.com/dewttmtbc/image/upload/v1772795499/vmvtaoswowjjyryb2onw.png" alt="Equal Housing Opportunity" className="h-10 w-auto filter brightness-0 invert" />
+                <img src="https://res.cloudinary.com/dewttmtbc/image/upload/v1772795499/k4nuavuyea9hr4daepj1.png" alt="Realtor Logo" className="h-10 w-auto filter brightness-0 invert" />
+            </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light tracking-wide">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light tracking-wide">
           <p>&copy; {new Date().getFullYear()} SoftLife Realty Group. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>

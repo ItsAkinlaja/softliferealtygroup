@@ -50,6 +50,17 @@ const Header = () => {
 
   return (
     <>
+      <div className="bg-charcoal text-white py-2 hidden md:block">
+        <div className="container-custom px-4 flex justify-between items-center text-xs tracking-wider">
+            <div className="flex gap-6">
+                <a href="tel:+14698231886" className="hover:text-gold transition-colors font-bold">+1 (469) 823-1886</a>
+                <a href="tel:+14699702664" className="hover:text-gold transition-colors font-bold">+1 (469) 970-2664</a>
+            </div>
+            <div className="flex gap-4">
+                <a href="mailto:info@softliferealtygroup.com" className="hover:text-gold transition-colors">info@softliferealtygroup.com</a>
+            </div>
+        </div>
+      </div>
       <header className="bg-white/95 backdrop-blur-sm sticky top-0 z-[100] border-b border-sand shadow-sm transition-all duration-300">
         <div className="container-custom flex justify-between items-center py-4 px-4">
           {/* Logo */}
@@ -58,29 +69,38 @@ const Header = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden xl:flex items-center space-x-8 text-sm font-medium tracking-wide text-gray-800">
+          <nav className="hidden xl:flex items-center space-x-8 text-sm font-sans font-medium tracking-wide text-gray-800">
+            <Link to="/" className="hover:text-gold transition-colors uppercase">Home</Link>
             <Link to="/search" className="hover:text-gold transition-colors uppercase">Search</Link>
             
-            {/* Services Dropdown */}
+            {/* Buy Dropdown */}
             <div className="relative group">
-                <button className="flex items-center hover:text-gold transition-colors uppercase py-4">
-                    Services <ChevronDown size={14} className="ml-1" />
+                <button className="flex items-center hover:text-gold transition-colors uppercase py-4 font-sans">
+                    Buy <ChevronDown size={14} className="ml-1" />
+                </button>
+                <div className="absolute left-0 mt-0 w-64 bg-white border border-sand shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-50">
+                    <Link to="/buy/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Buyers Guide</Link>
+                    <Link to="/mortgage-calculator" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Mortgage Calculator</Link>
+                    <Link to="/relocation-guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors font-sans">Moving to Dallas, Texas</Link>
+                </div>
+            </div>
+
+            {/* Sell Dropdown */}
+            <div className="relative group">
+                <button className="flex items-center hover:text-gold transition-colors uppercase py-4 font-sans">
+                    Sell <ChevronDown size={14} className="ml-1" />
                 </button>
                 <div className="absolute left-0 mt-0 w-56 bg-white border border-sand shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-50">
-                    <Link to="/valuation" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50">Home Valuation</Link>
-                    <Link to="/mortgage-calculator" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50">Mortgage Calculator</Link>
-                    <Link to="/buy/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50">Buyers Guide</Link>
-                    <Link to="/sell/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors">Sellers Guide</Link>
+                    <Link to="/valuation" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Home Valuation</Link>
+                    <Link to="/sell/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors font-sans">Sellers Guide</Link>
                 </div>
             </div>
 
             <Link to="/dubai-real-estate" className="hover:text-gold transition-colors uppercase">Dubai</Link>
-            <Link to="/lifestyle-quiz" className="hover:text-gold transition-colors uppercase">Quiz</Link>
-            <Link to="/about" className="hover:text-gold transition-colors uppercase">About</Link>
             
             {/* CTA Button */}
-            <Link to="/contact" className="bg-charcoal text-white px-6 py-2.5 hover:bg-gold transition-colors uppercase tracking-wider text-xs font-bold rounded-sm shadow-md">
-                Contact
+            <Link to="/contact" className="bg-charcoal text-white px-6 py-2.5 hover:bg-gold transition-colors uppercase tracking-wider text-xs font-bold rounded-sm shadow-md font-serif">
+                Let's Connect
             </Link>
 
             {/* Google Translate Container with Icon */}
@@ -101,74 +121,64 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Menu Drawer & Backdrop */}
-      <div className={`fixed inset-0 z-[200] xl:hidden transition-all duration-500 ${isOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible delay-500'}`}>
-        {/* Backdrop - Click to close */}
-        <div 
-          className={`absolute inset-0 bg-charcoal/80 backdrop-blur-md transition-opacity duration-500 ease-in-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}
-          onClick={() => setIsOpen(false)}
-        ></div>
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed inset-0 bg-white/95 backdrop-blur-md z-50 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+        <button 
+            onClick={() => setIsOpen(false)} 
+            className="absolute top-6 right-6 text-charcoal hover:text-gold transition-colors p-2"
+            aria-label="Close Menu"
+        >
+            <X size={32} />
+        </button>
 
-        {/* Drawer Panel */}
-        <div className={`absolute top-0 right-0 bottom-0 w-full md:w-[400px] bg-white shadow-2xl transform transition-transform duration-500 cubic-bezier(0.22, 1, 0.36, 1) ${isOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col h-full overflow-y-auto`}>
+        <nav className="flex flex-col items-center space-y-6 text-center w-full max-w-md px-6">
+            <Link to="/" className="text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4 w-full" onClick={() => setIsOpen(false)}>
+                Home
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">01</span>
+            </Link>
+
+            <Link to="/search" className="text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4 w-full" onClick={() => setIsOpen(false)}>
+                Search
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">02</span>
+            </Link>
             
-            {/* Drawer Header */}
-            <div className="flex justify-between items-center p-8 border-b border-gray-100">
-                <img src="/Soft_Life_Realty_Logo.png" alt="Logo" className="h-10 w-auto" />
-                <button 
-                    onClick={() => setIsOpen(false)} 
-                    className="group bg-gray-50 hover:bg-gold p-3 rounded-full transition-all duration-300"
-                >
-                    <X size={24} className="text-charcoal group-hover:text-white transition-colors" />
+            {/* Mobile Buy Dropdown */}
+            <div className="w-full border-b border-gray-50 pb-4">
+                <button onClick={() => toggleDropdown('buy')} className="flex items-center justify-between w-full text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
+                    <span>Buy</span>
+                    <ChevronDown size={24} className={`transform transition-transform duration-300 ${activeDropdown === 'buy' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
                 </button>
-            </div>
-
-            {/* Drawer Content */}
-            <div className="flex flex-col px-8 py-8 space-y-6 flex-grow">
-                <Link to="/" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    Home
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">01</span>
-                </Link>
                 
-                <Link to="/search" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    Search
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">02</span>
-                </Link>
-                
-                <div className="space-y-4 border-b border-gray-50 pb-4">
-                    <button onClick={() => toggleDropdown('services')} className="flex items-center justify-between w-full text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
-                        <span>Services</span>
-                        <ChevronDown size={20} className={`transform transition-transform duration-300 ${activeDropdown === 'services' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
-                    </button>
-                    
-                    <div className={`pl-4 space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'services' ? 'max-h-60 opacity-100 pt-2' : 'max-h-0 opacity-0'}`}>
-                        <Link to="/valuation" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Home Valuation</Link>
-                        <Link to="/mortgage-calculator" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Mortgage Calculator</Link>
-                        <Link to="/buy/guide" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
-                        <Link to="/sell/guide" className="block text-lg text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
-                    </div>
-                </div>
-
-                <Link to="/dubai-real-estate" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    Dubai
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">04</span>
-                </Link>
-
-                <Link to="/lifestyle-quiz" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    Quiz
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">05</span>
-                </Link>
-                
-                <Link to="/about" className="text-2xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4" onClick={() => setIsOpen(false)}>
-                    About
-                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">06</span>
-                </Link>
-                
-                <div className="mt-auto pt-8">
-                     <Link to="/contact" className="btn-primary w-full text-center py-4 block text-lg" onClick={() => setIsOpen(false)}>Get in Touch</Link>
+                <div className={`space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'buy' ? 'max-h-60 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>
+                    <Link to="/buy/guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
+                    <Link to="/mortgage-calculator" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Mortgage Calculator</Link>
+                    <Link to="/relocation-guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Moving to Dallas</Link>
                 </div>
             </div>
-        </div>
+
+            {/* Mobile Sell Dropdown */}
+            <div className="w-full border-b border-gray-50 pb-4">
+                <button onClick={() => toggleDropdown('sell')} className="flex items-center justify-between w-full text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
+                    <span>Sell</span>
+                    <ChevronDown size={24} className={`transform transition-transform duration-300 ${activeDropdown === 'sell' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
+                </button>
+                
+                <div className={`space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'sell' ? 'max-h-60 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>
+                    <Link to="/valuation" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Home Valuation</Link>
+                    <Link to="/sell/guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
+                </div>
+            </div>
+
+            <Link to="/dubai-real-estate" className="text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4 w-full" onClick={() => setIsOpen(false)}>
+                Dubai
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">05</span>
+            </Link>
+            
+            <Link to="/contact" className="text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4 w-full" onClick={() => setIsOpen(false)}>
+                Let's Connect
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-gold text-sm">06</span>
+            </Link>
+        </nav>
       </div>
     </>
   );

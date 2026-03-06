@@ -67,9 +67,12 @@ const About = () => {
                             Their partnership combines years of industry expertise, a network of exclusive connections, and a relentless drive to deliver results. Whether navigating complex cross-border transactions or finding the perfect family home, Anne and Shakirah are dedicated to your success.
                         </p>
                         
-                        <div className="border-l-4 border-gold pl-6 py-2 mb-10">
-                            <p className="text-xl font-serif italic text-charcoal">
+                        <div className="border-l-4 border-gold pl-6 py-4 mb-10 bg-beige/30 pr-4 rounded-r-sm">
+                            <p className="text-xl font-serif italic text-charcoal mb-4">
                                 "We believe real estate is the art of matching a soul to a setting. It's about finding the place where your life softens and your dreams expand."
+                            </p>
+                            <p className="text-sm font-medium text-gold uppercase tracking-widest">
+                                Hebrews 3:4 — "For every house is built by someone, but God is the builder of everything."
                             </p>
                         </div>
 
