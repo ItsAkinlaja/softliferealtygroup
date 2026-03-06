@@ -7,7 +7,7 @@ const Hero = () => {
     <section className="relative h-[80vh] md:h-screen w-full overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
         <video 
           autoPlay 
           loop 
@@ -26,11 +26,18 @@ const Hero = () => {
       <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4 container-custom">
         <FadeIn>
             <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-4 md:mb-6 tracking-tight leading-none uppercase drop-shadow-2xl">
-              Homes for Sale in <br/> <span className="text-gold italic font-serif">Dallas, Texas</span>
+              Homes for Sale in <br/> <span className="text-white italic font-serif">Dallas, Texas</span>
             </h1>
-            <p className="text-base md:text-xl text-white/90 font-sans font-light mb-8 md:mb-12 max-w-3xl mx-auto drop-shadow-md leading-relaxed">
-                Soft Life Realty Group helps buyers discover beautiful homes for sale in Dallas, Texas. Whether you’re relocating to Dallas or searching for the perfect neighborhood, our team is here to help.
-            </p>
+            <div className="mb-8 md:mb-12 max-w-3xl mx-auto drop-shadow-lg leading-relaxed text-white font-sans font-medium">
+                {/* Desktop Text */}
+                <p className="hidden md:block text-xl">
+                    Soft Life Realty Group helps buyers discover beautiful homes for sale in Dallas, Texas. Whether you’re relocating to Dallas or searching for the perfect neighborhood, our team is here to help.
+                </p>
+                {/* Mobile Text (Summarized) */}
+                <p className="block md:hidden text-base">
+                    Helping you discover beautiful homes and relocate to Dallas with ease.
+                </p>
+            </div>
             
             <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full max-w-md md:max-w-none mx-auto">
               {/* Primary CTA - Search */}

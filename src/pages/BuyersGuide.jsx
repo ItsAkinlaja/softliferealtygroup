@@ -91,6 +91,10 @@ const BuyersGuide = () => {
     doc.save("SoftLife_Realty_Buyers_Guide.pdf");
   };
 
+  const handleStartSearch = () => {
+    window.location.href = "https://form.typeform.com/to/HASkdHGb";
+  };
+
   const steps = [
     {
       icon: <DollarSign size={32} />,
@@ -268,9 +272,9 @@ const BuyersGuide = () => {
                    <h2 className="text-2xl md:text-4xl font-serif font-bold text-charcoal mb-6">Ready to begin your journey?</h2>
                    <p className="text-gray-500 mb-8 max-w-2xl mx-auto">Let's turn your vision into a key in your hand.</p>
                    <div className="flex flex-col md:flex-row justify-center gap-4">
-                       <a href="/search" className="btn-primary inline-flex items-center justify-center group">
+                       <button onClick={handleStartSearch} className="btn-primary inline-flex items-center justify-center group">
                            Start Your Search <Search className="ml-2 group-hover:scale-110 transition-transform" size={20} />
-                       </a>
+                       </button>
                        <a href="/contact" className="btn-secondary inline-flex items-center justify-center group">
                            Schedule Consultation <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                        </a>

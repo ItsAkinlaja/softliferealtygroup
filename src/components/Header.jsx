@@ -80,6 +80,7 @@ const Header = () => {
                 </button>
                 <div className="absolute left-0 mt-0 w-64 bg-white border border-sand shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-50">
                     <Link to="/buy/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Buyers Guide</Link>
+                    <Link to="/buyer-inquiry" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Buyer Inquiry</Link>
                     <Link to="/mortgage-calculator" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Mortgage Calculator</Link>
                     <Link to="/relocation-guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors font-sans">Moving to Dallas, Texas</Link>
                 </div>
@@ -92,6 +93,7 @@ const Header = () => {
                 </button>
                 <div className="absolute left-0 mt-0 w-56 bg-white border border-sand shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 rounded-sm overflow-hidden z-50">
                     <Link to="/valuation" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Home Valuation</Link>
+                    <Link to="/seller-inquiry" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors border-b border-gray-50 font-sans">Seller Inquiry</Link>
                     <Link to="/sell/guide" className="block px-6 py-3 hover:bg-beige hover:text-gold transition-colors font-sans">Sellers Guide</Link>
                 </div>
             </div>
@@ -150,24 +152,26 @@ const Header = () => {
                 </button>
                 
                 <div className={`space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'buy' ? 'max-h-60 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>
-                    <Link to="/buy/guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
-                    <Link to="/mortgage-calculator" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Mortgage Calculator</Link>
-                    <Link to="/relocation-guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Moving to Dallas</Link>
+                        <Link to="/buy/guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyers Guide</Link>
+                        <Link to="/buyer-inquiry" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Buyer Inquiry</Link>
+                        <Link to="/mortgage-calculator" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Mortgage Calculator</Link>
+                        <Link to="/relocation-guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Moving to Dallas</Link>
+                    </div>
                 </div>
-            </div>
 
-            {/* Mobile Sell Dropdown */}
-            <div className="w-full border-b border-gray-50 pb-4">
-                <button onClick={() => toggleDropdown('sell')} className="flex items-center justify-between w-full text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
-                    <span>Sell</span>
-                    <ChevronDown size={24} className={`transform transition-transform duration-300 ${activeDropdown === 'sell' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
-                </button>
-                
-                <div className={`space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'sell' ? 'max-h-60 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>
-                    <Link to="/valuation" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Home Valuation</Link>
-                    <Link to="/sell/guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
+                {/* Mobile Sell Dropdown */}
+                <div className="w-full border-b border-gray-50 pb-4">
+                    <button onClick={() => toggleDropdown('sell')} className="flex items-center justify-between w-full text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
+                        <span>Sell</span>
+                        <ChevronDown size={24} className={`transform transition-transform duration-300 ${activeDropdown === 'sell' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
+                    </button>
+                    
+                    <div className={`space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'sell' ? 'max-h-60 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>
+                        <Link to="/valuation" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Home Valuation</Link>
+                        <Link to="/seller-inquiry" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Seller Inquiry</Link>
+                        <Link to="/sell/guide" className="block text-xl text-gray-500 hover:text-gold font-light" onClick={() => setIsOpen(false)}>Sellers Guide</Link>
+                    </div>
                 </div>
-            </div>
 
             <Link to="/dubai-real-estate" className="text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4 w-full" onClick={() => setIsOpen(false)}>
                 Dubai

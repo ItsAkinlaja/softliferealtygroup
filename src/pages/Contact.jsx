@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Globe, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Globe, Instagram, MessageCircle, Youtube } from 'lucide-react';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
 import FadeIn from '../components/FadeIn';
@@ -89,6 +89,20 @@ const Contact = () => {
                             <a href="https://wa.me/14699702664" className="flex items-center justify-center w-full py-3 bg-[#25D366] text-white rounded-sm hover:bg-[#1da851] transition-colors shadow-md font-bold uppercase tracking-wide text-sm">
                                 <MessageCircle size={18} className="mr-2" /> WhatsApp 2
                             </a>
+                        </div>
+
+                        <div className="flex justify-center gap-4 mt-8">
+                             <a href="https://instagram.com/softliferealtygroup" target="_blank" rel="noopener noreferrer" className="p-3 bg-white border border-gray-200 rounded-full hover:bg-gold hover:text-white transition-all duration-300 shadow-sm group">
+                                <Instagram size={20} className="text-gray-500 group-hover:text-white" />
+                             </a>
+                             <a href="https://www.youtube.com/@SoftLifeRealtyGroup" target="_blank" rel="noopener noreferrer" className="p-3 bg-white border border-gray-200 rounded-full hover:bg-gold hover:text-white transition-all duration-300 shadow-sm group">
+                                <Youtube size={20} className="text-gray-500 group-hover:text-white" />
+                             </a>
+                             <a href="https://www.tiktok.com/@dfwrealtors?_r=1&_t=ZP-931RFfp4lDD" target="_blank" rel="noopener noreferrer" className="p-3 bg-white border border-gray-200 rounded-full hover:bg-gold hover:text-white transition-all duration-300 shadow-sm group">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 group-hover:text-white">
+                                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                                </svg>
+                             </a>
                         </div>
                     </div>
                 </div>

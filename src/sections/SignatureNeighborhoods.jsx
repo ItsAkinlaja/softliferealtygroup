@@ -39,12 +39,12 @@ const SignatureNeighborhoods = () => {
       <div className="container-custom">
         <div className="text-center mb-16 relative">
           <FadeIn>
-            <p className="text-gold font-script text-6xl md:text-7xl mb-4 opacity-90 transform -rotate-3">
+            <p className="text-white font-script text-6xl md:text-7xl mb-4 opacity-90 transform -rotate-3">
               Exclusive Portfolio
             </p>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4 relative z-10">Signature Locations</h2>
-            <div className="h-1 w-24 bg-gold mx-auto mb-6 relative z-10"></div>
-            <p className="text-gray-400 max-w-2xl mx-auto font-light text-lg relative z-10">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4 relative z-10 text-white">Signature Locations</h2>
+            <div className="h-1 w-24 bg-white mx-auto mb-6 relative z-10"></div>
+            <p className="text-gray-300 max-w-2xl mx-auto font-light text-lg relative z-10">
               Discover the most prestigious addresses in our portfolio. From the skyline of Dubai to the estates of Dallas.
             </p>
           </FadeIn>

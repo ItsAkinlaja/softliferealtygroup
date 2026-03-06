@@ -16,6 +16,8 @@ import Sitemap from './pages/Sitemap';
 import MortgageCalculator from './pages/MortgageCalculator';
 import LifestyleQuiz from './pages/LifestyleQuiz';
 import RelocationGuide from './pages/RelocationGuide';
+import BuyerInquiry from './pages/BuyerInquiry';
+import SellerInquiry from './pages/SellerInquiry';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="valuation" element={<HomeValuation />} />
           <Route path="mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="relocation-guide" element={<RelocationGuide />} />
+          <Route path="buyer-inquiry" element={<BuyerInquiry />} />
+          <Route path="seller-inquiry" element={<SellerInquiry />} />
           <Route path="lifestyle-quiz" element={<LifestyleQuiz />} />
           <Route path="dubai-real-estate" element={<GoldenVisa />} />
           <Route path="about" element={<About />} />

@@ -3,10 +3,8 @@ import { TrendingUp, Home, DollarSign, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 
 const HomeValuation = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simulate form submission
-    alert("Thank you! Your valuation request has been received. One of our experts will contact you shortly.");
+  const handleRedirect = () => {
+    window.location.href = "https://form.typeform.com/to/Ko6sIgc2";
   };
 
   return (
@@ -93,112 +91,26 @@ const HomeValuation = () => {
 
             {/* Right Column: The Form */}
             <div className="lg:col-span-7">
-                <div className="bg-white p-8 md:p-12 shadow-2xl rounded-sm border-t border-gold/20">
-                    <div className="text-center mb-10">
+                <div className="bg-white p-8 md:p-12 shadow-2xl rounded-sm border-t border-gold/20 flex flex-col items-center text-center">
+                    <div className="mb-10">
                         <h2 className="text-3xl font-serif font-bold text-charcoal mb-3">Request Your Valuation</h2>
                         <div className="h-1 w-20 bg-gold mx-auto mb-4"></div>
-                        <p className="text-gray-500">Please provide the details below. Your privacy is our priority.</p>
+                        <p className="text-gray-500">Please complete our secure valuation form to get started. Your privacy is our priority.</p>
                     </div>
 
-                    <form className="space-y-8" onSubmit={handleSubmit}>
-                        {/* Property Details */}
-                        <div>
-                            <h4 className="text-sm font-bold text-gold uppercase tracking-widest mb-6 flex items-center">
-                                <span className="bg-gold w-2 h-2 rounded-full mr-2"></span>
-                                Property Information
-                            </h4>
-                            <div className="space-y-6">
-                                <div className="group">
-                                    <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">Property Address</label>
-                                    <input 
-                                        type="text" 
-                                        className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all placeholder-gray-300 text-lg"
-                                        placeholder="123 Luxury Lane, Dallas, TX"
-                                    />
-                                </div>
-                                
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="group">
-                                        <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">Property Type</label>
-                                        <select className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all text-gray-700 text-lg">
-                                            <option>Single Family Home</option>
-                                            <option>Condo / Apartment</option>
-                                            <option>Townhouse</option>
-                                            <option>Luxury Estate</option>
-                                            <option>Penthouse</option>
-                                            <option>Land</option>
-                                            <option>Commercial</option>
-                                        </select>
-                                    </div>
-                                    <div className="group">
-                                        <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">Bedrooms / Bathrooms</label>
-                                        <input 
-                                            type="text" 
-                                            className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all placeholder-gray-300 text-lg"
-                                            placeholder="e.g. 4 Beds / 3 Baths"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Contact Details */}
-                        <div className="pt-6">
-                            <h4 className="text-sm font-bold text-gold uppercase tracking-widest mb-6 flex items-center">
-                                <span className="bg-gold w-2 h-2 rounded-full mr-2"></span>
-                                Your Contact Details
-                            </h4>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                                <div className="group">
-                                    <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">First Name</label>
-                                    <input 
-                                        type="text" 
-                                        className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all placeholder-gray-300 text-lg"
-                                        placeholder="Jane"
-                                    />
-                                </div>
-                                <div className="group">
-                                    <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">Last Name</label>
-                                    <input 
-                                        type="text" 
-                                        className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all placeholder-gray-300 text-lg"
-                                        placeholder="Doe"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="group">
-                                    <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all placeholder-gray-300 text-lg"
-                                        placeholder="jane@example.com"
-                                    />
-                                </div>
-                                <div className="group">
-                                    <label className="block text-xs font-bold text-charcoal uppercase tracking-wider mb-2 group-focus-within:text-gold transition-colors">Phone Number</label>
-                                    <input 
-                                        type="tel" 
-                                        className="w-full px-0 py-3 bg-transparent border-b border-gray-300 focus:border-gold outline-none transition-all placeholder-gray-300 text-lg"
-                                        placeholder="+1 (555) 000-0000"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="pt-8">
-                            <button type="submit" className="w-full btn-primary py-4 text-lg flex justify-center items-center group relative overflow-hidden">
-                                <span className="relative z-10 flex items-center">
-                                    Get My Professional Valuation
-                                    <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </button>
-                            <p className="text-center text-xs text-gray-400 mt-4">
-                                By submitting this form, you agree to be contacted by SoftLife Realty Group regarding your property inquiry.
-                            </p>
-                        </div>
-                    </form>
+                    <button 
+                        onClick={handleRedirect}
+                        className="w-full btn-primary py-5 text-xl flex justify-center items-center group relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+                    >
+                        <span className="relative z-10 flex items-center tracking-widest uppercase">
+                            Start Valuation Request <ArrowRight className="ml-3 group-hover:translate-x-2 transition-transform duration-300" size={24} />
+                        </span>
+                        <div className="absolute inset-0 bg-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out z-0"></div>
+                    </button>
+                    
+                    <p className="mt-6 text-xs text-gray-400">
+                        You will be redirected to our secure Typeform page to complete your request.
+                    </p>
                 </div>
             </div>
         </div>

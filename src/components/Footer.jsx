@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Instagram, Mail, MapPin, Facebook, ArrowRight } from 'lucide-react';
+import { Phone, Instagram, Mail, MapPin, Facebook, ArrowRight, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -22,8 +22,8 @@ const Footer = () => {
                 <a href="https://instagram.com/softliferealtygroup" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-gold hover:text-white transition-all duration-300 group">
                     <Instagram size={18} className="text-gray-300 group-hover:text-white" />
                 </a>
-                <a href="#" className="bg-white/5 p-3 rounded-full hover:bg-gold hover:text-white transition-all duration-300 group">
-                    <Facebook size={18} className="text-gray-300 group-hover:text-white" />
+                <a href="https://www.youtube.com/@SoftLifeRealtyGroup" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-gold hover:text-white transition-all duration-300 group">
+                    <Youtube size={18} className="text-gray-300 group-hover:text-white" />
                 </a>
                 <a href="https://www.tiktok.com/@dfwrealtors?_r=1&_t=ZP-931RFfp4lDD" target="_blank" rel="noopener noreferrer" className="bg-white/5 p-3 rounded-full hover:bg-gold hover:text-white transition-all duration-300 group">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300 group-hover:text-white">
@@ -88,8 +88,7 @@ const Footer = () => {
             </div>
             
             <div className="flex items-center justify-center gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
-                <img src="https://res.cloudinary.com/dewttmtbc/image/upload/v1772795499/vmvtaoswowjjyryb2onw.png" alt="Equal Housing Opportunity" className="h-10 w-auto filter brightness-0 invert" />
-                <img src="https://res.cloudinary.com/dewttmtbc/image/upload/v1772795499/k4nuavuyea9hr4daepj1.png" alt="Realtor Logo" className="h-10 w-auto filter brightness-0 invert" />
+                <img src="https://res.cloudinary.com/dewttmtbc/image/upload/v1772805328/tbyjqknxywlngvqyk81j.png" alt="Realtor and Equal Housing Opportunity Logos" className="h-12 w-auto filter brightness-0 invert" />
             </div>
         </div>
 
