@@ -17,7 +17,7 @@ const Hero = () => {
           poster="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         >
           {/* Using a luxury city/home video from Cloudinary */}
-          <source src="https://res.cloudinary.com/dewttmtbc/video/upload/v1772301941/xuibfjgsx68xyvlesh8h.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/dewttmtbc/video/upload/v1772871336/icmzxpctjlkrvp5wdkvj.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
