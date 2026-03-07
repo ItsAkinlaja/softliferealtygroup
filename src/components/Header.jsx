@@ -64,7 +64,7 @@ const Header = () => {
       <header className="bg-white/95 backdrop-blur-sm sticky top-0 z-[100] border-b border-sand shadow-sm transition-all duration-300">
         <div className="container-custom flex justify-between items-center py-4 px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center" onClick={() => window.scrollTo(0, 0)}>
+          <Link to="/" className="flex items-center" onClick={() => { setIsOpen(false); window.scrollTo(0, 0); }}>
             <img src="/Soft_Life_Realty_Logo.png" alt="SoftLife Realty Logo" className="h-10 md:h-14 w-auto object-contain hover:opacity-90 transition-opacity" />
           </Link>
 
@@ -125,12 +125,12 @@ const Header = () => {
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 bg-white/95 backdrop-blur-md z-50 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-        <button 
-            onClick={() => setIsOpen(false)} 
-            className="absolute top-6 right-6 text-charcoal hover:text-gold transition-colors p-2"
+        <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-32 right-6 bg-charcoal hover:bg-gold text-white hover:text-charcoal transition-colors p-3 rounded-full shadow-lg border-2 border-white z-[110]"
             aria-label="Close Menu"
         >
-            <X size={32} />
+            <X size={36} />
         </button>
 
         <nav className="flex flex-col items-center space-y-6 text-center w-full max-w-md px-6">
