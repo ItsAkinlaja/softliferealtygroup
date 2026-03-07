@@ -5,12 +5,16 @@
   --color-gold: #E5E5E5;       /* Replaced Black with Very Light Gray */
   --color-gold-light: #F5F5F5; /* Replaced with Off-White */
   --color-gold-dark: #D4D4D4;  /* Replaced with Light Gray */
-  
+
   --color-beige: #FFFFFF;      /* Clean White Background */
   --color-sand: #F5F5F5;       /* Very Light Gray Section Background */
-  
+
   --color-charcoal: #000000;   /* Jet Black */
-  
+
+  --color-gray-600: #2d3748;   /* Deep gray, close to black for better visibility */
+  --color-gray-500: #374151;   /* Deep gray, close to black for better visibility */
+  --color-gray-400: #4b5563;   /* Deep gray, close to black for better visibility */
+
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', serif;
   --font-heading: 'Jost', sans-serif;
@@ -34,7 +38,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-charcoal hover:bg-gray-800 text-white font-serif font-bold py-3 px-6 transition-all duration-300 shadow-sm hover:shadow-md uppercase tracking-wide border border-charcoal hover:border-gray-800;
+    @apply bg-charcoal hover:bg-gold-dark text-white hover:text-charcoal font-serif font-bold py-3 px-6 transition-all duration-300 shadow-sm hover:shadow-md uppercase tracking-wide border border-charcoal hover:border-gold-dark;
   }
   .btn-secondary {
     @apply bg-transparent border border-charcoal text-charcoal hover:bg-charcoal hover:text-white font-serif font-bold py-3 px-6 transition-all duration-300 uppercase tracking-wide;

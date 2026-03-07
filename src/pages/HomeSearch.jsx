@@ -86,11 +86,11 @@ const HomeSearch = () => {
             setHasMore(filtered.length > 20);
         } else {
             // Default load without search param
-            const mlsData = await fetchMLSListings(20, 0); 
+            const mlsData = await fetchMLSListings(20, 0);
             setProperties(mlsData);
             setFilteredProperties(mlsData);
             setOffset(20);
-            setHasMore(mlsData.length === 20);
+            setHasMore(true); // Allow load more since API might have more data
         }
 
       } catch (error) {
@@ -127,7 +127,7 @@ const HomeSearch = () => {
             setProperties(filtered); // Store the filtered subset as the "source of truth" for this search session
             setFilteredProperties(filtered.slice(0, 20)); // Show first 20
             setOffset(20);
-            setHasMore(filtered.length > 20);
+            setHasMore(true); // Allow load more since we might have more data or can fetch more
         } catch (error) {
             console.error("Failed to search listings:", error);
         } finally {
@@ -139,25 +139,27 @@ const HomeSearch = () => {
   // Handle Load More
   const handleLoadMore = async () => {
     if (loadingMore || !hasMore) return;
-    
+
     setLoadingMore(true);
-    
-    // Simulate network delay for load more
-    setTimeout(() => {
-        // We need to slice from the current properties list, which holds ALL fetched/filtered items
-        // The offset tracks how many we are currently SHOWING
-        const nextBatch = properties.slice(offset, offset + 20);
-        
+
+    try {
+        // Fetch next batch from API using current offset
+        const nextBatch = await fetchMLSListings(20, offset);
+
         if (nextBatch.length > 0) {
             setFilteredProperties(prev => [...prev, ...nextBatch]);
             setOffset(prev => prev + 20);
-            // Check if we still have more items in the properties array to show
-            setHasMore(offset + 20 < properties.length);
+            // Check if API returned a full batch (indicating more data available)
+            setHasMore(nextBatch.length === 20);
         } else {
             setHasMore(false);
         }
+    } catch (error) {
+        console.error("Failed to load more listings:", error);
+        setHasMore(false);
+    } finally {
         setLoadingMore(false);
-    }, 500);
+    }
   };
 
   // Handle Filtering (Client-side for other filters)
@@ -253,11 +255,11 @@ const HomeSearch = () => {
     
     try {
         // Reset to default API fetch (first 20 results, no query)
-        const mlsData = await fetchMLSListings(20, 0); 
+        const mlsData = await fetchMLSListings(20, 0);
         setProperties(mlsData);
         setFilteredProperties(mlsData);
         setOffset(20);
-        setHasMore(mlsData.length === 20);
+        setHasMore(true); // Allow load more since API might have more data
     } catch (error) {
         console.error("Failed to reset listings:", error);
     } finally {

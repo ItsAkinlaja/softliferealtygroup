@@ -98,14 +98,13 @@ const HomeValuation = () => {
                         <p className="text-gray-500">Please complete our secure valuation form to get started. Your privacy is our priority.</p>
                     </div>
 
-                    <button 
+                    <button
                         onClick={handleRedirect}
-                        className="w-full btn-primary py-5 text-xl flex justify-center items-center group relative overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
+                        className="w-full btn-primary py-5 text-xl flex justify-center items-center shadow-xl hover:shadow-2xl transition-all duration-300"
                     >
-                        <span className="relative z-10 flex items-center tracking-widest uppercase">
-                            Start Valuation Request <ArrowRight className="ml-3 group-hover:translate-x-2 transition-transform duration-300" size={24} />
+                        <span className="flex items-center tracking-widest uppercase">
+                            Start Valuation Request <ArrowRight className="ml-3" size={24} />
                         </span>
-                        <div className="absolute inset-0 bg-gold transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out z-0"></div>
                     </button>
                     
                     <p className="mt-6 text-xs text-gray-400">
