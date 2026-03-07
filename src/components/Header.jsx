@@ -113,26 +113,18 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setIsOpen(true)} 
-            className={`xl:hidden text-charcoal focus:outline-none hover:text-gold transition-all duration-300 p-2 ${isOpen ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
-            aria-label="Open Menu"
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="xl:hidden text-charcoal focus:outline-none hover:text-gold transition-all duration-300 p-2"
+            aria-label={isOpen ? "Close Menu" : "Open Menu"}
           >
-            <Menu size={28} />
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </header>
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 bg-white/95 backdrop-blur-md z-50 flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-        <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-32 right-6 bg-charcoal hover:bg-gold text-white hover:text-charcoal transition-colors p-3 rounded-full shadow-lg border-2 border-white z-[110]"
-            aria-label="Close Menu"
-        >
-            <X size={36} />
-        </button>
-
         <nav className="flex flex-col items-center space-y-6 text-center w-full max-w-md px-6">
             <Link to="/" className="text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors flex items-center justify-between group border-b border-gray-50 pb-4 w-full" onClick={() => setIsOpen(false)}>
                 Home
