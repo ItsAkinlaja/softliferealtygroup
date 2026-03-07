@@ -70,8 +70,8 @@ const Header = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden xl:flex items-center space-x-8 text-sm font-sans font-medium tracking-wide text-gray-800">
-            <Link to="/" className="hover:text-gold transition-colors uppercase">Home</Link>
-            <Link to="/search" className="hover:text-gold transition-colors uppercase">Search</Link>
+            <Link to="/" className="hover:text-charcoal transition-colors uppercase">Home</Link>
+            <Link to="/search" className="hover:text-charcoal transition-colors uppercase">Search</Link>
             
             {/* Buy Dropdown */}
             <div className="relative group">

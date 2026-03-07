@@ -82,9 +82,9 @@ const Footer = () => {
         {/* Legal & Compliance Logos */}
         <div className="border-t border-white/10 pt-12 pb-8 flex flex-col items-center text-center space-y-6">
             <div className="flex flex-wrap justify-center gap-6 md:gap-12">
-                <a href="https://www.trec.texas.gov/forms/consumer-protection-notice" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Consumer Protection Notice</a>
-                <a href="https://www.trec.texas.gov/forms/information-about-brokerage-services" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Information About Brokerage Services</a>
-                <Link to="/disclaimer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Disclaimer</Link>
+                <a href="https://ik.imagekit.io/ajide/Trec%201.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Consumer Protection Notice</a>
+                <a href="https://ik.imagekit.io/ajide/Information_about_Brokerage_Services_BuyerTenant_-_112015_ts88622.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Information About Brokerage Services</a>
+                <a href="https://ik.imagekit.io/ajide/trec%20disclaimer.pdf" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold text-xs transition-colors border-b border-transparent hover:border-gold pb-0.5">TREC Disclaimer</a>
             </div>
             
             <div className="flex items-center justify-center gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">

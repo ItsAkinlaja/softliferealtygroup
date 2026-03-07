@@ -2,18 +2,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #E5E5E5;       /* Replaced Black with Very Light Gray */
+  --color-gold: #D1D5DB;       /* Light gray for good contrast on black bg */
   --color-gold-light: #F5F5F5; /* Replaced with Off-White */
-  --color-gold-dark: #D4D4D4;  /* Replaced with Light Gray */
+  --color-gold-dark: #9CA3AF;  /* Medium gray */
 
   --color-beige: #FFFFFF;      /* Clean White Background */
   --color-sand: #F5F5F5;       /* Very Light Gray Section Background */
 
   --color-charcoal: #000000;   /* Jet Black */
 
-  --color-gray-600: #2d3748;   /* Deep gray, close to black for better visibility */
-  --color-gray-500: #374151;   /* Deep gray, close to black for better visibility */
-  --color-gray-400: #4b5563;   /* Deep gray, close to black for better visibility */
+  --color-gray-600: #1a202c;   /* Very dark gray, almost black for maximum visibility */
+  --color-gray-500: #2d3748;   /* Deep gray, close to black for better visibility */
+  --color-gray-400: #1f2937;   /* Very dark gray, almost black for maximum visibility */
 
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', serif;
