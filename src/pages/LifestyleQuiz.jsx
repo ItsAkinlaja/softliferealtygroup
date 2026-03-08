@@ -91,7 +91,7 @@ const LifestyleQuiz = () => {
         const subject = `Quiz Result: ${leadInfo.name} - ${finalPersona}`;
         const body = `Name: ${leadInfo.name}\nEmail: ${leadInfo.email}\nPhone: ${leadInfo.phone}\n\nPersona Match: ${finalPersona}\n\nQuiz Answers:\n${answers.map((a, i) => `Q${i+1}: ${a.text}`).join('\n')}`;
         
-        window.location.href = `mailto:info@softliferealty.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:info@softliferealtygroup.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
         // Auto-close after 3 seconds
         setTimeout(() => setSubmissionStatus('idle'), 3000);
