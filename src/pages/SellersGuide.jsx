@@ -13,82 +13,100 @@ const SellersGuide = () => {
       const pageWidth = doc.internal.pageSize.getWidth();
       const margin = 20;
       let yPos = 20;
-  
-      // Header
-    doc.setFontSize(22);
-    doc.setTextColor(190, 150, 90); // Gold color
-    doc.text("SoftLife Realty Group", margin, yPos);
-    yPos += 10;
-    
-    doc.setFontSize(18);
-    doc.setTextColor(40, 40, 40); // Charcoal
-    doc.text("The Seller's Guide: Maximizing Value", margin, yPos);
-    yPos += 15;
 
-    // Contact Info Header
-    doc.setFontSize(10);
-    doc.setTextColor(80, 80, 80);
-    doc.text("www.softliferealtygroup.com", margin, yPos);
-    yPos += 5;
-    doc.text("+1 (469) 823-1886 | +1 (469) 970-2664", margin, yPos);
-    yPos += 5;
-    doc.text("info@softliferealtygroup.com", margin, yPos);
-    yPos += 10;
+      const generateContent = () => {
+        // Header
+        doc.setFontSize(22);
+        doc.setTextColor(190, 150, 90); // Gold color
+        // Shift text to the right so it doesn't overlap the logo
+        doc.text("SoftLife Realty Group", margin + 35, yPos);
+        yPos += 10;
+        
+        doc.setFontSize(18);
+        doc.setTextColor(40, 40, 40); // Charcoal
+        doc.text("The Seller's Guide: Maximizing Value", margin, yPos);
+        yPos += 15;
 
-    doc.setDrawColor(190, 150, 90);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 15;
-  
-      // Introduction
-      doc.setFontSize(12);
-      doc.setTextColor(60, 60, 60);
-      const introText = "Selling a luxury property requires strategic pricing, impeccable presentation, and global marketing. This guide outlines our proven approach to ensuring your home stands out and sells for its true worth.";
-      const splitIntro = doc.splitTextToSize(introText, pageWidth - 2 * margin);
-      doc.text(splitIntro, margin, yPos);
-      yPos += splitIntro.length * 7 + 10;
-  
-      // Steps
-      steps.forEach((step, index) => {
-          // Check if we need a new page
-          if (yPos > 250) {
-              doc.addPage();
-              yPos = 20;
-          }
-  
-          // Step Title
-          doc.setFontSize(14);
-          doc.setTextColor(190, 150, 90);
-          doc.text(`${index + 1}. ${step.title}`, margin, yPos);
-          yPos += 8;
-  
-          // Step Description
-          doc.setFontSize(11);
-          doc.setTextColor(40, 40, 40);
-          const descText = doc.splitTextToSize(step.desc, pageWidth - 2 * margin);
-          doc.text(descText, margin, yPos);
-          yPos += descText.length * 6 + 5;
-  
-          // Details Bullet Points
-          doc.setFontSize(10);
-          doc.setTextColor(80, 80, 80);
-          step.details.forEach(detail => {
-              doc.text(`• ${detail}`, margin + 5, yPos);
-              yPos += 6;
-          });
-          
-          yPos += 10; // Spacing between steps
-      });
-  
-      // Footer
-    yPos += 10;
-    doc.setDrawColor(200, 200, 200);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 10;
-    doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
-    doc.text("www.softliferealtygroup.com | +1 (469) 823-1886", margin, yPos);
+        // Contact Info Header
+        doc.setFontSize(10);
+        doc.setTextColor(80, 80, 80);
+        doc.text("www.softliferealtygroup.com", margin, yPos);
+        yPos += 5;
+        doc.text("+1 (469) 823-1886 | +1 (469) 970-2664", margin, yPos);
+        yPos += 5;
+        doc.text("info@softliferealtygroup.com", margin, yPos);
+        yPos += 10;
 
-    doc.save("SoftLife_Realty_Sellers_Guide.pdf");
+        doc.setDrawColor(190, 150, 90);
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 15;
+
+        // Introduction
+        doc.setFontSize(12);
+        doc.setTextColor(60, 60, 60);
+        const introText = "Selling a luxury property requires strategic pricing, impeccable presentation, and global marketing. This guide outlines our proven approach to ensuring your home stands out and sells for its true worth.";
+        const splitIntro = doc.splitTextToSize(introText, pageWidth - 2 * margin);
+        doc.text(splitIntro, margin, yPos);
+        yPos += splitIntro.length * 7 + 10;
+
+        // Steps
+        steps.forEach((step, index) => {
+            // Check if we need a new page
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+
+            // Step Title
+            doc.setFontSize(14);
+            doc.setTextColor(190, 150, 90);
+            doc.text(`${index + 1}. ${step.title}`, margin, yPos);
+            yPos += 8;
+
+            // Step Description
+            doc.setFontSize(11);
+            doc.setTextColor(40, 40, 40);
+            const descText = doc.splitTextToSize(step.desc, pageWidth - 2 * margin);
+            doc.text(descText, margin, yPos);
+            yPos += descText.length * 6 + 5;
+
+            // Details Bullet Points
+            doc.setFontSize(10);
+            doc.setTextColor(80, 80, 80);
+            step.details.forEach(detail => {
+                doc.text(`• ${detail}`, margin + 5, yPos);
+                yPos += 6;
+            });
+            
+            yPos += 10; // Spacing between steps
+        });
+
+        // Footer
+        yPos += 10;
+        doc.setDrawColor(200, 200, 200);
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 10;
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text("www.softliferealtygroup.com | +1 (469) 823-1886", margin, yPos);
+
+        doc.save("SoftLife_Realty_Sellers_Guide.pdf");
+      };
+
+      // Load logo from public folder and add to top-left
+      const logo = new Image();
+      logo.src = "/Soft_Life_Realty_Logo.png";
+
+      logo.onload = () => {
+        // x, y, width, height (adjust size as needed)
+        doc.addImage(logo, "PNG", margin, yPos - 10, 30, 15);
+        generateContent();
+      };
+
+      // If logo fails to load, still generate the PDF without it
+      logo.onerror = () => {
+        generateContent();
+      };
   };
 
     const steps = [
@@ -158,7 +176,7 @@ const SellersGuide = () => {
           <Breadcrumbs className="text-white/80 mb-6" />
           <FadeIn>
             <h1 className="text-4xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tight drop-shadow-2xl">
-                Maximize Your <span className="text-gold italic">Value</span>
+                Maximize Your <span className="italic text-gold-light">Value</span>
             </h1>
             <p className="text-lg md:text-2xl text-white/90 font-light max-w-3xl mx-auto drop-shadow-lg mb-8 leading-relaxed">
                 Expert strategies to sell your home for the highest possible price. Download our comprehensive guide.
@@ -238,25 +256,27 @@ const SellersGuide = () => {
                <div className="absolute top-0 right-0 w-96 h-96 bg-gold opacity-10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
                
                <div className="container-custom px-4 relative z-10">
-                   <FadeIn>
-                       <Shield size={48} className="text-gold mx-auto mb-6" />
-                       <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">The SoftLife Advantage</h2>
-                       <p className="text-white/80 max-w-3xl mx-auto text-lg mb-10 leading-relaxed">
+                  <FadeIn>
+                      <Shield size={48} className="text-gold mx-auto mb-6" />
+                      <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-white drop-shadow-2xl">
+                          The SoftLife Advantage
+                      </h2>
+                      <p className="text-gray-200 max-w-3xl mx-auto text-lg mb-10 leading-relaxed">
                            We leverage cutting-edge technology and a vast global network to give your property maximum exposure. 
                            From high-end visuals to exclusive open houses, we create a compelling narrative that attracts qualified buyers.
                        </p>
                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-4xl mx-auto mt-12">
                            <div className="p-6 border border-white/10 rounded-sm bg-white/5">
                                <h4 className="font-bold text-gold mb-2">Professional Staging</h4>
-                               <p className="text-sm text-gray-400">Transforming spaces to evoke emotion and desire.</p>
+                              <p className="text-sm md:text-base text-gray-200">Transforming spaces to evoke emotion and desire.</p>
                            </div>
                            <div className="p-6 border border-white/10 rounded-sm bg-white/5">
                                <h4 className="font-bold text-gold mb-2">Digital Dominance</h4>
-                               <p className="text-sm text-gray-400">Targeted ads on social media and search engines.</p>
+                              <p className="text-sm md:text-base text-gray-200">Targeted ads on social media and search engines.</p>
                            </div>
                            <div className="p-6 border border-white/10 rounded-sm bg-white/5">
                                <h4 className="font-bold text-gold mb-2">Exclusive Network</h4>
-                               <p className="text-sm text-gray-400">Access to a private list of high-net-worth individuals.</p>
+                              <p className="text-sm md:text-base text-gray-200">Access to a private list of high-net-worth individuals.</p>
                            </div>
                        </div>
                    </FadeIn>

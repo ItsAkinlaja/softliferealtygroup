@@ -14,81 +14,99 @@ const BuyersGuide = () => {
     const margin = 20;
     let yPos = 20;
 
-    // Header
-    doc.setFontSize(22);
-    doc.setTextColor(190, 150, 90); // Gold color
-    doc.text("SoftLife Realty Group", margin, yPos);
-    yPos += 10;
-    
-    doc.setFontSize(18);
-    doc.setTextColor(40, 40, 40); // Charcoal
-    doc.text("The Buyer's Journey: Comprehensive Guide", margin, yPos);
-    yPos += 15;
+    const generateContent = () => {
+      // Header
+      doc.setFontSize(22);
+      doc.setTextColor(190, 150, 90); // Gold color
+      // Shift text to the right so it doesn't overlap the logo
+      doc.text("SoftLife Realty Group", margin + 35, yPos);
+      yPos += 10;
+      
+      doc.setFontSize(18);
+      doc.setTextColor(40, 40, 40); // Charcoal
+      doc.text("The Buyer's Journey: Comprehensive Guide", margin, yPos);
+      yPos += 15;
 
-    // Contact Info Header
-    doc.setFontSize(10);
-    doc.setTextColor(80, 80, 80);
-    doc.text("www.softliferealtygroup.com", margin, yPos);
-    yPos += 5;
-    doc.text("+1 (469) 823-1886 | +1 (469) 970-2664", margin, yPos);
-    yPos += 5;
-    doc.text("info@softliferealtygroup.com", margin, yPos);
-    yPos += 10;
+      // Contact Info Header
+      doc.setFontSize(10);
+      doc.setTextColor(80, 80, 80);
+      doc.text("www.softliferealtygroup.com", margin, yPos);
+      yPos += 5;
+      doc.text("+1 (469) 823-1886 | +1 (469) 970-2664", margin, yPos);
+      yPos += 5;
+      doc.text("info@softliferealtygroup.com", margin, yPos);
+      yPos += 10;
 
-    doc.setDrawColor(190, 150, 90);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 15;
+      doc.setDrawColor(190, 150, 90);
+      doc.line(margin, yPos, pageWidth - margin, yPos);
+      yPos += 15;
 
-    // Introduction
-    doc.setFontSize(12);
-    doc.setTextColor(60, 60, 60);
-    const introText = "Buying a home is one of the most significant investments you'll make. This guide simplifies the complex real estate landscape into actionable steps, ensuring your experience is seamless and rewarding.";
-    const splitIntro = doc.splitTextToSize(introText, pageWidth - 2 * margin);
-    doc.text(splitIntro, margin, yPos);
-    yPos += splitIntro.length * 7 + 10;
+      // Introduction
+      doc.setFontSize(12);
+      doc.setTextColor(60, 60, 60);
+      const introText = "Buying a home is one of the most significant investments you'll make. This guide simplifies the complex real estate landscape into actionable steps, ensuring your experience is seamless and rewarding.";
+      const splitIntro = doc.splitTextToSize(introText, pageWidth - 2 * margin);
+      doc.text(splitIntro, margin, yPos);
+      yPos += splitIntro.length * 7 + 10;
 
-    // Steps
-    steps.forEach((step, index) => {
-        // Check if we need a new page
-        if (yPos > 250) {
-            doc.addPage();
-            yPos = 20;
-        }
+      // Steps
+      steps.forEach((step, index) => {
+          // Check if we need a new page
+          if (yPos > 250) {
+              doc.addPage();
+              yPos = 20;
+          }
 
-        // Step Title
-        doc.setFontSize(14);
-        doc.setTextColor(190, 150, 90);
-        doc.text(`${index + 1}. ${step.title}`, margin, yPos);
-        yPos += 8;
+          // Step Title
+          doc.setFontSize(14);
+          doc.setTextColor(190, 150, 90);
+          doc.text(`${index + 1}. ${step.title}`, margin, yPos);
+          yPos += 8;
 
-        // Step Description
-        doc.setFontSize(11);
-        doc.setTextColor(40, 40, 40);
-        const descText = doc.splitTextToSize(step.desc, pageWidth - 2 * margin);
-        doc.text(descText, margin, yPos);
-        yPos += descText.length * 6 + 5;
+          // Step Description
+          doc.setFontSize(11);
+          doc.setTextColor(40, 40, 40);
+          const descText = doc.splitTextToSize(step.desc, pageWidth - 2 * margin);
+          doc.text(descText, margin, yPos);
+          yPos += descText.length * 6 + 5;
 
-        // Details Bullet Points
-        doc.setFontSize(10);
-        doc.setTextColor(80, 80, 80);
-        step.details.forEach(detail => {
-            doc.text(`• ${detail}`, margin + 5, yPos);
-            yPos += 6;
-        });
-        
-        yPos += 10; // Spacing between steps
-    });
+          // Details Bullet Points
+          doc.setFontSize(10);
+          doc.setTextColor(80, 80, 80);
+          step.details.forEach(detail => {
+              doc.text(`• ${detail}`, margin + 5, yPos);
+              yPos += 6;
+          });
+          
+          yPos += 10; // Spacing between steps
+      });
 
-    // Footer
-    yPos += 10;
-    doc.setDrawColor(200, 200, 200);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 10;
-    doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
-    doc.text("www.softliferealtygroup.com | +1 (469) 823-1886", margin, yPos);
+      // Footer
+      yPos += 10;
+      doc.setDrawColor(200, 200, 200);
+      doc.line(margin, yPos, pageWidth - margin, yPos);
+      yPos += 10;
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text("www.softliferealtygroup.com | +1 (469) 823-1886", margin, yPos);
 
-    doc.save("SoftLife_Realty_Buyers_Guide.pdf");
+      doc.save("SoftLife_Realty_Buyers_Guide.pdf");
+    };
+
+    // Load logo from public folder and add to top-left
+    const logo = new Image();
+    logo.src = "/Soft_Life_Realty_Logo.png";
+
+    logo.onload = () => {
+      // x, y, width, height (adjust size as needed)
+      doc.addImage(logo, "PNG", margin, yPos - 10, 30, 15);
+      generateContent();
+    };
+
+    // If logo fails to load, still generate the PDF without it
+    logo.onerror = () => {
+      generateContent();
+    };
   };
 
   const handleStartSearch = () => {
@@ -241,7 +259,9 @@ const BuyersGuide = () => {
                <div className="container-custom px-4">
                    <FadeIn>
                        <Shield size={48} className="text-gold mx-auto mb-6" />
-                       <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">Why Trust SoftLife Realty?</h2>
+                       <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-white drop-shadow-2xl">
+                           Why Trust SoftLife Realty?
+                       </h2>
                        <p className="text-white/80 max-w-3xl mx-auto text-lg mb-10 leading-relaxed">
                            We don't just find houses; we curate lifestyles. Our deep market knowledge in Dallas and Dubai, combined with a commitment to 
                            personalized service, ensures you find a property that resonates with your vision of a "Soft Life."
@@ -249,15 +269,15 @@ const BuyersGuide = () => {
                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-4xl mx-auto mt-12">
                            <div className="p-6 border border-white/10 rounded-sm">
                                <h4 className="font-bold text-gold mb-2">Global Reach</h4>
-                               <p className="text-sm text-gray-400">Access to exclusive international listings and investment opportunities.</p>
+                               <p className="text-sm md:text-base text-gray-200">Access to exclusive international listings and investment opportunities.</p>
                            </div>
                            <div className="p-6 border border-white/10 rounded-sm">
                                <h4 className="font-bold text-gold mb-2">Expert Negotiation</h4>
-                               <p className="text-sm text-gray-400">Strategies proven to secure the best price and terms for our clients.</p>
+                               <p className="text-sm md:text-base text-gray-200">Strategies proven to secure the best price and terms for our clients.</p>
                            </div>
                            <div className="p-6 border border-white/10 rounded-sm">
                                <h4 className="font-bold text-gold mb-2">White-Glove Service</h4>
-                               <p className="text-sm text-gray-400">Concierge-level support from the first viewing to the final signature.</p>
+                               <p className="text-sm md:text-base text-gray-200">Concierge-level support from the first viewing to the final signature.</p>
                            </div>
                        </div>
                    </FadeIn>

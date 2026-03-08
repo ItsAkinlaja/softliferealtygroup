@@ -47,14 +47,14 @@ const Hero = () => {
             
             <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6 w-full max-w-md md:max-w-none mx-auto">
               {/* Primary CTA - Search */}
-              <a href="/search" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-gold text-charcoal font-serif font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-sand hover:text-charcoal hover:shadow-lg hover:-translate-y-1 border border-gold flex justify-center items-center text-sm md:text-base">
+              <a href="/search" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-white text-charcoal font-serif font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-sand hover:text-charcoal hover:shadow-lg hover:-translate-y-1 border border-white flex justify-center items-center text-sm md:text-base">
                 <span className="relative z-10 flex items-center">
                   Start Search <Search className="ml-3 w-4 h-4 md:w-5 md:h-5 group-hover:rotate-90 transition-transform duration-500" />
                 </span>
               </a>
               
               {/* Secondary CTA - Valuation */}
-              <a href="/valuation" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-gold border border-gold text-charcoal font-serif font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-sand hover:text-charcoal hover:-translate-y-1 flex justify-center items-center text-sm md:text-base">
+              <a href="/valuation" className="group relative w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-transparent border border-white text-white font-serif font-bold uppercase tracking-[0.15em] overflow-hidden rounded-sm transition-all duration-500 hover:bg-white hover:text-charcoal hover:-translate-y-1 flex justify-center items-center text-sm md:text-base">
                 <span className="relative z-10 flex items-center">
                   Get Valuation <Home className="ml-3 w-4 h-4 md:w-5 md:h-5 group-hover:scale-110 transition-transform duration-500" />
                 </span>
