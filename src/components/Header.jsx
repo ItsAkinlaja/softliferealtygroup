@@ -140,7 +140,7 @@ const Header = () => {
             <div className="w-full border-b border-gray-50 pb-4">
                 <button onClick={() => toggleDropdown('buy')} className="flex items-center justify-between w-full text-3xl font-serif font-bold text-charcoal hover:text-gold transition-colors group">
                     <span>Buy</span>
-                    <ChevronDown size={24} className={`transform transition-transform duration-300 ${activeDropdown === 'buy' ? 'rotate-180 text-gold' : 'text-gray-400'}`} />
+                    <ChevronDown size={24} className={`transform transition-transform duration-300 ${activeDropdown === 'buy' ? 'rotate-180 text-gold' : 'text-gray-600'}`} />
                 </button>
                 
                 <div className={`space-y-4 overflow-hidden transition-all duration-500 ease-in-out ${activeDropdown === 'buy' ? 'max-h-60 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>

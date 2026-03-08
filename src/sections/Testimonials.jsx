@@ -20,7 +20,7 @@ const testimonials = [
   {
     id: 3,
     name: "Elena Rodriguez",
-    location: "Highland Park, Dallas",
+    location: "Dallas, TX",
     text: "We were selling a unique property that required a specific buyer. The marketing strategy was sophisticated and targeted. We closed above asking price in record time.",
     initials: "ER"
   }

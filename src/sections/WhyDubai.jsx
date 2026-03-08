@@ -61,7 +61,7 @@ const WhyInvest = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-lg mb-2 uppercase tracking-wide text-white group-hover:text-gold transition-colors">{reason.title}</h4>
-                                    <p className="text-sm text-gray-400 font-light group-hover:text-gray-200 transition-colors">{reason.text}</p>
+                                    <p className="text-sm text-gray-200 font-light transition-colors">{reason.text}</p>
                                 </div>
                             </div>
                         ))}

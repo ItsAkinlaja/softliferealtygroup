@@ -2,9 +2,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #D1D5DB;       /* Light gray for good contrast on black bg */
-  --color-gold-light: #F5F5F5; /* Replaced with Off-White */
-  --color-gold-dark: #9CA3AF;  /* Medium gray */
+  --color-gold: #9CA3AF;       /* Medium gray accent that stands out on both white and dark backgrounds */
+  --color-gold-light: #F5F5F5; /* Soft light gray for subtle highlights */
+  --color-gold-dark: #4B5563;  /* Deeper gray for hover and emphasis states */
 
   --color-beige: #FFFFFF;      /* Clean White Background */
   --color-sand: #F5F5F5;       /* Very Light Gray Section Background */

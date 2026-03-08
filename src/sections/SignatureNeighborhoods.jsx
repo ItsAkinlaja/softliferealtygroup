@@ -13,7 +13,7 @@ const neighborhoods = [
   {
     id: 2,
     name: "Highland Park",
-    location: "Dallas, USA",
+    location: "Texas, USA",
     image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop",
     link: "/search?location=Dallas"
   },

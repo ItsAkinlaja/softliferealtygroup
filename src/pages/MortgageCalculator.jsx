@@ -122,7 +122,7 @@ const MortgageCalculator = () => {
                             <div>
                                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Down Payment ($)</label>
                                 <div className="relative">
-                                    <DollarSign size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                    <DollarSign size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
                                     <input 
                                         type="text" 
                                         value={downPayment}
@@ -152,7 +152,7 @@ const MortgageCalculator = () => {
                             <div>
                                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Loan Term (Years)</label>
                                 <div className="relative">
-                                    <Calendar size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                                    <Calendar size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
                                     <select 
                                         value={loanTerm}
                                         onChange={handleInputChange(setLoanTerm)}

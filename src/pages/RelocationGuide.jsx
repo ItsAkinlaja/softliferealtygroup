@@ -69,7 +69,7 @@ const RelocationGuide = () => {
                 <div className="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
                     <GraduationCap size={40} className="text-gold mb-6 group-hover:scale-110 transition-transform" />
                     <h3 className="text-xl font-bold text-charcoal mb-4">Top-Rated Schools</h3>
-                    <p className="text-gray-500">Access to prestigious public school districts like Highland Park ISD and renowned private institutions.</p>
+                    <p className="text-gray-500">Access to prestigious public school districts and renowned private institutions.</p>
                 </div>
                 <div className="bg-white p-8 rounded-sm shadow-md hover:shadow-xl transition-all duration-300 group">
                     <Coffee size={40} className="text-gold mb-6 group-hover:scale-110 transition-transform" />

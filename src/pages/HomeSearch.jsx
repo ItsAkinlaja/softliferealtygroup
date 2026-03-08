@@ -306,7 +306,7 @@ const HomeSearch = () => {
                     onKeyDown={handleSearch}
                     className="w-full pl-10 pr-12 py-3 bg-gray-50 border border-gray-200 focus:border-gold outline-none transition-colors rounded-sm"
                 />
-                <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
                 <button 
                     onClick={handleSearch}
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-charcoal text-white p-1.5 rounded-sm hover:bg-gold transition-colors"
@@ -330,7 +330,7 @@ const HomeSearch = () => {
                         <option value="$3M - $5M">$3M - $5M</option>
                         <option value="$5M+">$5M+</option>
                     </select>
-                    <ChevronDown size={14} className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400" />
+                    <ChevronDown size={14} className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-600" />
                 </div>
 
                 {/* Bedrooms Filter */}

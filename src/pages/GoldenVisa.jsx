@@ -14,7 +14,7 @@ const GoldenVisa = () => {
             description="Secure your 10-year renewable UAE Golden Visa through strategic real estate investment. Learn about eligibility, benefits, and qualifying properties."
             keywords="uae golden visa, dubai golden visa, dubai residency by investment, buy property in dubai, dubai real estate investor visa"
         />
-        {/* Hero Section */}
+        {/* Hero Section - Dubai Real Estate / Golden Visa */}
         <section className="relative h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
             <div className="absolute inset-0 bg-black/50 z-10"></div>
             <video 
@@ -23,10 +23,16 @@ const GoldenVisa = () => {
                 muted 
                 playsInline
                 preload="metadata"
+                poster="https://res.cloudinary.com/dewttmtbc/image/upload/v1772351058/ozycyujmu4itfjlc8dqh.jpg"
                 className="absolute inset-0 w-full h-full object-cover object-center"
             >
-                <source src="https://videos.pexels.com/video-files/3763063/3763063-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
+                <source src="https://res.cloudinary.com/dewttmtbc/video/upload/v1772301941/xuibfjgsx68xyvlesh8h.mp4" type="video/mp4" />
+                {/* Fallback image if video cannot play */}
+                <img 
+                    src="https://res.cloudinary.com/dewttmtbc/image/upload/v1772351058/ozycyujmu4itfjlc8dqh.jpg" 
+                    alt="Dubai real estate skyline" 
+                    className="w-full h-full object-cover"
+                />
             </video>
             <div className="relative z-20 container-custom px-4 flex flex-col items-center">
                 <Breadcrumbs className="text-white/80 mb-6" />

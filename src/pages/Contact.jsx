@@ -76,7 +76,7 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <h4 className="text-lg font-bold text-charcoal mb-2">Office Locations</h4>
-                                    <p className="text-gray-600 mb-1">Highland Park, Dallas, TX 75205</p>
+                                    <p className="text-gray-600 mb-1">Dallas, TX 75205</p>
                                     <p className="text-gray-600">Downtown Dubai, UAE</p>
                                 </div>
                             </div>
@@ -93,13 +93,13 @@ const Contact = () => {
 
                         <div className="flex justify-center gap-4 mt-8">
                              <a href="https://instagram.com/softliferealtygroup" target="_blank" rel="noopener noreferrer" className="p-3 bg-white border border-gray-200 rounded-full hover:bg-gold hover:text-white transition-all duration-300 shadow-sm group">
-                                <Instagram size={20} className="text-gray-500 group-hover:text-white" />
+                                <Instagram size={20} className="text-gray-700 group-hover:text-white" />
                              </a>
                              <a href="https://www.youtube.com/@SoftLifeRealtyGroup" target="_blank" rel="noopener noreferrer" className="p-3 bg-white border border-gray-200 rounded-full hover:bg-gold hover:text-white transition-all duration-300 shadow-sm group">
-                                <Youtube size={20} className="text-gray-500 group-hover:text-white" />
+                                <Youtube size={20} className="text-gray-700 group-hover:text-white" />
                              </a>
                              <a href="https://www.tiktok.com/@dfwrealtors?_r=1&_t=ZP-931RFfp4lDD" target="_blank" rel="noopener noreferrer" className="p-3 bg-white border border-gray-200 rounded-full hover:bg-gold hover:text-white transition-all duration-300 shadow-sm group">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-500 group-hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-700 group-hover:text-white">
                                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
                                 </svg>
                              </a>
