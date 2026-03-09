@@ -108,6 +108,32 @@ const RelocationGuide = () => {
           </div>
       </section>
 
+      {/* Interactive Map Section */}
+      <section className="section-padding bg-sand">
+          <div className="container-custom">
+              <div className="text-center mb-12">
+                  <FadeIn>
+                      <h2 className="text-3xl md:text-4xl font-serif font-bold text-charcoal mb-4">Explore the Dallas Metroplex</h2>
+                      <p className="text-gray-500 max-w-2xl mx-auto">Get a feel for the layout of the city and its surrounding luxury suburbs.</p>
+                  </FadeIn>
+              </div>
+              <FadeIn>
+                  <div className="w-full h-[500px] rounded-sm shadow-xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+                      <iframe 
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214458.5851841916!2d-96.92091390918292!3d32.82035223336422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f77b45974b%3A0xb9ec9ba4f647678f!2sDallas%2C%20TX!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" 
+                          width="100%" 
+                          height="100%" 
+                          style={{ border: 0 }} 
+                          allowFullScreen="" 
+                          loading="lazy" 
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Dallas Map"
+                      ></iframe>
+                  </div>
+              </FadeIn>
+          </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-charcoal text-white text-center">
           <div className="container-custom px-4">

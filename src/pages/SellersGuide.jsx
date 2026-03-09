@@ -88,7 +88,7 @@ const SellersGuide = () => {
         yPos += 10;
         doc.setFontSize(10);
         doc.setTextColor(100, 100, 100);
-        doc.text("www.softliferealtygroup.com | +1 (469) 823-1886", margin, yPos);
+        doc.text("www.softliferealtygroup.com", margin, yPos);
 
         doc.save("SoftLife_Realty_Sellers_Guide.pdf");
       };

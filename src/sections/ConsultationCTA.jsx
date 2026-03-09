@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { ArrowRight, Phone, Mail, Instagram, MessageCircle } from 'lucide-react';
 import FadeIn from '../components/FadeIn';
 
+import emailjs from '@emailjs/browser';
+
 const ConsultationCTA = ({ embedded = false }) => {
     const location = useLocation();
     
@@ -52,29 +54,34 @@ const ConsultationCTA = ({ embedded = false }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const [submissionStatus, setSubmissionStatus] = useState(null);
+
+    const notificationRef = useRef(null);
+
+    useEffect(() => {
+        if (submissionStatus === 'success' || submissionStatus === 'error') {
+            notificationRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, [submissionStatus]);
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmissionStatus('loading');
         
         try {
-            const response = await fetch("https://formspree.io/f/xpwqrzvk", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                alert('Thank you! Your inquiry has been received. We will contact you shortly.');
-                setFormData({ name: '', email: '', phone: '', interest: 'General Inquiry' });
-            } else {
-                alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
-            }
+            await emailjs.send(
+                'service_21ikgyr', // EmailJS Service ID
+                'template_nfrqzwo', // EmailJS Template ID
+                formData,
+                '7QT4dzGrbB_qTuBzp' // EmailJS Public Key
+            );
+            setSubmissionStatus('success');
+            setFormData({ name: '', email: '', phone: '', interest: 'General Inquiry' });
         } catch (error) {
-            console.error("Form submission error:", error);
-            alert('Oops! There was a problem submitting your form. Please try again or email us directly.');
+            console.error("EmailJS submission error:", error);
+            setSubmissionStatus('error');
         }
     };
+
 
     if (embedded) {
         return (
@@ -119,19 +126,78 @@ const ConsultationCTA = ({ embedded = false }) => {
                         />
                     </div>
                     <div className="group">
-                        <input
+                        <textarea
                             name="interest"
                             value={formData.interest}
                             onChange={handleChange}
-                            className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
-                            placeholder="I'm interested in..."
-                        />
+                            className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal h-24 resize-none"
+                            placeholder="Tell us about your interest (e.g., specific property, neighborhood, price range)"
+                        ></textarea>
                     </div>
-                    <button type="submit" className="w-full btn-primary mt-8 flex justify-center items-center py-4 text-lg group">
-                        Submit Inquiry
-                        <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    <div className="pt-4">
+                        <button type="submit" className="w-full bg-charcoal hover:bg-gray-900 text-white !text-white font-serif font-bold py-4 text-lg flex justify-center items-center group relative overflow-hidden transition-all duration-300 shadow-xl disabled:opacity-90" disabled={submissionStatus === 'loading'}>
+                            {submissionStatus === 'loading' ? (
+                                <span className="relative z-10 flex items-center">
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Submitting...
+                                </span>
+                            ) : (
+                                <span className="relative z-10 flex items-center">
+                                    Submit Inquiry <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                                </span>
+                            )}
+                            <div className="absolute inset-0 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out z-0"></div>
+                        </button>
+                    </div>
                 </form>
+
+                <div ref={notificationRef} className="mt-6">
+                    {submissionStatus === 'success' && (
+                        <FadeIn>
+                            <div className="p-8 bg-charcoal text-white rounded-sm text-center shadow-2xl border border-white/10 relative overflow-hidden group">
+                                {/* Decorative elements */}
+                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                                
+                                <div className="mb-6 flex justify-center">
+                                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
+                                        <ArrowRight className="text-white transform rotate-[-45deg]" size={32} />
+                                    </div>
+                                </div>
+                                
+                                <h4 className="text-2xl font-serif font-bold mb-3 tracking-wider uppercase text-white !text-white">Inquiry Received</h4>
+                                <p className="text-white !text-white font-light leading-relaxed max-w-xs mx-auto mb-8 opacity-90">
+                                    Thank you for choosing Soft Life Realty Group. One of our luxury specialists will review your request and contact you shortly.
+                                </p>
+                                
+                                <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
+                                    <p className="text-[10px] uppercase tracking-[0.2em] text-white !text-white font-bold">Expect a response within 24 hours</p>
+                                    <button 
+                                        onClick={() => setSubmissionStatus(null)}
+                                        className="text-xs text-white hover:text-gray-300 transition-colors uppercase tracking-widest font-bold underline underline-offset-4"
+                                    >
+                                        Send another inquiry
+                                    </button>
+                                </div>
+                            </div>
+                        </FadeIn>
+                    )}
+
+                    {submissionStatus === 'error' && (
+                        <div className="p-6 bg-red-50 border border-red-100 text-red-800 rounded-sm text-center shadow-lg">
+                            <p className="font-bold mb-2">Submission Error</p>
+                            <p className="text-sm font-light opacity-80">There was a problem submitting your form. Please try again or email us directly at <a href="mailto:info@softliferealtygroup.com" className="underline font-medium">info@softliferealtygroup.com</a></p>
+                            <button 
+                                onClick={() => setSubmissionStatus(null)}
+                                className="mt-4 text-xs font-bold uppercase tracking-widest underline"
+                            >
+                                Try again
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }
@@ -187,19 +253,78 @@ const ConsultationCTA = ({ embedded = false }) => {
                             />
                         </div>
                         <div className="group">
-                            <input
+                            <textarea
                                 name="interest"
                                 value={formData.interest}
                                 onChange={handleChange}
-                                className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal"
-                                placeholder="I'm interested in..."
-                            />
+                                className="w-full px-0 py-3 border-b border-gray-200 focus:border-gold outline-none transition-all bg-transparent placeholder-gray-400 text-charcoal h-24 resize-none"
+                                placeholder="Tell us about your interest (e.g., specific property, neighborhood, price range)"
+                            ></textarea>
                         </div>
-                        <button type="submit" className="w-full btn-primary mt-8 flex justify-center items-center py-4 text-lg group">
-                            Submit Inquiry
-                            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                        </button>
+                        <div className="pt-4">
+                            <button type="submit" className="w-full bg-charcoal hover:bg-gray-900 text-white !text-white font-serif font-bold py-4 text-lg flex justify-center items-center group relative overflow-hidden transition-all duration-300 shadow-xl disabled:opacity-90" disabled={submissionStatus === 'loading'}>
+                                {submissionStatus === 'loading' ? (
+                                    <span className="relative z-10 flex items-center">
+                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Submitting...
+                                    </span>
+                                ) : (
+                                    <span className="relative z-10 flex items-center">
+                                        Submit Inquiry <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                                    </span>
+                                )}
+                                <div className="absolute inset-0 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500 ease-out z-0"></div>
+                            </button>
+                        </div>
                     </form>
+
+                    <div ref={notificationRef} className="mt-6">
+                        {submissionStatus === 'success' && (
+                            <FadeIn>
+                                <div className="p-8 bg-charcoal text-white rounded-sm text-center shadow-2xl border border-white/10 relative overflow-hidden group">
+                                    {/* Decorative elements */}
+                                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                                    
+                                    <div className="mb-6 flex justify-center">
+                                        <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center border border-white/20">
+                                            <ArrowRight className="text-white transform rotate-[-45deg]" size={32} />
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 className="text-2xl font-serif font-bold mb-3 tracking-wider uppercase text-white !text-white">Inquiry Received</h4>
+                                      <p className="text-white !text-white font-light leading-relaxed max-w-xs mx-auto mb-8 opacity-90">
+                                          Thank you for choosing Soft Life Realty Group. One of our luxury specialists will review your request and contact you shortly.
+                                      </p>
+                                      
+                                      <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
+                                          <p className="text-[10px] uppercase tracking-[0.2em] text-white !text-white font-bold">Expect a response within 24 hours</p>
+                                        <button 
+                                            onClick={() => setSubmissionStatus(null)}
+                                            className="text-xs text-white hover:text-gray-300 transition-colors uppercase tracking-widest font-bold underline underline-offset-4"
+                                        >
+                                            Send another inquiry
+                                        </button>
+                                    </div>
+                                </div>
+                            </FadeIn>
+                        )}
+
+                        {submissionStatus === 'error' && (
+                            <div className="p-6 bg-red-50 border border-red-100 text-red-800 rounded-sm text-center shadow-lg">
+                                <p className="font-bold mb-2">Submission Error</p>
+                                <p className="text-sm font-light opacity-80">There was a problem submitting your form. Please try again or email us directly at <a href="mailto:info@softliferealtygroup.com" className="underline font-medium">info@softliferealtygroup.com</a></p>
+                                <button 
+                                    onClick={() => setSubmissionStatus(null)}
+                                    className="mt-4 text-xs font-bold uppercase tracking-widest underline"
+                                >
+                                    Try again
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </FadeIn>
 

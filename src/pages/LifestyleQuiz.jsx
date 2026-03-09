@@ -3,6 +3,7 @@ import { ArrowRight, Check, RefreshCw, Home, X } from 'lucide-react';
 import SEO from '../components/SEO';
 import FadeIn from '../components/FadeIn';
 import Breadcrumbs from '../components/Breadcrumbs';
+import emailjs from '@emailjs/browser';
 
 const LifestyleQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -69,36 +70,30 @@ const LifestyleQuiz = () => {
     e.preventDefault();
     setSubmissionStatus('submitting');
     
-    // 1. Save to LocalStorage (Mock Backend)
     try {
-        await new Promise(resolve => setTimeout(resolve, 1500)); // Fake delay
-        
-        const resultData = {
-            date: new Date().toISOString(),
-            lead: leadInfo,
-            persona: finalPersona,
-            answers: answers
-        };
-        
-        const existingResults = JSON.parse(localStorage.getItem('softlife_quiz_results') || '[]');
-        localStorage.setItem('softlife_quiz_results', JSON.stringify([...existingResults, resultData]));
+        // Send email via EmailJS
+        await emailjs.send(
+            'service_21ikgyr', // Your Service ID
+            'template_nfrqzwo', // Your Template ID
+            {
+                name: leadInfo.name,
+                email: leadInfo.email,
+                phone: leadInfo.phone,
+                interest: `Lifestyle Quiz Result: ${finalPersona}\n\nAnswers:\n${answers.map((a, i) => `Q${i+1}: ${a.text}`).join('\n')}`
+            },
+            '7QT4dzGrbB_qTuBzp' // Your Public Key
+        );
         
         setSubmissionStatus('success');
         setShowLeadForm(false);
         setShowResult(true);
 
-        // 2. Open Mailto Link for real submission
-        const subject = `Quiz Result: ${leadInfo.name} - ${finalPersona}`;
-        const body = `Name: ${leadInfo.name}\nEmail: ${leadInfo.email}\nPhone: ${leadInfo.phone}\n\nPersona Match: ${finalPersona}\n\nQuiz Answers:\n${answers.map((a, i) => `Q${i+1}: ${a.text}`).join('\n')}`;
-        
-        window.location.href = `mailto:info@softliferealtygroup.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        // Auto-close after 3 seconds
-        setTimeout(() => setSubmissionStatus('idle'), 3000);
+        // Auto-close success state after 5 seconds
+        setTimeout(() => setSubmissionStatus('idle'), 5000);
 
     } catch (error) {
-        console.error("Error saving lead:", error);
-        setSubmissionStatus('idle');
+        console.error("Error sending quiz lead:", error);
+        setSubmissionStatus('error');
     }
   };
 

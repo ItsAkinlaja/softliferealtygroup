@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, MessageCircle } from 'lucide-react';
 import InstagramSlides from '../sections/InstagramSlides';
 import ConsultationCTA from '../sections/ConsultationCTA';
 import FadeIn from '../components/FadeIn';
@@ -118,6 +118,44 @@ const GoldenVisa = () => {
                         </div>
                     </FadeIn>
                 </div>
+            </div>
+        </section>
+
+        {/* WhatsApp Contact Section */}
+        <section className="py-16 bg-charcoal text-white">
+            <div className="container-custom px-4">
+                <FadeIn>
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-white">Connect With Our Dubai Experts</h2>
+                        <p className="text-white max-w-2xl mx-auto font-light opacity-90">Available for immediate assistance on WhatsApp for all your Dubai real estate inquiries.</p>
+                    </div>
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+                        <a 
+                            href="https://wa.me/14698231886" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 rounded-sm transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 w-full md:w-auto justify-center"
+                        >
+                            <MessageCircle className="mr-3" size={24} />
+                            <div className="text-left">
+                                <p className="text-xs uppercase font-bold tracking-widest opacity-80 leading-none mb-1">WhatsApp 1</p>
+                                <p className="text-lg font-bold">+1 (469) 823-1886</p>
+                            </div>
+                        </a>
+                        <a 
+                            href="https://wa.me/14699702664" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 rounded-sm transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 w-full md:w-auto justify-center"
+                        >
+                            <MessageCircle className="mr-3" size={24} />
+                            <div className="text-left">
+                                <p className="text-xs uppercase font-bold tracking-widest opacity-80 leading-none mb-1">WhatsApp 2</p>
+                                <p className="text-lg font-bold">+1 (469) 970-2664</p>
+                            </div>
+                        </a>
+                    </div>
+                </FadeIn>
             </div>
         </section>
 
