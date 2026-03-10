@@ -13,43 +13,25 @@ const About = () => {
         description="Meet the visionaries behind SoftLife Realty Group. Anne and Shakirah bring a boutique experience to modern real estate investment."
         keywords="about softlife realty, anne and shakirah, luxury real estate agents, dallas realtors, dubai real estate experts"
       />
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden flex flex-col justify-center items-center text-center">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" 
-          alt="Luxury Home Exterior" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="relative z-20 container-custom px-4 flex flex-col items-center">
-          <Breadcrumbs className="text-white/80 mb-6" />
-          <FadeIn>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white mb-4 md:mb-6 tracking-tight leading-none drop-shadow-2xl">
-              About <span className="text-gold italic">SoftLife</span>
-            </h1>
-            <div className="h-1 w-24 bg-gold mx-auto mb-6 md:mb-8"></div>
-            <p className="text-lg md:text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-              Redefining global real estate with elegance, expertise, and a personal touch.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* Founders Section */}
-      <section className="py-16 md:py-24 bg-white relative">
-        <div className="container-custom px-4">
+      <section className="bg-white relative overflow-hidden flex items-center">
+        <div className="container-custom px-4 py-16 lg:py-0">
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-                <FadeIn direction="right">
-                    <div className="relative h-[400px] md:h-[700px] w-full group overflow-hidden shadow-2xl rounded-sm">
-                        <div className="absolute inset-0 bg-gold/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+                <FadeIn direction="right" className="h-full">
+                    <div className="relative h-[60vh] lg:h-[85vh] w-full group overflow-hidden shadow-2xl rounded-sm">
+                        <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-15"></div>
                         <img 
                             src="/Annie & Shakirah.jpeg" 
                             alt="Anne & Shakirah - SoftLife Realty Founders" 
-                            className="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-105"
+                            className="w-full h-full object-contain transition-all duration-700 scale-100 group-hover:scale-105"
                         />
-                        <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20">
-                            <p className="text-white text-2xl md:text-4xl font-serif italic drop-shadow-lg">Anne & Shakirah</p>
-                            <p className="text-gold text-xs md:text-sm font-bold tracking-widest uppercase mt-2">Founders & Principals</p>
+                        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20">
+                            <p className="text-white text-3xl md:text-5xl font-serif italic drop-shadow-2xl mb-2">Anne & Shakirah</p>
+                            <div className="flex items-center gap-4">
+                                <div className="h-0.5 w-12 bg-gold"></div>
+                                <p className="text-gold text-sm md:text-lg font-bold tracking-[0.3em] uppercase drop-shadow-lg">Founders & Principals</p>
+                            </div>
                         </div>
                     </div>
                 </FadeIn>
