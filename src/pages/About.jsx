@@ -14,30 +14,30 @@ const About = () => {
         keywords="about softlife realty, anne and shakirah, luxury real estate agents, dallas realtors, dubai real estate experts"
       />
       {/* Founders Section */}
-      <section className="bg-white relative overflow-hidden flex items-center">
-        <div className="container-custom px-4 py-16 lg:py-0">
-             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-                <FadeIn direction="right" className="h-full">
-                    <div className="relative h-[60vh] lg:h-[85vh] w-full group overflow-hidden shadow-2xl rounded-sm">
-                        <div className="absolute inset-0 bg-black/10 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-15"></div>
-                        <img 
-                            src="/Annie & Shakirah.jpeg" 
-                            alt="Anne & Shakirah - SoftLife Realty Founders" 
-                            className="w-full h-full object-contain transition-all duration-700 scale-100 group-hover:scale-105"
-                        />
-                        <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20">
-                            <p className="text-white text-3xl md:text-5xl font-serif italic drop-shadow-2xl mb-2">Anne & Shakirah</p>
-                            <div className="flex items-center gap-4">
-                                <div className="h-0.5 w-12 bg-gold"></div>
-                                <p className="text-gold text-sm md:text-lg font-bold tracking-[0.3em] uppercase drop-shadow-lg">Founders & Principals</p>
-                            </div>
+      <section className="bg-white">
+        <div className="container-custom px-4 lg:px-0">
+             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+                {/* Image Column */}
+                <div className="relative min-h-[60vh] lg:min-h-screen">
+                    <div className="absolute inset-0 bg-black/10 z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-15"></div>
+                    <img 
+                        src="/Annie & Shakirah.jpeg" 
+                        alt="Anne & Shakirah - SoftLife Realty Founders" 
+                        className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20">
+                        <p className="text-white text-3xl md:text-5xl font-serif italic drop-shadow-2xl mb-2">Anne & Shakirah</p>
+                        <div className="flex items-center gap-4">
+                            <div className="h-0.5 w-12 bg-gold"></div>
+                            <p className="text-gold text-sm md:text-lg font-bold tracking-[0.3em] uppercase drop-shadow-lg">Founders & Principals</p>
                         </div>
                     </div>
-                </FadeIn>
+                </div>
                 
-                <FadeIn direction="left">
-                    <div className="pl-0 lg:pl-10">
+                {/* Text Column */}
+                <div className="flex items-center py-16 md:py-24 lg:py-0">
+                    <div className="lg:pl-16 xl:pl-24 pr-4">
                         <h4 className="text-gold font-bold tracking-[0.2em] uppercase mb-4 text-xs md:text-sm">The Visionaries</h4>
                         <h2 className="text-3xl md:text-5xl font-serif font-bold text-charcoal mb-6 md:mb-8 leading-tight">
                             Curating Lifestyles, <br/> Not Just Homes.
@@ -49,7 +49,7 @@ const About = () => {
                             Their partnership combines years of industry expertise, a network of exclusive connections, and a relentless drive to deliver results. Whether navigating complex cross-border transactions or finding the perfect family home, Anne and Shakirah are dedicated to your success.
                         </p>
                         
-                        <div className="bg-white/80 backdrop-blur-sm border-l-4 border-gold pl-6 py-6 mb-10 pr-4 rounded-r-lg shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2">
+                        <div className="bg-beige/30 backdrop-blur-sm border-l-4 border-gold pl-6 py-6 mb-10 pr-4 rounded-r-lg shadow-lg">
                             <p className="text-xl font-serif italic text-charcoal mb-4">
                                 "We believe real estate is the art of matching a soul to a setting. It's about finding the place where your life softens and your dreams expand."
                             </p>
@@ -62,7 +62,7 @@ const About = () => {
                             Work With Us <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                         </Link>
                     </div>
-                </FadeIn>
+                </div>
              </div>
         </div>
       </section>
