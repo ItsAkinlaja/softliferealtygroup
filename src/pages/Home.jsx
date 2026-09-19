@@ -5,6 +5,7 @@ import WhyInvest from '../sections/WhyDubai';
 import FeaturedProjects from '../sections/FeaturedProjects';
 import SignatureNeighborhoods from '../sections/SignatureNeighborhoods';
 import VideoSection from '../sections/VideoSection';
+import YouTubeSection from '../sections/YouTubeSection';
 import Testimonials from '../sections/Testimonials';
 import ConsultationCTA from '../sections/ConsultationCTA';
 import FadeIn from '../components/FadeIn';
@@ -33,6 +34,9 @@ const Home = () => {
       </FadeIn>
       <FadeIn>
         <VideoSection />
+      </FadeIn>
+      <FadeIn>
+        <YouTubeSection />
       </FadeIn>
       <FadeIn>
         <Testimonials />
